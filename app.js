@@ -41,9 +41,8 @@ app.get("/listings",async(req,res)=>{
 app.get("/listings/new",(req,res)=>{
     res.render("listings/new");
 });
-
 app.post("/listings",async (req,res)=>{
-    const newListing = new Listing(req.body);
+    const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
 })
@@ -56,16 +55,21 @@ app.get("/listings/:id",async (req,res)=>{
 })
 
 
-//testing listing model
-// app.get("/test",async (req,res)=>{
-//     let sample = new Listing({
-//         title:"Abc",
-//         description:"xyz",
-//         price: 2000,
-//         location: "Pqr",
-//         country: "India"
-//     })
-//     await sample.save();
-//     console.log("Sample saved");
-//     res.send("Sample saved");
-// })
+//edit Route
+app.get("/listings/:id/edit",async (req,res)=>{
+    let {id} = req.params;
+    const list = await Listing.findById(id);
+    res.render("listings/edit",{list});
+})
+app.put("/listings/:id",async(req,res)=>{
+    let {id} = req.params;
+    await Listing.findByIdAndUpdate(id,{...req.body.listing});
+    res.redirect(`/listings/${id}`);
+});
+
+//Delete Route
+app.delete("/listings/:id",async(req,res)=>{
+    let {id} = req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect("/listings");
+})
