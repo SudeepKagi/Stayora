@@ -11,7 +11,12 @@
   </div>
 
   <!-- Edit Form -->
-  <form action="/listings/<%= list._id %>?_method=PUT" method="POST">
+  <form
+    action="/listings/<%= list._id %>?_method=PUT"
+    method="POST"
+    class="needs-validation"
+    novalidate
+  >
 
     <div class="row g-4">
 
@@ -25,6 +30,9 @@
           value="<%= list.title %>"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a title.
+        </div>
       </div>
 
       <!-- Price -->
@@ -35,8 +43,12 @@
           class="form-control rounded-pill"
           name="listing[price]"
           value="<%= list.price %>"
+          min="1"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a valid price.
+        </div>
       </div>
 
       <!-- Image -->
@@ -69,6 +81,9 @@
           name="listing[description]"
           required
         ><%= list.description %></textarea>
+        <div class="invalid-feedback">
+          Please add a description.
+        </div>
       </div>
 
       <!-- Location -->
@@ -81,6 +96,9 @@
           value="<%= list.location %>"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a location.
+        </div>
       </div>
 
       <!-- Country -->
@@ -93,13 +111,19 @@
           value="<%= list.country %>"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a country.
+        </div>
       </div>
 
     </div>
 
     <!-- Actions -->
     <div class="d-flex justify-content-between mt-5">
-      <a href="/listings/<%= list._id %>" class="btn btn-outline-secondary rounded-pill px-4">
+      <a
+        href="/listings/<%= list._id %>"
+        class="btn btn-outline-secondary rounded-pill px-4"
+      >
         Cancel
       </a>
       <button class="btn btn-success rounded-pill px-5">

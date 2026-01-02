@@ -11,7 +11,7 @@
   </div>
 
   <!-- Form -->
-  <form action="/listings" method="POST">
+  <form action="/listings" method="POST" class="needs-validation" novalidate>
 
     <div class="row g-4">
 
@@ -25,6 +25,9 @@
           placeholder="Enter stay title"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a title.
+        </div>
       </div>
 
       <!-- Price -->
@@ -35,8 +38,12 @@
           name="listing[price]"
           class="form-control rounded-pill"
           placeholder="Enter price"
+          min="1"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a valid price.
+        </div>
       </div>
 
       <!-- Image -->
@@ -48,9 +55,6 @@
           class="form-control rounded-pill"
           placeholder="Paste image URL"
         />
-        <small class="text-muted">
-          Leave empty to use default image
-        </small>
       </div>
 
       <!-- Description -->
@@ -63,6 +67,9 @@
           placeholder="Describe the stay"
           required
         ></textarea>
+        <div class="invalid-feedback">
+          Please add a description.
+        </div>
       </div>
 
       <!-- Location -->
@@ -75,6 +82,9 @@
           placeholder="Enter location"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a location.
+        </div>
       </div>
 
       <!-- Country -->
@@ -87,6 +97,9 @@
           placeholder="Enter country"
           required
         />
+        <div class="invalid-feedback">
+          Please enter a country.
+        </div>
       </div>
 
     </div>

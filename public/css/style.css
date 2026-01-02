@@ -191,3 +191,8 @@ body {
 .footer-links a:hover {
   color: #2f8f46;
 }
+
+.form-check-input:checked {
+  background-color: #2f8f46;
+  border-color: #2f8f46;
+}
