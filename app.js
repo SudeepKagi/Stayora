@@ -5,12 +5,14 @@ const mongoose = require("mongoose");
 const path = require("path");
 const Listing = require("./models/listing.js");
 const methodOverride = require('method-override');
+const ejsMate = require("ejs-mate");
 
 app.set("views",path.join(__dirname,"views"))
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname,"public")))
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'))
+app.engine('ejs', ejsMate);
 
 
 // Connecting the database
@@ -27,8 +29,13 @@ app.listen(8080,()=>{
 });
 
 //Root route
-app.get("/",(req,res)=>{
-    res.send("Root is working.")
+app.get("/", (req, res) => {
+  res.render("root");
+});
+
+// About Page Route
+app.get("/about", (req, res) => {
+  res.render("about");
 });
 
 //listing Route

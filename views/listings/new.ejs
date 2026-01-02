@@ -1,26 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="post" action="/listings">
-        <h1>Enter Details</h1>
-        <input type="text" name="listing[title]" placeholder="Enter title">
-        <br>
-        <textarea type="text" name="listing[description]" placeholder="Enter description"></textarea>
-        <br>
-        <input type="text" name="listing[image]" placeholder="Enter image url">
-        <br>
-        <input type="number" name="listing[price]" placeholder="Enter price">
-        <br>
-        <input type="text" name="listing[location]" placeholder="Enter location">
-        <br>
-        <input type="text" name="listing[country]" placeholder="Enter country">
-        <br>
-        <button>Add</button>
-    </form>
-</body>
-</html>
+<% layout('layouts/boilerplate') -%>
+
+<div class="container py-5" style="max-width: 900px;">
+
+  <!-- Header -->
+  <div class="section-header mb-4">
+    <h2 class="section-title">Add New Stay</h2>
+    <p class="section-subtitle">
+      Create a new eco-friendly stay listing
+    </p>
+  </div>
+
+  <!-- Form -->
+  <form action="/listings" method="POST">
+
+    <div class="row g-4">
+
+      <!-- Title -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Title</label>
+        <input
+          type="text"
+          name="listing[title]"
+          class="form-control rounded-pill"
+          placeholder="Enter stay title"
+          required
+        />
+      </div>
+
+      <!-- Price -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Price per night (₹)</label>
+        <input
+          type="number"
+          name="listing[price]"
+          class="form-control rounded-pill"
+          placeholder="Enter price"
+          required
+        />
+      </div>
+
+      <!-- Image -->
+      <div class="col-12">
+        <label class="form-label fw-semibold">Image URL</label>
+        <input
+          type="text"
+          name="listing[image]"
+          class="form-control rounded-pill"
+          placeholder="Paste image URL"
+        />
+        <small class="text-muted">
+          Leave empty to use default image
+        </small>
+      </div>
+
+      <!-- Description -->
+      <div class="col-12">
+        <label class="form-label fw-semibold">Description</label>
+        <textarea
+          name="listing[description]"
+          rows="4"
+          class="form-control rounded-4"
+          placeholder="Describe the stay"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Location -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Location</label>
+        <input
+          type="text"
+          name="listing[location]"
+          class="form-control rounded-pill"
+          placeholder="Enter location"
+          required
+        />
+      </div>
+
+      <!-- Country -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Country</label>
+        <input
+          type="text"
+          name="listing[country]"
+          class="form-control rounded-pill"
+          placeholder="Enter country"
+          required
+        />
+      </div>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="d-flex justify-content-between align-items-center mt-5">
+      <a href="/listings" class="btn btn-outline-secondary rounded-pill px-4">
+        Cancel
+      </a>
+
+      <button class="btn btn-success rounded-pill px-5">
+        Add Stay
+      </button>
+    </div>
+
+  </form>
+
+</div>

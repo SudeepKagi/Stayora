@@ -1,0 +1,193 @@
+/* ==========================
+   GLOBAL
+========================== */
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: #fafdfb;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.eco-navbar {
+  margin: 12px auto;
+  padding: 6px 0;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  max-width: 1100px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.eco-navbar.sticky-top {
+  top: 12px;
+  z-index: 1030;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.brand-text {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #2f3e2f;
+}
+
+.eco-navbar .nav-link {
+  font-weight: 500;
+  color: #3a4a3a;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.eco-navbar .nav-link.active,
+.eco-navbar .nav-link:hover {
+  background: rgba(47, 143, 70, 0.15);
+  color: #2f8f46;
+}
+
+/* ==========================
+   HERO – BASE
+========================== */
+
+.hero-section {
+  border-radius: 22px;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin: 20px;
+}
+
+/* ==========================
+   HERO – ROOT PAGE
+========================== */
+
+.root-hero {
+  min-height: 60vh;
+  padding: 80px 8%;
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+}
+
+/* ==========================
+   HERO – LISTINGS PAGE
+========================== */
+
+.index-hero {
+  min-height: 45vh;
+  padding: 60px 8%;
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Hero Content */
+
+.hero-content {
+  max-width: 580px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.3rem, 4vw, 3.4rem);
+  font-weight: 800;
+}
+
+.hero-content span {
+  color: #7cfc98;
+}
+
+.hero-content p {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* ==========================
+   SECTION HEADER
+========================== */
+
+.section-header {
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2f3e2f;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  width: 50%;
+  height: 3px;
+  background: #2f8f46;
+  display: block;
+  margin-top: 6px;
+  border-radius: 6px;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: #6b7d6b;
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.price-tag {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2f8f46;
+}
+
+.price-tag span {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+.eco-footer {
+  background: #f7faf7;
+  border-top: 1px solid #e2ece2;
+}
+
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #4b5d4b;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #2f8f46;
+}
