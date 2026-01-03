@@ -196,3 +196,61 @@ body {
   background-color: #2f8f46;
   border-color: #2f8f46;
 }
+
+/* ================= FLASH MESSAGE ================= */
+
+.flash {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  animation: slideFade 0.4s ease-out;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* Success */
+.flash-success {
+  background: #e9f8ee;
+  color: #1f6f3d;
+  border-left: 5px solid #2f8f46;
+}
+
+/* Error */
+.flash-error {
+  background: #fdecec;
+  color: #8a1f1f;
+  border-left: 5px solid #d64545;
+}
+
+.flash-icon {
+  font-size: 1.3rem;
+}
+
+.flash-text {
+  flex: 1;
+}
+
+.flash-close {
+  cursor: pointer;
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+.flash-close:hover {
+  opacity: 1;
+}
+
+/* Animation */
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

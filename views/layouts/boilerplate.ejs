@@ -13,6 +13,9 @@
 <body>
 
   <%- include("../includes/navbar.ejs") %>
+  <div class="container mt-3" style="max-width:1100px">
+  <%- include("../includes/flash") %>
+  </div>
 
   <%- body %>
 
@@ -43,5 +46,11 @@
       })
     })()
   </script>
+  <script>
+  setTimeout(() => {
+    document.querySelectorAll(".flash").forEach(f => f.remove());
+  }, 3500);
+</script>
+
 </body>
 </html>
