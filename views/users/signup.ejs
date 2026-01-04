@@ -1,0 +1,96 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container py-5" style="max-width: 480px;">
+
+  <!-- Header -->
+  <div class="text-center mb-4">
+    <h2 class="section-title">Create Account</h2>
+    <p class="section-subtitle">
+      Join Stayora for eco-friendly stays 🌿
+    </p>
+  </div>
+
+  <!-- Signup Form -->
+  <form action="/signup" method="POST" class="needs-validation" novalidate>
+
+    <!-- Username -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control rounded-pill"
+        placeholder="Choose a username"
+        required
+      />
+      <div class="invalid-feedback">
+        Username is required
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control rounded-pill"
+        placeholder="Enter your email"
+        required
+      />
+      <div class="invalid-feedback">
+        Please enter a valid email
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control rounded-pill"
+        placeholder="Create a strong password"
+        required
+      />
+      <div class="invalid-feedback">
+        Password is required
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="d-grid">
+      <button class="btn btn-success rounded-pill py-2">
+        Sign Up
+      </button>
+    </div>
+
+  </form>
+
+  <!-- Login link -->
+  <p class="text-center text-muted mt-4">
+    Already have an account?
+    <a href="/login" class="text-success fw-semibold">
+      Log in
+    </a>
+  </p>
+
+</div>
+
+<!-- Bootstrap validation -->
+<script>
+  (() => {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+
+    Array.from(forms).forEach(form => {
+      form.addEventListener("submit", event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add("was-validated");
+      });
+    });
+  })();
+</script>

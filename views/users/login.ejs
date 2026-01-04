@@ -1,0 +1,64 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container d-flex justify-content-center align-items-center py-5">
+
+  <div class="card shadow-sm border-0 rounded-4 p-4" style="max-width: 420px; width: 100%;">
+    
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Welcome Back 🌿</h2>
+      <p class="text-muted small">
+        Login to manage your eco-friendly stays
+      </p>
+    </div>
+
+    <!-- Login Form -->
+    <form action="/login" method="POST" novalidate>
+
+      <!-- Username -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Username</label>
+        <input
+          type="text"
+          name="username"
+          class="form-control rounded-pill"
+          placeholder="Enter your username"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control rounded-pill"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+
+      <!-- Submit -->
+      <button class="btn btn-success w-100 rounded-pill mt-3">
+        Login
+      </button>
+
+    </form>
+
+    <!-- Divider -->
+    <hr class="my-4">
+
+    <!-- Footer -->
+    <div class="text-center">
+      <p class="small text-muted mb-1">
+        Don’t have an account?
+      </p>
+      <a href="/signup" class="text-success fw-semibold text-decoration-none">
+        Create an account
+      </a>
+    </div>
+
+  </div>
+
+</div>

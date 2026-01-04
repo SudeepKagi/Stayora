@@ -3,19 +3,7 @@ const router = express.Router({mergeParams: true});
 const wrapAsync = require("../utils/wrapAsync.js");
 const Listing = require("../models/listing.js");
 const ExpressError = require("../utils/ExpressError.js");
-const { listingSchema } = require("../schema.js");
-
-
-// Listing Validation
-const validateListing = (req, res, next) => {
-  const { error } = listingSchema.validate(req.body, { abortEarly: false });
-  if (error) {
-    const msg = error.details.map(el => el.message).join(", ");
-    throw new ExpressError(400, msg);
-  } else {
-    next();
-  }
-};
+const {isLoggedIn, isOwner, validateListing} = require("../middleware.js");
 
 // Listings index
 router.get("/", wrapAsync(async (req, res) => {
@@ -24,23 +12,30 @@ router.get("/", wrapAsync(async (req, res) => {
 }));
 
 // New listing form
-router.get("/new", (req, res) => {
+router.get("/new",isLoggedIn, (req, res) => {
     res.render("listings/new");
 });
 
 // Create listing
-router.post("/",validateListing,wrapAsync(async (req, res) => {
+router.post("/",isLoggedIn,validateListing,wrapAsync(async (req, res) => {
     const newListing = new Listing(req.body.listing);
+    newListing.owner = req.user._id; 
     await newListing.save();
     req.flash("success", " Your stay has been added successfully!");
-
     res.redirect("/listings");
   })
 );
 
 // Show listing
 router.get("/:id", wrapAsync(async (req, res) => {
-  const list = await Listing.findById(req.params.id).populate("reviews");
+  const list = await Listing.findById(req.params.id)
+  .populate({
+    path: "reviews",
+    populate: {
+      path: "author",
+    },
+  })
+  .populate("owner");
 
   if (!list) {
     req.flash("error", "Listing not found.");
@@ -51,7 +46,7 @@ router.get("/:id", wrapAsync(async (req, res) => {
 }));
 
 // Edit listing
-router.get("/:id/edit", wrapAsync(async (req, res) => {
+router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(async (req, res) => {
     const list = await Listing.findById(req.params.id);
     if (!list){
         req.flash("error", "The listing you wanted to edit is not availale.");
@@ -64,7 +59,7 @@ router.get("/:id/edit", wrapAsync(async (req, res) => {
 }));
 
 // Update listing
-router.put("/:id", wrapAsync(async (req, res) => {
+router.put("/:id",isLoggedIn,isOwner,validateListing, wrapAsync(async (req, res) => {
     if (!req.body || !req.body.listing) {
       throw new ExpressError(400, "Send valid data for listing");
     }
@@ -74,7 +69,7 @@ router.put("/:id", wrapAsync(async (req, res) => {
 }));
 
 // Delete listing
-router.delete("/:id", wrapAsync(async (req, res) => {
+router.delete("/:id",isLoggedIn,isOwner, wrapAsync(async (req, res) => {
     await Listing.findByIdAndDelete(req.params.id);
     req.flash("success", "Stay removed successfully.");
     res.redirect("/listings");

@@ -22,7 +22,7 @@
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
         <li class="nav-item">
-          <a class="nav-link active" href="/listings">Homes</a>
+          <a class="nav-link" href="/listings">Homes</a>
         </li>
 
         <li class="nav-item">
@@ -32,6 +32,41 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
+
+        <!-- ================= AUTH LINKS ================= -->
+
+        <% if (!currUser) { %>
+          <!-- Logged out -->
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Signup</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-success rounded-pill px-3" href="/login">
+              Login
+            </a>
+          </li>
+        <% } else { %>
+          <!-- Logged in -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+            >
+              👋 <%= currUser.username %>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item text-danger" href="/logout">
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </li>
+        <% } %>
 
       </ul>
     </div>
