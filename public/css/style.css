@@ -18,7 +18,7 @@ body {
   backdrop-filter: blur(10px);
   border-radius: 14px;
   max-width: 1100px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
 }
 
 .eco-navbar.sticky-top {
@@ -27,7 +27,7 @@ body {
 }
 
 .navbar.scrolled {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .brand-text {
@@ -68,8 +68,7 @@ body {
 .root-hero {
   min-height: 60vh;
   padding: 80px 8%;
-  background:
-    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop");
   background-size: cover;
   background-position: center;
@@ -82,8 +81,7 @@ body {
 .index-hero {
   min-height: 45vh;
   padding: 60px 8%;
-  background:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600&auto=format&fit=crop");
   background-size: cover;
   background-position: center;
@@ -150,7 +148,7 @@ body {
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 .card-img-top {
@@ -208,7 +206,7 @@ body {
   font-weight: 500;
   margin-bottom: 16px;
   animation: slideFade 0.4s ease-out;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 /* Success */

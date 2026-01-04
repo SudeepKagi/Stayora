@@ -1,12 +1,9 @@
 <% layout('layouts/boilerplate') -%>
-<div class="container py-5" style="max-width: 900px;">
-
+<div class="container py-5" style="max-width: 900px">
   <!-- Header -->
   <div class="section-header mb-4">
     <h2 class="section-title">Edit Stay</h2>
-    <p class="section-subtitle">
-      Update your eco-friendly stay details
-    </p>
+    <p class="section-subtitle">Update your eco-friendly stay details</p>
   </div>
 
   <!-- Edit Form -->
@@ -15,10 +12,9 @@
     method="POST"
     class="needs-validation"
     novalidate
+    enctype="multipart/form-data"
   >
-
     <div class="row g-4">
-
       <!-- Title -->
       <div class="col-md-6">
         <label class="form-label fw-semibold">Title</label>
@@ -29,9 +25,7 @@
           value="<%= list.title %>"
           required
         />
-        <div class="invalid-feedback">
-          Please enter a title.
-        </div>
+        <div class="invalid-feedback">Please enter a title.</div>
       </div>
 
       <!-- Price -->
@@ -45,29 +39,26 @@
           min="1"
           required
         />
-        <div class="invalid-feedback">
-          Please enter a valid price.
-        </div>
+        <div class="invalid-feedback">Please enter a valid price.</div>
       </div>
 
       <!-- Image -->
       <div class="col-12">
-        <label class="form-label fw-semibold">Image URL</label>
+        <label class="form-label fw-semibold">Upload new image</label>
         <input
-          type="text"
+          type="file"
           class="form-control rounded-pill"
           name="listing[image]"
-          value="<%= list.image %>"
         />
       </div>
 
       <!-- Image Preview -->
       <div class="col-12 text-center">
         <img
-          src="<%= list.image %>"
+          src="<%= list.image.url %>"
           alt="Listing image"
           class="img-fluid rounded-4 shadow-sm"
-          style="max-height: 250px; object-fit: cover;"
+          style="max-height: 250px; object-fit: cover"
         />
       </div>
 
@@ -79,10 +70,10 @@
           rows="4"
           name="listing[description]"
           required
-        ><%= list.description %></textarea>
-        <div class="invalid-feedback">
-          Please add a description.
-        </div>
+        >
+<%= list.description %></textarea
+        >
+        <div class="invalid-feedback">Please add a description.</div>
       </div>
 
       <!-- Location -->
@@ -95,9 +86,7 @@
           value="<%= list.location %>"
           required
         />
-        <div class="invalid-feedback">
-          Please enter a location.
-        </div>
+        <div class="invalid-feedback">Please enter a location.</div>
       </div>
 
       <!-- Country -->
@@ -110,11 +99,8 @@
           value="<%= list.country %>"
           required
         />
-        <div class="invalid-feedback">
-          Please enter a country.
-        </div>
+        <div class="invalid-feedback">Please enter a country.</div>
       </div>
-
     </div>
 
     <!-- Actions -->
@@ -125,11 +111,7 @@
       >
         Cancel
       </a>
-      <button class="btn btn-success rounded-pill px-5">
-        Update Stay
-      </button>
+      <button class="btn btn-success rounded-pill px-5">Update Stay</button>
     </div>
-
   </form>
-
 </div>

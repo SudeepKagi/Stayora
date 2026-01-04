@@ -4,15 +4,14 @@ const { listingSchema } = require("./schema.js");
 const { reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
 
-module.exports.isLoggedIn = (req,res,next)=>{
-    if(!req.isAuthenticated()){
-      req.session.redirectUrl = req.originalUrl;
-      req.flash("error","You must be logged in to continue.");
-      return res.redirect("/login");
-    }
-    next();
-    
-}
+module.exports.isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    req.session.redirectUrl = req.originalUrl;
+    req.flash("error", "You must be logged in to continue.");
+    return res.redirect("/login");
+  }
+  next();
+};
 
 module.exports.saveRedirectUrl = (req, res, next) => {
   if (req.session && req.session.redirectUrl) {
@@ -21,30 +20,30 @@ module.exports.saveRedirectUrl = (req, res, next) => {
   next();
 };
 
-module.exports.isOwner = async (req,res,next)=>{
+module.exports.isOwner = async (req, res, next) => {
   let listing = await Listing.findById(req.params.id);
-    if(!listing.owner.equals(res.locals.currUser._id)){
-      req.flash("error","You don't have permission to edit");
-      return res.redirect(`/listings/${req.params.id}`);
-    }
-    next();
-}
+  if (!listing.owner.equals(res.locals.currUser._id)) {
+    req.flash("error", "You don't have permission to edit");
+    return res.redirect(`/listings/${req.params.id}`);
+  }
+  next();
+};
 
-module.exports.validateListing = (req,res,next)=>{
+module.exports.validateListing = (req, res, next) => {
   const { error } = listingSchema.validate(req.body, { abortEarly: false });
   if (error) {
-    const msg = error.details.map(el => el.message).join(", ");
+    const msg = error.details.map((el) => el.message).join(", ");
     throw new ExpressError(400, msg);
   } else {
     next();
   }
-}
+};
 
 module.exports.validateReview = (req, res, next) => {
   const { error } = reviewSchema.validate(req.body, { abortEarly: false });
 
   if (error) {
-    const msg = error.details.map(el => el.message).join(", ");
+    const msg = error.details.map((el) => el.message).join(", ");
     throw new ExpressError(400, msg);
   }
   next();

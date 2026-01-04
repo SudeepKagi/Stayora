@@ -7,42 +7,41 @@
 </section>
 
 <div class="container-fluid px-4">
-
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div class="section-header">
       <h2 class="section-title">Explore Stays</h2>
       <p class="section-subtitle">Eco-friendly homes curated for you</p>
     </div>
 
-    <a href="/listings/new" class="btn btn-success rounded-pill">
-      + Add New
-    </a>
+    <a href="/listings/new" class="btn btn-success rounded-pill"> + Add New </a>
   </div>
 
   <div class="row g-4">
     <% for (let list of allListings) { %>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 border-0 rounded-4">
-          <img src="<%= list.image %>" class="card-img-top rounded-top-4">
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 border-0 rounded-4">
+        <img src="<%= list.image.url %>" class="card-img-top rounded-top-4" />
 
-          <div class="card-body">
-            <h5 class="fw-bold"><%= list.title %></h5>
-            <p class="small text-muted">
-              📍 <%= list.location %>, <%= list.country %>
-            </p>
+        <div class="card-body">
+          <h5 class="fw-bold"><%= list.title %></h5>
+          <p class="small text-muted">
+            📍 <%= list.location %>, <%= list.country %>
+          </p>
 
-            <p class="price-tag">
-              ₹ <%= list.price.toLocaleString("en-IN") %>
-              <span>/ night</span>
-            </p>
+          <p class="price-tag">
+            ₹ <%= list.price.toLocaleString("en-IN") %>
+            <span>/ night</span>
+          </p>
 
-            <a href="/listings/<%= list._id %>" class="btn btn-outline-success w-100 rounded-pill">
-              View Details
-            </a>
-          </div>
+          <a
+            href="/listings/<%= list._id %>"
+            class="btn btn-outline-success w-100 rounded-pill"
+          >
+            View Details
+          </a>
         </div>
       </div>
+    </div>
     <% } %>
   </div>
-
 </div>
