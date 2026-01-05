@@ -8,17 +8,35 @@ const geocodingClient = mbxGeocoding({
 
 // INDEX – show all listings
 module.exports.index = async (req, res) => {
-  const { category } = req.query;
+  const { category, search } = req.query;
 
-  let allListings;
+  let query = {};
+
+  // CATEGORY filter
   if (category) {
-    allListings = await Listing.find({ category });
-  } else {
-    allListings = await Listing.find({});
+    query.category = category;
   }
 
-  res.render('listings/index', { allListings });
+  // SEARCH filter
+  if (search) {
+    const regex = new RegExp(search, 'i'); // case-insensitive
+    query.$or = [
+      { title: regex },
+      { location: regex },
+      { country: regex },
+      { category: regex },
+    ];
+  }
+
+  const allListings = await Listing.find(query);
+
+  res.render('listings/index', {
+    allListings,
+    category,
+    search,
+  });
 };
+
 // NEW – render new listing form
 module.exports.renderNewForm = (req, res) => {
   res.render('listings/new');

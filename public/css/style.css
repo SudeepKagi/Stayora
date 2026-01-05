@@ -10,14 +10,27 @@ body {
 /* ==========================
    NAVBAR
 ========================== */
+.rounded-pill-start {
+  border-radius: 999px 0 0 999px;
+}
+
+.rounded-pill-end {
+  border-radius: 0 999px 999px 0;
+}
+
+.input-group .form-control:focus {
+  box-shadow: none;
+  border-color: #2f8f46;
+}
 
 .eco-navbar {
   margin: 12px auto;
-  padding: 6px 0;
+  padding: 12px 0;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(10px);
   border-radius: 14px;
-  max-width: 1100px;
+  max-width: 1400px;
+  width: 95%;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
 }
 
@@ -47,6 +60,11 @@ body {
 .eco-navbar .nav-link:hover {
   background: rgba(47, 143, 70, 0.15);
   color: #2f8f46;
+}
+
+.navbar .form-control:focus {
+  box-shadow: none;
+  border-color: #2f8f46;
 }
 
 /* ==========================

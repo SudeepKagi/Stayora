@@ -61,6 +61,12 @@
     </a>
   </div>
 
+  <% if (allListings.length === 0) { %>
+  <div class="alert alert-light text-center rounded-4">
+    No stays found matching your search.
+  </div>
+  <% } %>
+
   <!-- LISTINGS GRID -->
   <div class="row g-4">
     <% for (let list of allListings) { %>

@@ -16,9 +16,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Links -->
     <div class="collapse navbar-collapse" id="ecoNavbar">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+      <!-- LEFT LINKS -->
+      <ul class="navbar-nav me-4">
         <li class="nav-item">
           <a class="nav-link" href="/listings">Homes</a>
         </li>
@@ -30,25 +30,48 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
+      </ul>
 
-        <!-- ================= AUTH LINKS ================= -->
+      <!-- 🔍 SEARCH (CENTER) -->
+      <form
+        class="d-flex flex-grow-1 mx-lg-4 my-3 my-lg-0"
+        role="search"
+        action="/listings"
+        method="GET"
+      >
+        <div class="input-group">
+          <input
+            class="form-control rounded-pill-start"
+            type="search"
+            name="search"
+            placeholder="Search by stay, location or category..."
+            value="<%= typeof search !== 'undefined' ? search : '' %>"
+          />
+          <button class="btn btn-success rounded-pill-end px-4" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
 
+      <!-- RIGHT AUTH -->
+      <ul class="navbar-nav ms-lg-4 align-items-lg-center">
         <% if (!currUser) { %>
-        <!-- Logged out -->
+
         <li class="nav-item">
           <a class="nav-link" href="/signup">Signup</a>
         </li>
 
         <li class="nav-item">
           <a
-            class="nav-link btn btn-outline-success rounded-pill px-3"
+            class="nav-link btn btn-outline-success rounded-pill px-3 ms-lg-2"
             href="/login"
           >
             Login
           </a>
         </li>
+
         <% } else { %>
-        <!-- Logged in -->
+
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -65,6 +88,7 @@
             </li>
           </ul>
         </li>
+
         <% } %>
       </ul>
     </div>
