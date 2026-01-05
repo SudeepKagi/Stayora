@@ -1,4 +1,8 @@
 <% layout('layouts/boilerplate') -%>
+<script>
+  window.MAP_TOKEN = "<%= process.env.MAP_TOKEN %>";
+  window.coordinates = <%- JSON.stringify(list.geometry.coordinates) %>;
+</script>
 
 <div class="container py-5" style="max-width: 1100px">
   <!-- Back link -->
@@ -213,3 +217,13 @@
     <% } %>
   </div>
 </section>
+<section class="listing-map-section container my-5">
+  <h4 class="mb-2">Location</h4>
+  <p class="text-muted mb-3">Where this stay is located</p>
+
+  <div id="map"></div>
+</section>
+<script>
+  window.MAP_TOKEN = '<%= mapToken %>';
+</script>
+<script src="/js/map.js"></script>

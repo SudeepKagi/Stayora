@@ -67,10 +67,10 @@ app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   res.locals.currUser = req.user;
+  res.locals.mapToken = process.env.MAP_TOKEN;
   next();
 });
 
-// ======================= ROUTES =======================
 // Home
 app.get('/', (req, res) => {
   res.render('root');
@@ -85,12 +85,12 @@ app.get('/about', (req, res) => {
   res.render('about');
 });
 
-// ======================= 404 HANDLER =======================
+// 404 Handler
 app.use((req, res, next) => {
   next(new ExpressError(404, 'Page Not Found'));
 });
 
-// ======================= ERROR HANDLER =======================
+// Error Handler
 app.use((err, req, res, next) => {
   const { statusCode = 500, message = 'Something went wrong' } = err;
   res.status(statusCode).render('error', { statusCode, message });

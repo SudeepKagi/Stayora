@@ -37,6 +37,16 @@ const listingSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  geometry: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      default: 'Point',
+    },
+    coordinates: {
+      type: [Number],
+    },
+  },
 });
 
 listingSchema.post('findOneAndDelete', async function (listing) {
@@ -46,6 +56,8 @@ listingSchema.post('findOneAndDelete', async function (listing) {
     });
   }
 });
+
+listingSchema.index({ geometry: '2dsphere' });
 
 const Listing = mongoose.model('Listing', listingSchema);
 module.exports = Listing;
