@@ -43,6 +43,26 @@
         <div class="invalid-feedback">Please enter a valid price.</div>
       </div>
 
+      <!-- ✅ CATEGORY (NEW) -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Category</label>
+        <select
+          name="listing[category]"
+          class="form-select rounded-pill"
+          required
+        >
+          <option value="" disabled selected>Select a category</option>
+          <option value="Forest">🌲 Forest</option>
+          <option value="Mountain">🏔 Mountain</option>
+          <option value="Beach">🏖 Beach</option>
+          <option value="Desert">🏜 Desert</option>
+          <option value="Farm">🌾 Farm</option>
+          <option value="Luxury">✨ Luxury</option>
+          <option value="Camping">🏕 Camping</option>
+        </select>
+        <div class="invalid-feedback">Please select a category.</div>
+      </div>
+
       <!-- Image -->
       <div class="col-12">
         <label class="form-label fw-semibold">Upload Image</label>

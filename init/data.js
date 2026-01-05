@@ -10,6 +10,11 @@ const sampleListings = [
     price: 1500,
     location: 'Manali, Himachal Pradesh',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [77.1892, 32.2432], // Longitude, Latitude for Manali
+    },
+    category: 'Forest',
   },
   {
     title: 'Bamboo Treehouse Retreat',
@@ -22,6 +27,11 @@ const sampleListings = [
     price: 3200,
     location: 'Wayanad, Kerala',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [76.132, 11.6854], // Longitude, Latitude for Wayanad
+    },
+    category: 'Forest',
   },
   {
     title: 'Rustic Mud Villa',
@@ -34,6 +44,11 @@ const sampleListings = [
     price: 2100,
     location: 'Udaipur, Rajasthan',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [73.7125, 24.5854], // Longitude, Latitude for Udaipur
+    },
+    category: 'Farm',
   },
   {
     title: 'Glamping by the River',
@@ -46,6 +61,11 @@ const sampleListings = [
     price: 1800,
     location: 'Rishikesh, Uttarakhand',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [78.2676, 30.0869], // Longitude, Latitude for Rishikesh
+    },
+    category: 'Camping',
   },
   {
     title: 'Secluded Beach Hut',
@@ -58,6 +78,11 @@ const sampleListings = [
     price: 4500,
     location: 'Gokarna, Karnataka',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [74.3188, 14.5479], // Longitude, Latitude for Gokarna
+    },
+    category: 'Beach',
   },
   {
     title: 'Mountain Stone Cottage',
@@ -70,6 +95,11 @@ const sampleListings = [
     price: 2500,
     location: 'Darjeeling, West Bengal',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [88.2663, 27.041], // Longitude, Latitude for Darjeeling
+    },
+    category: 'Mountain',
   },
   {
     title: 'Tropical Garden Villa',
@@ -82,6 +112,11 @@ const sampleListings = [
     price: 3800,
     location: 'Alleppey, Kerala',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [76.3388, 9.4981], // Longitude, Latitude for Alleppey
+    },
+    category: 'Farm',
   },
   {
     title: 'Desert Eco-Camp',
@@ -94,6 +129,11 @@ const sampleListings = [
     price: 2000,
     location: 'Jaisalmer, Rajasthan',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [70.9083, 26.9157], // Longitude, Latitude for Jaisalmer
+    },
+    category: 'Desert',
   },
   {
     title: 'Coffee Plantation Stay',
@@ -106,6 +146,11 @@ const sampleListings = [
     price: 4000,
     location: 'Coorg, Karnataka',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [75.7382, 12.4244], // Longitude, Latitude for Coorg
+    },
+    category: 'Farm',
   },
   {
     title: 'Himalayan Yurt Experience',
@@ -118,6 +163,11 @@ const sampleListings = [
     price: 5000,
     location: 'Leh, Ladakh',
     country: 'India',
+    geometry: {
+      type: 'Point',
+      coordinates: [77.5771, 34.1526], // Longitude, Latitude for Leh
+    },
+    category: 'Mountain',
   },
 ];
 

@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') -%>
+
 <section class="hero-section index-hero">
   <div class="hero-content">
     <h1>Explore <span>Eco Stays</span></h1>
@@ -7,6 +8,7 @@
 </section>
 
 <div class="container-fluid px-4">
+  <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div class="section-header">
       <h2 class="section-title">Explore Stays</h2>
@@ -16,14 +18,63 @@
     <a href="/listings/new" class="btn btn-success rounded-pill"> + Add New </a>
   </div>
 
+  <!-- FILTER BAR -->
+  <div class="filter-bar d-flex gap-4 mb-4 overflow-auto">
+    <a href="/listings" class="filter-item">
+      <i class="fa-solid fa-border-all"></i>
+      <span>All</span>
+    </a>
+
+    <a href="/listings?category=Forest" class="filter-item">
+      <i class="fa-solid fa-tree"></i>
+      <span>Forest</span>
+    </a>
+
+    <a href="/listings?category=Mountain" class="filter-item">
+      <i class="fa-solid fa-mountain"></i>
+      <span>Mountain</span>
+    </a>
+
+    <a href="/listings?category=Beach" class="filter-item">
+      <i class="fa-solid fa-umbrella-beach"></i>
+      <span>Beach</span>
+    </a>
+
+    <a href="/listings?category=Desert" class="filter-item">
+      <i class="fa-solid fa-sun"></i>
+      <span>Desert</span>
+    </a>
+
+    <a href="/listings?category=Farm" class="filter-item">
+      <i class="fa-solid fa-tractor"></i>
+      <span>Farm</span>
+    </a>
+
+    <a href="/listings?category=Luxury" class="filter-item">
+      <i class="fa-solid fa-gem"></i>
+      <span>Luxury</span>
+    </a>
+
+    <a href="/listings?category=Camping" class="filter-item">
+      <i class="fa-solid fa-campground"></i>
+      <span>Camping</span>
+    </a>
+  </div>
+
+  <!-- LISTINGS GRID -->
   <div class="row g-4">
     <% for (let list of allListings) { %>
     <div class="col-sm-6 col-md-4 col-lg-3">
       <div class="card h-100 border-0 rounded-4">
-        <img src="<%= list.image.url %>" class="card-img-top rounded-top-4" />
+        <img
+          src="<%= list.image.url %>"
+          class="card-img-top rounded-top-4"
+          style="height: 200px; object-fit: cover"
+        />
 
         <div class="card-body">
           <h5 class="fw-bold"><%= list.title %></h5>
+
           <p class="small text-muted">
             📍 <%= list.location %>, <%= list.country %>
           </p>

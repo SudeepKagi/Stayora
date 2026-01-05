@@ -79,7 +79,7 @@ body {
 ========================== */
 
 .index-hero {
-  min-height: 45vh;
+  min-height: 30vh;
   padding: 60px 8%;
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600&auto=format&fit=crop');
@@ -289,4 +289,36 @@ body {
   height: 320px;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Filter bar */
+.filter-bar {
+  padding-bottom: 10px;
+}
+
+.filter-item {
+  text-decoration: none;
+  color: #5a6b5a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.filter-item i {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+
+.filter-item span {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.filter-item:hover {
+  background: rgba(47, 143, 70, 0.12);
+  color: #2f8f46;
 }

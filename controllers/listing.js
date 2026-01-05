@@ -8,10 +8,17 @@ const geocodingClient = mbxGeocoding({
 
 // INDEX – show all listings
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({});
+  const { category } = req.query;
+
+  let allListings;
+  if (category) {
+    allListings = await Listing.find({ category });
+  } else {
+    allListings = await Listing.find({});
+  }
+
   res.render('listings/index', { allListings });
 };
-
 // NEW – render new listing form
 module.exports.renderNewForm = (req, res) => {
   res.render('listings/new');
