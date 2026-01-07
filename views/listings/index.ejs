@@ -1,130 +1,96 @@
 <% layout('layouts/boilerplate') -%>
 
-<!-- ================= HERO ================= -->
-<section class="listings-hero">
-  <div class="hero-overlay"></div>
-  <div class="listings-hero-content">
-    <h1 class="listings-hero-title">PROPERTIES</h1>
-    <p class="listings-hero-subtitle">Handpicked luxury residences</p>
+<section class="page-header-luxury">
+  <div class="container text-center">
+    <span class="gold-label">EXPLORE OUR COLLECTION</span>
+    <h1 class="serif-title-large">PREMIUM PROPERTIES</h1>
+    <p class="section-subtitle">
+      Handpicked luxury residences across the most breathtaking locations.
+    </p>
   </div>
 </section>
 
-<!-- ================= FILTER & LISTINGS ================= -->
-<section class="listings-main">
-  <div class="listings-container">
-    <!-- Header & Add Button -->
-    <div class="listings-header">
-      <div class="listings-info">
-        <h2 class="listings-title">EXPLORE COLLECTION</h2>
-        <p class="listings-count">
-          <%= allListings.length %> Properties Available
-        </p>
+<section class="filter-section-luxury">
+  <div class="container">
+    <div class="filter-wrapper">
+      <div class="filter-scroll-container">
+        <a href="/listings" class="filter-btn <%= !category ? 'active' : '' %>">
+          <i class="fa-solid fa-border-all"></i><span>ALL</span>
+        </a>
+        <a
+          href="/listings?category=Forest"
+          class="filter-btn <%= category === 'Forest' ? 'active' : '' %>"
+        >
+          <i class="fa-solid fa-tree"></i><span>FOREST</span>
+        </a>
+        <a
+          href="/listings?category=Mountain"
+          class="filter-btn <%= category === 'Mountain' ? 'active' : '' %>"
+        >
+          <i class="fa-solid fa-mountain"></i><span>MOUNTAIN</span>
+        </a>
+        <a
+          href="/listings?category=Beach"
+          class="filter-btn <%= category === 'Beach' ? 'active' : '' %>"
+        >
+          <i class="fa-solid fa-umbrella-beach"></i><span>BEACH</span>
+        </a>
+        <a
+          href="/listings?category=Luxury"
+          class="filter-btn <%= category === 'Luxury' ? 'active' : '' %>"
+        >
+          <i class="fa-solid fa-gem"></i><span>LUXURY</span>
+        </a>
+        <a
+          href="/listings?category=Farm"
+          class="filter-btn <%= category === 'Farm' ? 'active' : '' %>"
+        >
+          <i class="fa-solid fa-tractor"></i><span>FARM</span>
+        </a>
       </div>
-      <a href="/listings/new" class="btn btn-success">+ ADD PROPERTY</a>
+      <a href="/listings/new" class="add-property-minimal"
+        >+ LIST YOUR PROPERTY</a
+      >
     </div>
+  </div>
+</section>
 
-    <!-- Filter Bar -->
-    <div class="filter-bar-luxury">
-      <a
-        href="/listings"
-        class="filter-item-luxury <%= !category ? 'active' : '' %>"
-      >
-        <i class="fa-solid fa-border-all"></i>
-        <span>ALL</span>
-      </a>
-
-      <a
-        href="/listings?category=Forest"
-        class="filter-item-luxury <%= category === 'Forest' ? 'active' : '' %>"
-      >
-        <i class="fa-solid fa-tree"></i>
-        <span>FOREST</span>
-      </a>
-
-      <a
-        href="/listings?category=Mountain"
-        class="filter-item-luxury <%= category === 'Mountain' ? 'active' : '' %>"
-      >
-        <i class="fa-solid fa-mountain"></i>
-        <span>MOUNTAIN</span>
-      </a>
-
-      <a
-        href="/listings?category=Beach"
-        class="filter-item-luxury <%= category === 'Beach' ? 'active' : '' %>"
-      >
-        <i class="fa-solid fa-umbrella-beach"></i>
-        <span>BEACH</span>
-      </a>
-
-      <a
-        href="/listings?category=Desert"
-        class="filter-item-luxury <%= category === 'Desert' ? 'active' : '' %>"
-      >
-        <i class="fa-solid fa-sun"></i>
-        <span>DESERT</span>
-      </a>
-
-      <a
-        href="/listings?category=Farm"
-        class="filter-item-luxury <%= category === 'Farm' ? 'active' : '' %>"
-      >
-        <i class="fa-solid fa-tractor"></i>
-        <span>FARM</span>
-      </a>
-
-      <a
-        href="/listings?category=Luxury"
-        class="filter-item-luxury <%= category === 'Luxury' ? 'active' : '' %>"
-      >
-        <i class="fa-solid fa-gem"></i>
-        <span>LUXURY</span>
-      </a>
-
-      <a
-        href="/listings?category=Camping"
-        class="filter-item-luxury <%= category === 'Camping' ? 'active' : '' %>"
-      >
-        <i class="fa-solid fa-campground"></i>
-        <span>CAMPING</span>
-      </a>
-    </div>
-
-    <!-- No Results -->
+<section class="listings-grid-section">
+  <div class="container">
     <% if (allListings.length === 0) { %>
-    <div class="no-results">
-      <h3>NO PROPERTIES FOUND</h3>
-      <p>Try adjusting your filters or search criteria</p>
+    <div class="no-results-luxury">
+      <h3 class="serif-title">NO PROPERTIES FOUND</h3>
+      <p>Try adjusting your filters or explore our full collection.</p>
+      <a href="/listings" class="gold-button">RESET FILTERS</a>
     </div>
     <% } %>
 
-    <!-- Listings Grid -->
-    <div class="listings-grid-luxury">
+    <div class="row g-5">
       <% for (let list of allListings) { %>
-      <div class="listing-card-luxury">
-        <div class="listing-image-wrapper">
-          <img
-            src="<%= list.image.url %>"
-            alt="<%= list.title %>"
-            class="listing-image"
-          />
-          <div class="listing-overlay">
-            <a href="/listings/<%= list._id %>" class="view-details-btn"
-              >VIEW DETAILS</a
-            >
-          </div>
-        </div>
-
-        <div class="listing-info">
-          <div class="listing-category"><%= list.category %></div>
-          <h3 class="listing-title-card"><%= list.title %></h3>
-          <p class="listing-location">
-            <i class="fa-solid fa-location-dot"></i>
-            <%= list.location %>, <%= list.country %>
-          </p>
-          <div class="listing-price">
-            ₹ <%= list.price.toLocaleString("en-IN") %>
-            <span class="price-period">/ NIGHT</span>
+      <div class="col-lg-4 col-md-6">
+        <div class="property-card-luxury">
+          <a href="/listings/<%= list._id %>" class="card-image-link">
+            <div class="image-zoom-container">
+              <img
+                src="<%= list.image.url %>"
+                alt="<%= list.title %>"
+                class="img-fluid"
+              />
+              <div class="card-category-tag"><%= list.category %></div>
+            </div>
+          </a>
+          <div class="card-details-luxury">
+            <div class="location-tag">
+              <i class="fa-solid fa-location-dot"></i> <%= list.location %>, <%=
+              list.country %>
+            </div>
+            <h3 class="property-title-serif"><%= list.title %></h3>
+            <div class="price-box-luxury">
+              <span class="price-amount"
+                >₹ <%= list.price.toLocaleString("en-IN") %></span
+              >
+              <span class="price-night">/ NIGHT</span>
+            </div>
           </div>
         </div>
       </div>
@@ -132,311 +98,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  /* ================= LISTINGS HERO ================= */
-  .listings-hero {
-    position: relative;
-    height: 50vh;
-    min-height: 400px;
-    background: linear-gradient(rgba(12, 21, 25, 0.5), rgba(12, 21, 25, 0.8)),
-      url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=2400&auto=format&fit=crop')
-        center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-  }
-
-  .listings-hero-content {
-    text-align: center;
-    z-index: 2;
-    position: relative;
-  }
-
-  .listings-hero-title {
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    color: #ffffff;
-    margin-bottom: 15px;
-  }
-
-  .listings-hero-subtitle {
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  /* ================= LISTINGS MAIN ================= */
-  .listings-main {
-    padding: 80px 40px 120px;
-    background: #0c1519;
-    min-height: 100vh;
-  }
-
-  .listings-container {
-    max-width: 1600px;
-    margin: 0 auto;
-  }
-
-  /* Header */
-  .listings-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 60px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #3a3534;
-  }
-
-  .listings-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
-
-  .listings-count {
-    font-size: 0.95rem;
-    color: #b8bac0;
-    letter-spacing: 0.05em;
-  }
-
-  /* Filter Bar */
-  .filter-bar-luxury {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 60px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #3a3534;
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-
-  .filter-bar-luxury::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .filter-bar-luxury::-webkit-scrollbar-thumb {
-    background: #3a3534;
-    border-radius: 3px;
-  }
-
-  .filter-item-luxury {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 20px 25px;
-    background: #162127;
-    border: 1px solid #3a3534;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    min-width: 110px;
-  }
-
-  .filter-item-luxury i {
-    font-size: 1.5rem;
-    color: #cf9d7b;
-  }
-
-  .filter-item-luxury span {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: #b8bac0;
-  }
-
-  .filter-item-luxury:hover,
-  .filter-item-luxury.active {
-    background: #cf9d7b;
-    border-color: #cf9d7b;
-    transform: translateY(-3px);
-  }
-
-  .filter-item-luxury:hover i,
-  .filter-item-luxury.active i,
-  .filter-item-luxury:hover span,
-  .filter-item-luxury.active span {
-    color: #0c1519;
-  }
-
-  /* No Results */
-  .no-results {
-    text-align: center;
-    padding: 100px 40px;
-  }
-
-  .no-results h3 {
-    font-size: 2rem;
-    color: #ffffff;
-    margin-bottom: 15px;
-    letter-spacing: 0.05em;
-  }
-
-  .no-results p {
-    color: #b8bac0;
-    font-size: 1.1rem;
-  }
-
-  /* Listings Grid */
-  .listings-grid-luxury {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 40px;
-  }
-
-  .listing-card-luxury {
-    background: #162127;
-    border: 1px solid #3a3534;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    position: relative;
-  }
-
-  .listing-card-luxury:hover {
-    transform: translateY(-10px);
-    border-color: #cf9d7b;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  }
-
-  .listing-image-wrapper {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-  }
-
-  .listing-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s ease;
-    filter: grayscale(20%);
-  }
-
-  .listing-card-luxury:hover .listing-image {
-    transform: scale(1.1);
-    filter: grayscale(0%);
-  }
-
-  .listing-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to top, rgba(12, 21, 25, 0.9), transparent);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 30px;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
-  .listing-card-luxury:hover .listing-overlay {
-    opacity: 1;
-  }
-
-  .view-details-btn {
-    padding: 12px 30px;
-    background: #cf9d7b;
-    color: #0c1519;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    transition: all 0.3s ease;
-  }
-
-  .view-details-btn:hover {
-    background: #e0b08d;
-    color: #0c1519;
-  }
-
-  .listing-info {
-    padding: 30px 25px;
-  }
-
-  .listing-category {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    color: #cf9d7b;
-    font-weight: 600;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-  }
-
-  .listing-title-card {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 12px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    line-height: 1.2;
-  }
-
-  .listing-location {
-    font-size: 0.9rem;
-    color: #b8bac0;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .listing-location i {
-    color: #cf9d7b;
-    font-size: 0.85rem;
-  }
-
-  .listing-price {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: #cf9d7b;
-    letter-spacing: 0.02em;
-  }
-
-  .price-period {
-    font-size: 0.75rem;
-    color: #b8bac0;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-  }
-
-  /* ================= RESPONSIVE ================= */
-  @media (max-width: 992px) {
-    .listings-grid-luxury {
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
-    }
-
-    .listings-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .listings-grid-luxury {
-      grid-template-columns: 1fr;
-    }
-
-    .filter-bar-luxury {
-      gap: 10px;
-    }
-
-    .filter-item-luxury {
-      min-width: 90px;
-      padding: 15px 20px;
-    }
-
-    .listings-hero-title {
-      font-size: 2.5rem;
-    }
-  }
-</style>

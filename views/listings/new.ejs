@@ -1,252 +1,137 @@
 <% layout('layouts/boilerplate') -%>
 
-<section class="form-section">
-  <div class="form-container">
-    <div class="form-header">
-      <a href="/listings" class="back-link">
-        <i class="fa-solid fa-arrow-left"></i> BACK
+<section class="luxury-form-section">
+  <div class="container py-5">
+    <div class="form-header-minimal mb-5">
+      <a href="/listings" class="back-text-link mb-3 d-inline-block">
+        <i class="fa-solid fa-arrow-left-long me-2"></i> BACK TO COLLECTION
       </a>
-      <h1 class="form-title">ADD NEW PROPERTY</h1>
-      <p class="form-subtitle">List your luxury accommodation</p>
+      <h1 class="serif-title">LIST YOUR RESIDENCE</h1>
+      <p class="text-muted italic">
+        Share your unique property with our exclusive community
+      </p>
     </div>
 
-    <form
-      action="/listings"
-      method="POST"
-      enctype="multipart/form-data"
-      class="luxury-form needs-validation"
-      novalidate
-    >
-      <!-- Title -->
-      <div class="form-group-luxury">
-        <label class="form-label-luxury">PROPERTY TITLE *</label>
-        <input
-          type="text"
-          name="listing[title]"
-          class="form-control-luxury"
-          placeholder="e.g., Mountain Villa with Panoramic Views"
-          required
-        />
-        <div class="invalid-feedback">Title is required</div>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <form
+          action="/listings"
+          method="POST"
+          enctype="multipart/form-data"
+          class="needs-validation"
+          novalidate
+        >
+          <div class="row">
+            <div class="col-md-7 pe-md-5">
+              <div class="mb-4">
+                <label class="luxury-label">PROPERTY TITLE *</label>
+                <input
+                  type="text"
+                  name="listing[title]"
+                  class="luxury-input"
+                  placeholder="e.g., The Obsidian Villa"
+                  required
+                />
+                <div class="invalid-feedback">
+                  A distinguished title is required.
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="luxury-label">DESCRIPTION *</label>
+                <textarea
+                  name="listing[description]"
+                  class="luxury-input"
+                  rows="8"
+                  placeholder="Describe the ambiance, heritage, and unique features..."
+                  required
+                ></textarea>
+                <div class="invalid-feedback">
+                  Please provide a detailed description.
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <label class="luxury-label">LOCATION *</label>
+                  <input
+                    type="text"
+                    name="listing[location]"
+                    class="luxury-input"
+                    placeholder="e.g., Udaipur"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-4">
+                  <label class="luxury-label">COUNTRY *</label>
+                  <input
+                    type="text"
+                    name="listing[country]"
+                    class="luxury-input"
+                    placeholder="e.g., India"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <div class="mb-4">
+                <label class="luxury-label">PROPERTY IMAGE *</label>
+                <div class="upload-placeholder-box">
+                  <i class="fa-solid fa-camera mb-2"></i>
+                  <input
+                    type="file"
+                    name="listing[image]"
+                    class="luxury-input file-input-style"
+                    accept="image/*"
+                    required
+                  />
+                </div>
+                <small class="text-muted d-block mt-2"
+                  >Use high-resolution horizontal photos for best
+                  results.</small
+                >
+                <div class="invalid-feedback">
+                  A property visual is required.
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="luxury-label">PRICE PER NIGHT (₹) *</label>
+                <input
+                  type="number"
+                  name="listing[price]"
+                  class="luxury-input"
+                  placeholder="15000"
+                  min="1"
+                  required
+                />
+                <div class="invalid-feedback">Please enter a valid price.</div>
+              </div>
+
+              <div class="mb-5">
+                <label class="luxury-label">COLLECTION / CATEGORY *</label>
+                <select name="listing[category]" class="luxury-input" required>
+                  <option value="" disabled selected>Select Category</option>
+                  <option value="Mountain">Mountain</option>
+                  <option value="Beach">Beach</option>
+                  <option value="Forest">Forest</option>
+                  <option value="Desert">Desert</option>
+                  <option value="Farm">Farm</option>
+                  <option value="Luxury">Luxury</option>
+                  <option value="Camping">Camping</option>
+                </select>
+                <div class="invalid-feedback">Please select a category.</div>
+              </div>
+
+              <button type="submit" class="gold-button w-100 py-3">
+                PUBLISH LISTING
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <!-- Description -->
-      <div class="form-group-luxury">
-        <label class="form-label-luxury">DESCRIPTION *</label>
-        <textarea
-          name="listing[description]"
-          class="form-control-luxury"
-          rows="5"
-          placeholder="Describe your property in detail..."
-          required
-        ></textarea>
-        <div class="invalid-feedback">Description is required</div>
-      </div>
-
-      <!-- Image -->
-      <div class="form-group-luxury">
-        <label class="form-label-luxury">PROPERTY IMAGE *</label>
-        <input
-          type="file"
-          name="listing[image]"
-          class="form-control-luxury"
-          accept="image/*"
-          required
-        />
-        <div class="invalid-feedback">Please upload an image</div>
-      </div>
-
-      <!-- Price -->
-      <div class="form-group-luxury">
-        <label class="form-label-luxury">PRICE PER NIGHT (₹) *</label>
-        <input
-          type="number"
-          name="listing[price]"
-          class="form-control-luxury"
-          placeholder="10000"
-          min="1"
-          required
-        />
-        <div class="invalid-feedback">Price must be greater than 0</div>
-      </div>
-
-      <!-- Location -->
-      <div class="form-row">
-        <div class="form-group-luxury">
-          <label class="form-label-luxury">LOCATION *</label>
-          <input
-            type="text"
-            name="listing[location]"
-            class="form-control-luxury"
-            placeholder="e.g., Manali"
-            required
-          />
-          <div class="invalid-feedback">Location is required</div>
-        </div>
-
-        <div class="form-group-luxury">
-          <label class="form-label-luxury">COUNTRY *</label>
-          <input
-            type="text"
-            name="listing[country]"
-            class="form-control-luxury"
-            placeholder="e.g., India"
-            required
-          />
-          <div class="invalid-feedback">Country is required</div>
-        </div>
-      </div>
-
-      <!-- Category -->
-      <div class="form-group-luxury">
-        <label class="form-label-luxury">CATEGORY *</label>
-        <select name="listing[category]" class="form-control-luxury" required>
-          <option value="">Select Category</option>
-          <option value="Mountain">Mountain</option>
-          <option value="Beach">Beach</option>
-          <option value="Forest">Forest</option>
-          <option value="Desert">Desert</option>
-          <option value="Farm">Farm</option>
-          <option value="Luxury">Luxury</option>
-          <option value="Camping">Camping</option>
-        </select>
-        <div class="invalid-feedback">Please select a category</div>
-      </div>
-
-      <!-- Submit -->
-      <button type="submit" class="btn btn-success btn-large">
-        ADD PROPERTY
-      </button>
-    </form>
+    </div>
   </div>
 </section>
-
-<style>
-  .form-section {
-    min-height: 100vh;
-    background: #0c1519;
-    padding: 80px 40px;
-  }
-
-  .form-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .form-header {
-    margin-bottom: 50px;
-  }
-
-  .back-link {
-    color: #cf9d7b;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-  }
-
-  .back-link:hover {
-    color: #e0b08d;
-  }
-
-  .form-title {
-    font-size: 2.5rem;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
-
-  .form-subtitle {
-    font-size: 1rem;
-    color: #b8bac0;
-    letter-spacing: 0.05em;
-  }
-
-  .luxury-form {
-    background: #162127;
-    border: 1px solid #3a3534;
-    padding: 50px;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-
-  .form-group-luxury {
-    margin-bottom: 30px;
-  }
-
-  .form-label-luxury {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: #cf9d7b;
-    margin-bottom: 12px;
-  }
-
-  .form-control-luxury {
-    width: 100%;
-    padding: 15px 20px;
-    background: #0c1519;
-    border: 1px solid #3a3534;
-    color: #ffffff;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .form-control-luxury:focus {
-    outline: none;
-    border-color: #cf9d7b;
-    box-shadow: 0 0 0 3px rgba(207, 157, 123, 0.1);
-  }
-
-  .form-control-luxury::placeholder {
-    color: #6a6d75;
-  }
-
-  select.form-control-luxury {
-    cursor: pointer;
-  }
-
-  .invalid-feedback {
-    color: #ff6b6b;
-    font-size: 0.85rem;
-    margin-top: 8px;
-    display: none;
-  }
-
-  .was-validated .form-control-luxury:invalid ~ .invalid-feedback {
-    display: block;
-  }
-
-  .btn-large {
-    width: 100%;
-    padding: 18px;
-    font-size: 0.9rem;
-    margin-top: 20px;
-  }
-
-  @media (max-width: 768px) {
-    .luxury-form {
-      padding: 30px 25px;
-    }
-
-    .form-row {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .form-title {
-      font-size: 2rem;
-    }
-  }
-</style>

@@ -19,6 +19,7 @@ const User = require('./models/user.js');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const dbUrl = process.env.ATLASDB_URL;
+const Subscriber = require('./models/subscriber.js');
 
 // View engine
 app.engine('ejs', ejsMate);
@@ -94,6 +95,26 @@ app.use('/', users);
 // About
 app.get('/about', (req, res) => {
   res.render('about');
+});
+
+app.post('/subscribe', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      req.flash('error', 'Email is required');
+      return res.redirect('/');
+    }
+    await Subscriber.create({ email });
+    req.flash('success', 'Welcome to the collection! You are now subscribed.');
+    res.redirect('back');
+  } catch (err) {
+    if (err.code === 11000) {
+      req.flash('error', 'This email is already part of our community.');
+    } else {
+      req.flash('error', 'Registration failed. Please try again later.');
+    }
+    res.redirect('/');
+  }
 });
 
 // 404 Handler

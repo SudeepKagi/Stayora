@@ -1,87 +1,71 @@
-<footer class="eco-footer mt-5">
+<footer class="luxury-footer mt-5">
   <div class="container py-5">
-    <div class="row g-4">
-      <!-- Brand Column -->
-      <div class="col-md-4">
-        <div class="d-flex align-items-center gap-2 mb-3">
-          <img src="/logo/icon.png" alt="Stayora" style="height: 40px" />
-          <h5 class="footer-title mb-0">STAYORA</h5>
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <img src="/logo/icon.png" alt="Stayora" class="footer-logo" />
+          <h5 class="footer-brand-name mb-0">STAYORA</h5>
         </div>
-        <p style="color: #b8bac0; line-height: 1.8">
-          Discover luxury accommodations designed for refined living across
-          India's most breathtaking destinations.
+        <p class="footer-about-text">
+          Curating an exclusive collection of luxury homestays. We offer a new
+          standard of modern living amidst India's most breathtaking landscapes.
         </p>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="col-md-3">
-        <h5 class="footer-title">QUICK LINKS</h5>
-        <div class="footer-links">
-          <a href="/">HOME</a>
-          <a href="/listings">PROPERTIES</a>
-          <a href="/about">ABOUT</a>
-          <a href="/listings/new">ADD PROPERTY</a>
+        <div class="footer-social-icons d-flex gap-4 mt-4">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
         </div>
       </div>
 
-      <!-- Support -->
-      <div class="col-md-3">
-        <h5 class="footer-title">SUPPORT</h5>
-        <div class="footer-links">
-          <a href="#">HELP CENTER</a>
-          <a href="#">CONTACT US</a>
-          <a href="#">PRIVACY POLICY</a>
-          <a href="#">TERMS OF SERVICE</a>
-        </div>
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6 class="footer-heading">NAVIGATION</h6>
+        <ul class="footer-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/listings">Properties</a></li>
+          <li><a href="/about">Our Story</a></li>
+          <li><a href="/listings/new">Add Property</a></li>
+        </ul>
       </div>
 
-      <!-- Social -->
-      <div class="col-md-2">
-        <h5 class="footer-title">FOLLOW US</h5>
-        <div class="d-flex gap-3">
-          <a
-            href="#"
-            style="color: #cf9d7b; font-size: 1.5rem; transition: all 0.3s ease"
-          >
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a
-            href="#"
-            style="color: #cf9d7b; font-size: 1.5rem; transition: all 0.3s ease"
-          >
-            <i class="fa-brands fa-facebook"></i>
-          </a>
-          <a
-            href="#"
-            style="color: #cf9d7b; font-size: 1.5rem; transition: all 0.3s ease"
-          >
-            <i class="fa-brands fa-twitter"></i>
-          </a>
+      <div class="col-lg-2 col-md-3 col-6">
+        <h6 class="footer-heading">SUPPORT</h6>
+        <ul class="footer-list">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <h6 class="footer-heading">NEWSLETTER</h6>
+        <p class="footer-about-text small mb-4">
+          Subscribe to receive updates on new exclusive properties.
+        </p>
+        <div class="footer-newsletter-form">
+          <form action="/subscribe" method="POST" class="d-flex w-100">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              class="newsletter-input"
+              required
+            />
+            <button type="submit" class="newsletter-btn">JOIN</button>
+          </form>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="row mt-5 pt-4" style="border-top: 1px solid #3a3534">
-      <div class="col-12 text-center">
-        <p
-          style="
-            color: #6a6d75;
-            margin: 0;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-          "
-        >
-          © 2026 STAYORA. ALL RIGHTS RESERVED.
-        </p>
+    <div class="footer-bottom mt-5 pt-4">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="copyright-text">© 2026 STAYORA. LUXURY HOMESTAYS INDIA.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <p class="copyright-text">DESIGNED FOR REFINED LIVING</p>
+        </div>
       </div>
     </div>
   </div>
 </footer>
-
-<style>
-  .eco-footer a[href='#']:hover {
-    color: #e0b08d !important;
-    transform: scale(1.1);
-  }
-</style>

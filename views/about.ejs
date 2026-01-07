@@ -1,301 +1,95 @@
 <% layout('layouts/boilerplate') -%>
 
-<!-- ================= HERO ================= -->
-<section class="about-hero">
-  <div class="hero-overlay"></div>
-  <div class="about-hero-content">
-    <span class="about-label">ABOUT US</span>
-    <h1 class="about-hero-title">REDEFINING<br />LUXURY LIVING</h1>
-    <p class="about-hero-subtitle">Excellence in every detail</p>
+<section class="about-editorial-hero">
+  <div class="container text-center">
+    <span class="gold-label">OUR STORY</span>
+    <h1 class="serif-title-massive">REDEFINING THE<br />ART OF LIVING</h1>
+    <p class="editorial-subtitle">
+      A curated collection of India's most distinguished residences.
+    </p>
   </div>
 </section>
 
-<!-- ================= STORY ================= -->
-<section class="about-story">
-  <div class="about-container">
-    <div class="story-grid">
-      <div class="story-image">
-        <img
-          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1400"
-          alt="Our Story"
-        />
+<section class="narrative-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="narrative-image-frame">
+          <img
+            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1400"
+            alt="Luxury Interior"
+          />
+        </div>
       </div>
-      <div class="story-content">
-        <h2 class="story-title">OUR STORY</h2>
-        <p class="story-text">
+      <div class="col-lg-6 ps-lg-5">
+        <span class="gold-label-small">SINCE 2026</span>
+        <h2 class="serif-subtitle-large mb-4">
+          Crafting Unforgettable Journeys
+        </h2>
+        <p class="luxury-p">
           Founded with a vision to redefine luxury accommodations, Stayora
           curates exceptional properties that blend breathtaking locations with
           uncompromising elegance and comfort.
         </p>
-        <p class="story-text">
+        <p class="luxury-p">
           Each residence in our portfolio has been meticulously selected to meet
           our exacting standards of excellence, ensuring every guest experiences
           the pinnacle of refined living.
         </p>
-        <p class="story-text">
+        <p class="luxury-p mb-5">
           From mountain retreats to coastal havens, we offer discerning
           travelers access to India's most exclusive destinations.
         </p>
+        <a href="/listings" class="outline-gold-btn">EXPLORE THE COLLECTION</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= VALUES ================= -->
-<section class="about-values">
-  <div class="about-container">
-    <h2 class="values-title">WHAT SETS US APART</h2>
+<section class="luxury-values-grid py-5">
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <span class="gold-label">DISTINCTION</span>
+      <h2 class="serif-subtitle-large">WHAT SETS US APART</h2>
+    </div>
 
-    <div class="values-grid">
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fa-solid fa-gem"></i>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="value-item-minimal">
+          <div class="value-count">01</div>
+          <h3 class="value-h">CURATED EXCELLENCE</h3>
+          <p class="value-p">
+            Rigorous selection for uncompromising standards of luxury.
+          </p>
         </div>
-        <h3 class="value-title">CURATED EXCELLENCE</h3>
-        <p class="value-description">
-          Every property undergoes rigorous selection to ensure it meets our
-          uncompromising standards of luxury and sophistication.
-        </p>
       </div>
-
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fa-solid fa-location-dot"></i>
+      <div class="col-md-3">
+        <div class="value-item-minimal">
+          <div class="value-count">02</div>
+          <h3 class="value-h">PRIME LOCATIONS</h3>
+          <p class="value-p">
+            Positioned in India's most coveted and breathtaking destinations.
+          </p>
         </div>
-        <h3 class="value-title">PRIME LOCATIONS</h3>
-        <p class="value-description">
-          Strategically positioned in India's most coveted destinations,
-          offering breathtaking views and exclusive access.
-        </p>
       </div>
-
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fa-solid fa-crown"></i>
+      <div class="col-md-3">
+        <div class="value-item-minimal">
+          <div class="value-count">03</div>
+          <h3 class="value-h">PREMIUM SERVICE</h3>
+          <p class="value-p">
+            Personalized attention from the first booking to checkout.
+          </p>
         </div>
-        <h3 class="value-title">PREMIUM SERVICE</h3>
-        <p class="value-description">
-          White-glove service and personalized attention ensure an unforgettable
-          experience from booking to checkout.
-        </p>
       </div>
-
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fa-solid fa-shield-halved"></i>
+      <div class="col-md-3">
+        <div class="value-item-minimal">
+          <div class="value-count">04</div>
+          <h3 class="value-h">TRUSTED QUALITY</h3>
+          <p class="value-p">
+            Verified properties and hosts you can rely on completely.
+          </p>
         </div>
-        <h3 class="value-title">TRUSTED QUALITY</h3>
-        <p class="value-description">
-          Verified hosts and properties you can trust, backed by our commitment
-          to excellence and guest satisfaction.
-        </p>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ================= CTA ================= -->
-<section class="about-cta">
-  <div class="about-cta-content">
-    <h2 class="cta-title">EXPERIENCE LUXURY</h2>
-    <p class="cta-subtitle">Discover your perfect escape</p>
-    <a href="/listings" class="btn btn-success btn-large">EXPLORE PROPERTIES</a>
-  </div>
-</section>
-
-<style>
-  /* ================= ABOUT HERO ================= */
-  .about-hero {
-    position: relative;
-    height: 70vh;
-    min-height: 500px;
-    background: linear-gradient(rgba(12, 21, 25, 0.5), rgba(12, 21, 25, 0.8)),
-      url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2400&auto=format&fit=crop')
-        center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .about-hero-content {
-    z-index: 2;
-    position: relative;
-  }
-
-  .about-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: #cf9d7b;
-    font-weight: 600;
-  }
-
-  .about-hero-title {
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    color: #ffffff;
-    margin: 20px 0;
-    line-height: 1;
-  }
-
-  .about-hero-subtitle {
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  /* ================= STORY ================= */
-  .about-story {
-    padding: 100px 40px;
-    background: #0c1519;
-  }
-
-  .about-container {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .story-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .story-image {
-    overflow: hidden;
-  }
-
-  .story-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    min-height: 500px;
-  }
-
-  .story-title {
-    font-size: 2.5rem;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    color: #ffffff;
-    margin-bottom: 30px;
-  }
-
-  .story-text {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: #b8bac0;
-    margin-bottom: 25px;
-  }
-
-  /* ================= VALUES ================= */
-  .about-values {
-    padding: 100px 40px;
-    background: #162127;
-  }
-
-  .values-title {
-    font-size: 2.5rem;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 80px;
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-  }
-
-  .value-card {
-    padding: 40px 30px;
-    background: rgba(12, 21, 25, 0.5);
-    border: 1px solid #3a3534;
-    text-align: center;
-    transition: all 0.4s ease;
-  }
-
-  .value-card:hover {
-    border-color: #cf9d7b;
-    transform: translateY(-10px);
-  }
-
-  .value-icon {
-    font-size: 3rem;
-    color: #cf9d7b;
-    margin-bottom: 25px;
-  }
-
-  .value-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #ffffff;
-    margin-bottom: 15px;
-  }
-
-  .value-description {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: #b8bac0;
-  }
-
-  /* ================= CTA ================= */
-  .about-cta {
-    padding: 150px 40px;
-    background: linear-gradient(rgba(12, 21, 25, 0.7), rgba(12, 21, 25, 0.85)),
-      url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2400&auto=format&fit=crop')
-        center/cover;
-    text-align: center;
-  }
-
-  .about-cta-content {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .cta-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    color: #ffffff;
-    margin-bottom: 15px;
-  }
-
-  .cta-subtitle {
-    font-size: 1.2rem;
-    color: #b8bac0;
-    margin-bottom: 40px;
-    letter-spacing: 0.1em;
-  }
-
-  .btn-large {
-    padding: 18px 50px;
-    font-size: 0.9rem;
-  }
-
-  /* ================= RESPONSIVE ================= */
-  @media (max-width: 992px) {
-    .story-grid {
-      grid-template-columns: 1fr;
-      gap: 50px;
-    }
-
-    .story-image img {
-      min-height: 400px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .values-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .about-hero-title {
-      font-size: 2.5rem;
-    }
-  }
-</style>
