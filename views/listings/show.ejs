@@ -1,220 +1,191 @@
 <% layout('layouts/boilerplate') -%>
 
-<div class="container py-5" style="max-width: 1100px">
-  <!-- Back link -->
-  <a href="/listings" class="text-success fw-semibold text-decoration-none">
-    ← Back to all stays
-  </a>
+<!-- ================= HERO IMAGE ================= -->
+<section class="show-hero">
+  <img
+    src="<%= list.image.url %>"
+    alt="<%= list.title %>"
+    class="show-hero-image"
+  />
+  <div class="show-hero-overlay">
+    <a href="/listings" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> BACK TO PROPERTIES
+    </a>
+  </div>
+</section>
 
-  <div class="row g-5 mt-4">
-    <!-- IMAGE -->
-    <div class="col-md-7">
-      <img
-        src="<%= list.image.url %>"
-        alt="<%= list.title %>"
-        class="img-fluid rounded-4 shadow-sm w-100"
-        style="max-height: 450px; object-fit: cover"
-      />
-    </div>
+<!-- ================= PROPERTY DETAILS ================= -->
+<section class="property-details-section">
+  <div class="property-container">
+    <!-- Main Info -->
+    <div class="property-header">
+      <div class="property-main-info">
+        <div class="property-badges">
+          <span class="property-badge"><%= list.category %></span>
+          <% if (list.owner) { %>
+          <span class="property-badge host-badge"
+            >HOST: <%= list.owner.username %></span
+          >
+          <% } %>
+        </div>
 
-    <!-- DETAILS -->
-    <div class="col-md-5">
-      <!-- Category -->
-      <span class="badge rounded-pill bg-success-subtle text-success mb-2">
-        <%= list.category %>
-      </span>
+        <h1 class="property-title"><%= list.title %></h1>
 
-      <!-- Owner -->
-      <% if (list.owner) { %>
-      <span class="badge rounded-pill bg-light text-muted mb-2 ms-2">
-        Host: <%= list.owner.username %>
-      </span>
-      <% } %>
+        <div class="property-location-price">
+          <p class="property-location">
+            <i class="fa-solid fa-location-dot"></i>
+            <%= list.location %>, <%= list.country %>
+          </p>
+          <div class="property-price">
+            ₹ <%= list.price.toLocaleString("en-IN") %>
+            <span class="price-night">/ NIGHT</span>
+          </div>
+        </div>
+      </div>
 
-      <h1 class="fw-bold mt-2 mb-2"><%= list.title %></h1>
-
-      <p class="text-muted mb-2">
-        📍 <%= list.location %>, <%= list.country %>
-      </p>
-
-      <p class="price-tag mb-3">
-        ₹ <%= list.price.toLocaleString("en-IN") %>
-        <span>/ night</span>
-      </p>
-
-      <p class="text-secondary mb-4" style="line-height: 1.7">
-        <%= list.description %>
-      </p>
-
-      <!-- OWNER ACTIONS -->
+      <!-- Owner Actions -->
       <% if (currUser && list.owner && list.owner._id.equals(currUser._id)) { %>
-      <div class="d-flex gap-3">
+      <div class="owner-actions">
         <a
           href="/listings/<%= list._id %>/edit"
-          class="btn btn-outline-success rounded-pill px-4"
+          class="btn btn-outline-success"
         >
-          Edit
+          EDIT PROPERTY
         </a>
-
         <form
           method="POST"
           action="/listings/<%= list._id %>?_method=DELETE"
-          onsubmit="return confirm('Are you sure you want to delete this stay?')"
+          onsubmit="return confirm('Delete this property?')"
+          style="display: inline"
         >
-          <button class="btn btn-outline-danger rounded-pill px-4">
-            Delete
-          </button>
+          <button class="btn btn-outline-danger">DELETE</button>
         </form>
       </div>
       <% } %>
     </div>
-  </div>
-</div>
 
-<hr class="my-5" />
-
-<!-- ================= Leave a Review ================= -->
-<% if (currUser) { %>
-<section class="mt-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8">
-      <div
-        class="card border-0 shadow-sm rounded-4 p-4"
-        style="background: #f7faf7"
-      >
-        <h5 class="fw-bold text-center mb-1">Leave a Review</h5>
-        <p class="text-muted small text-center mb-4">
-          Share your experience with this stay
-        </p>
-
-        <form
-          action="/listings/<%= list._id %>/reviews"
-          method="POST"
-          class="needs-validation"
-          novalidate
-        >
-          <!-- Rating -->
-          <div class="mb-4 text-center">
-            <label class="form-label fw-semibold d-block mb-2">Rating</label>
-
-            <div class="d-flex justify-content-center gap-3">
-              <% for (let i = 1; i <= 5; i++) { %>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="review[rating]"
-                  value="<%= i %>"
-                  required
-                />
-                <label class="form-check-label fw-medium"><%= i %></label>
-              </div>
-              <% } %>
-            </div>
-
-            <div class="invalid-feedback d-block mt-2">
-              Please select a rating.
-            </div>
-          </div>
-
-          <!-- Comment -->
-          <div class="mb-4">
-            <label class="form-label fw-semibold">Comment</label>
-            <textarea
-              class="form-control rounded-4"
-              name="review[comment]"
-              rows="3"
-              required
-              placeholder="Write your experience here..."
-            ></textarea>
-            <div class="invalid-feedback">Comment cannot be empty.</div>
-          </div>
-
-          <div class="text-center">
-            <button class="btn btn-success rounded-pill px-5">
-              Submit Review
-            </button>
-          </div>
-        </form>
-      </div>
+    <!-- Description -->
+    <div class="property-description">
+      <h2 class="section-heading">ABOUT THIS PROPERTY</h2>
+      <p class="description-text"><%= list.description %></p>
     </div>
   </div>
 </section>
 
-<% } else { %>
-
-<div class="row justify-content-center mt-5">
-  <div class="col-md-6 text-center">
-    <div class="alert alert-light border rounded-4">
-      <strong>Want to leave a review?</strong>
-      <a href="/login" class="text-success fw-semibold ms-1"> Log in </a>
-      to share your experience.
-    </div>
-  </div>
-</div>
-
-<% } %>
-
-<hr class="my-5" />
-
 <!-- ================= REVIEWS ================= -->
-<section class="reviews-section mt-5">
-  <div class="text-center mb-5">
-    <h3 class="fw-bold">Guest Reviews</h3>
-    <p class="text-muted">Honest experiences shared by travelers</p>
-  </div>
+<section class="reviews-luxury-section">
+  <div class="reviews-container">
+    <!-- Leave Review -->
+    <% if (currUser) { %>
+    <div class="leave-review-section">
+      <h2 class="section-heading">LEAVE A REVIEW</h2>
+      <p class="section-subheading">Share your experience</p>
 
-  <% if (list.reviews.length === 0) { %>
-  <p class="text-center text-muted">No reviews yet.</p>
-  <% } %>
-
-  <div class="row justify-content-center g-4">
-    <% for (let review of list.reviews) { %>
-
-    <div class="col-md-6 col-lg-5">
-      <div class="card border-0 shadow-sm rounded-4">
-        <div class="card-body">
-          <div class="text-warning mb-2">
-            <% for (let i = 0; i < review.rating; i++) { %>★<% } %>
+      <form
+        action="/listings/<%= list._id %>/reviews"
+        method="POST"
+        class="review-form needs-validation"
+        novalidate
+      >
+        <!-- Rating -->
+        <div class="rating-input">
+          <label class="form-label-luxury">RATING</label>
+          <div class="rating-options">
+            <% for (let i = 1; i <= 5; i++) { %>
+            <label class="rating-label">
+              <input
+                type="radio"
+                name="review[rating]"
+                value="<%= i %>"
+                required
+              />
+              <span class="rating-number"><%= i %></span>
+            </label>
+            <% } %>
           </div>
-
-          <p class="fw-semibold mb-3"><%= review.comment %></p>
-
-          <div class="d-flex justify-content-between">
-            <small class="text-muted">
-              — <%= review.author?.username || "Guest" %>
-            </small>
-            <small class="text-muted">
-              <%= review.createdAt.toDateString() %>
-            </small>
-          </div>
-
-          <% if (currUser && review.author &&
-          review.author._id.equals(currUser._id)) { %>
-          <form
-            action="/listings/<%= list._id %>/reviews/<%= review._id %>?_method=DELETE"
-            method="POST"
-            class="text-end mt-3"
-          >
-            <button class="btn btn-sm btn-outline-danger rounded-pill">
-              Delete
-            </button>
-          </form>
-          <% } %>
+          <div class="invalid-feedback">Please select a rating</div>
         </div>
-      </div>
-    </div>
 
+        <!-- Comment -->
+        <div class="comment-input">
+          <label class="form-label-luxury">COMMENT</label>
+          <textarea
+            class="form-control-luxury"
+            name="review[comment]"
+            rows="4"
+            required
+            placeholder="Share your thoughts..."
+          ></textarea>
+          <div class="invalid-feedback">Comment cannot be empty</div>
+        </div>
+
+        <button type="submit" class="btn btn-success">SUBMIT REVIEW</button>
+      </form>
+    </div>
+    <% } else { %>
+    <div class="login-prompt">
+      <p><a href="/login" class="login-link">LOG IN</a> to leave a review</p>
+    </div>
     <% } %>
+
+    <!-- Reviews List -->
+    <div class="reviews-list-section">
+      <h2 class="section-heading">GUEST REVIEWS</h2>
+      <p class="section-subheading">
+        <%= list.reviews.length %> <%= list.reviews.length === 1 ? 'Review' :
+        'Reviews' %>
+      </p>
+
+      <% if (list.reviews.length === 0) { %>
+      <p class="no-reviews">No reviews yet. Be the first to review!</p>
+      <% } else { %>
+
+      <div class="reviews-grid">
+        <% for (let review of list.reviews) { %>
+        <div class="review-card-luxury">
+          <div class="review-header">
+            <div class="review-author">
+              <%= review.author?.username || "Guest" %>
+            </div>
+            <div class="review-rating">
+              <% for (let i = 0; i < review.rating; i++) { %>★<% } %>
+            </div>
+          </div>
+
+          <p class="review-comment"><%= review.comment %></p>
+
+          <div class="review-footer">
+            <span class="review-date"
+              ><%= review.createdAt.toDateString() %></span
+            >
+
+            <% if (currUser && review.author &&
+            review.author._id.equals(currUser._id)) { %>
+            <form
+              action="/listings/<%= list._id %>/reviews/<%= review._id %>?_method=DELETE"
+              method="POST"
+              style="display: inline"
+            >
+              <button class="delete-review-btn">DELETE</button>
+            </form>
+            <% } %>
+          </div>
+        </div>
+        <% } %>
+      </div>
+
+      <% } %>
+    </div>
   </div>
 </section>
 
 <!-- ================= MAP ================= -->
-<section class="listing-map-section container my-5">
-  <h4 class="mb-2">Location</h4>
-  <p class="text-muted mb-3">Where this stay is located</p>
-
-  <div id="map" style="height: 350px; border-radius: 16px"></div>
+<section class="map-section">
+  <div class="map-container">
+    <h2 class="section-heading">LOCATION</h2>
+    <p class="section-subheading">Where you'll be staying</p>
+    <div id="map"></div>
+  </div>
 </section>
 
 <script>
@@ -225,3 +196,432 @@
 </script>
 
 <script src="/js/map.js"></script>
+
+<style>
+  /* ================= SHOW HERO ================= */
+  .show-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+  }
+
+  .show-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .show-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(12, 21, 25, 0.5),
+      transparent 30%,
+      transparent 70%,
+      rgba(12, 21, 25, 0.8)
+    );
+    display: flex;
+    align-items: flex-start;
+    padding: 40px;
+  }
+
+  .back-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    padding: 12px 24px;
+    background: rgba(12, 21, 25, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(207, 157, 123, 0.3);
+  }
+
+  .back-link:hover {
+    color: #cf9d7b;
+    border-color: #cf9d7b;
+  }
+
+  /* ================= PROPERTY DETAILS ================= */
+  .property-details-section {
+    padding: 80px 40px;
+    background: #0c1519;
+  }
+
+  .property-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .property-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #3a3534;
+  }
+
+  .property-badges {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .property-badge {
+    padding: 8px 16px;
+    background: rgba(207, 157, 123, 0.15);
+    border: 1px solid #cf9d7b;
+    color: #cf9d7b;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .host-badge {
+    background: rgba(58, 53, 52, 0.3);
+    border-color: #3a3534;
+    color: #b8bac0;
+  }
+
+  .property-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .property-location-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .property-location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #b8bac0;
+    font-size: 1.1rem;
+  }
+
+  .property-location i {
+    color: #cf9d7b;
+  }
+
+  .property-price {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #cf9d7b;
+    white-space: nowrap;
+  }
+
+  .price-night {
+    font-size: 0.8rem;
+    color: #b8bac0;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+  }
+
+  .owner-actions {
+    display: flex;
+    gap: 15px;
+  }
+
+  .property-description {
+    margin-bottom: 80px;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .section-subheading {
+    font-size: 0.95rem;
+    color: #b8bac0;
+    margin-bottom: 30px;
+    letter-spacing: 0.05em;
+  }
+
+  .description-text {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #b8bac0;
+    max-width: 900px;
+  }
+
+  /* ================= REVIEWS ================= */
+  .reviews-luxury-section {
+    padding: 80px 40px;
+    background: #162127;
+  }
+
+  .reviews-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .leave-review-section {
+    margin-bottom: 80px;
+    padding: 50px;
+    background: rgba(12, 21, 25, 0.5);
+    border: 1px solid #3a3534;
+  }
+
+  .review-form {
+    max-width: 700px;
+  }
+
+  .form-label-luxury {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #cf9d7b;
+    margin-bottom: 15px;
+  }
+
+  .rating-input {
+    margin-bottom: 30px;
+  }
+
+  .rating-options {
+    display: flex;
+    gap: 20px;
+  }
+
+  .rating-label {
+    cursor: pointer;
+  }
+
+  .rating-label input {
+    display: none;
+  }
+
+  .rating-number {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 2px solid #3a3534;
+    color: #b8bac0;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+
+  .rating-label input:checked + .rating-number,
+  .rating-number:hover {
+    border-color: #cf9d7b;
+    background: #cf9d7b;
+    color: #0c1519;
+  }
+
+  .comment-input {
+    margin-bottom: 30px;
+  }
+
+  .form-control-luxury {
+    width: 100%;
+    padding: 15px 20px;
+    background: #0c1519;
+    border: 1px solid #3a3534;
+    color: #b8bac0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    resize: vertical;
+  }
+
+  .form-control-luxury:focus {
+    outline: none;
+    border-color: #cf9d7b;
+    box-shadow: 0 0 0 3px rgba(207, 157, 123, 0.1);
+  }
+
+  .login-prompt {
+    text-align: center;
+    padding: 60px 40px;
+    background: rgba(12, 21, 25, 0.5);
+    border: 1px solid #3a3534;
+    margin-bottom: 80px;
+  }
+
+  .login-prompt p {
+    font-size: 1.1rem;
+    color: #b8bac0;
+  }
+
+  .login-link {
+    color: #cf9d7b;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .login-link:hover {
+    color: #e0b08d;
+  }
+
+  .reviews-list-section {
+    margin-bottom: 80px;
+  }
+
+  .no-reviews {
+    text-align: center;
+    padding: 60px 40px;
+    color: #b8bac0;
+    font-size: 1.1rem;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  .review-card-luxury {
+    padding: 35px;
+    background: rgba(12, 21, 25, 0.5);
+    border: 1px solid #3a3534;
+    transition: all 0.3s ease;
+  }
+
+  .review-card-luxury:hover {
+    border-color: #cf9d7b;
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .review-author {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .review-rating {
+    color: #cf9d7b;
+    font-size: 1.2rem;
+  }
+
+  .review-comment {
+    color: #b8bac0;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #3a3534;
+  }
+
+  .review-date {
+    font-size: 0.85rem;
+    color: #6a6d75;
+    letter-spacing: 0.05em;
+  }
+
+  .delete-review-btn {
+    background: transparent;
+    border: 1px solid #c44545;
+    color: #c44545;
+    padding: 6px 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .delete-review-btn:hover {
+    background: #c44545;
+    color: #ffffff;
+  }
+
+  /* ================= MAP ================= */
+  .map-section {
+    padding: 80px 40px;
+    background: #0c1519;
+  }
+
+  .map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  #map {
+    width: 100%;
+    height: 450px;
+    border: 1px solid #3a3534;
+    margin-top: 30px;
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 992px) {
+    .property-header {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .property-location-price {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .reviews-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .show-hero {
+      height: 50vh;
+    }
+
+    .property-title {
+      font-size: 2rem;
+    }
+
+    .leave-review-section {
+      padding: 30px 20px;
+    }
+
+    .rating-options {
+      gap: 10px;
+    }
+
+    .rating-number {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 0.9rem;
+    }
+  }
+</style>

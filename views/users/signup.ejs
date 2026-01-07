@@ -1,80 +1,183 @@
-<% layout("layouts/boilerplate") %>
+<% layout('layouts/boilerplate') -%>
 
-<div class="container py-5" style="max-width: 480px">
-  <!-- Header -->
-  <div class="text-center mb-4">
-    <h2 class="section-title">Create Account</h2>
-    <p class="section-subtitle">Join Stayora for eco-friendly stays 🌿</p>
+<section class="auth-section">
+  <div class="auth-container">
+    <div class="auth-box">
+      <h1 class="auth-title">CREATE ACCOUNT</h1>
+      <p class="auth-subtitle">Join Stayora today</p>
+
+      <form
+        action="/signup"
+        method="POST"
+        class="auth-form needs-validation"
+        novalidate
+      >
+        <div class="form-group-luxury">
+          <label class="form-label-luxury">USERNAME</label>
+          <input
+            type="text"
+            name="username"
+            class="form-control-luxury"
+            placeholder="Choose a username"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            style="color: #ff6b6b; font-size: 0.85rem; margin-top: 8px"
+          >
+            Please enter a username
+          </div>
+        </div>
+
+        <div class="form-group-luxury">
+          <label class="form-label-luxury">EMAIL</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control-luxury"
+            placeholder="Your email address"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            style="color: #ff6b6b; font-size: 0.85rem; margin-top: 8px"
+          >
+            Please enter a valid email
+          </div>
+        </div>
+
+        <div class="form-group-luxury">
+          <label class="form-label-luxury">PASSWORD</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control-luxury"
+            placeholder="Create a password"
+            required
+            minlength="6"
+          />
+          <div
+            class="invalid-feedback"
+            style="color: #ff6b6b; font-size: 0.85rem; margin-top: 8px"
+          >
+            Password must be at least 6 characters
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">
+          CREATE ACCOUNT
+        </button>
+      </form>
+
+      <p class="auth-footer">
+        Already have an account?
+        <a href="/login" class="auth-link">Sign in</a>
+      </p>
+    </div>
   </div>
+</section>
 
-  <!-- Signup Form -->
-  <form action="/signup" method="POST" class="needs-validation" novalidate>
-    <!-- Username -->
-    <div class="mb-3">
-      <label class="form-label fw-semibold">Username</label>
-      <input
-        type="text"
-        name="username"
-        class="form-control rounded-pill"
-        placeholder="Choose a username"
-        required
-      />
-      <div class="invalid-feedback">Username is required</div>
-    </div>
+<style>
+  .auth-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(12, 21, 25, 0.8), rgba(12, 21, 25, 0.9)),
+      url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2400&auto=format&fit=crop')
+        center/cover;
+    padding: 60px 20px;
+  }
 
-    <!-- Email -->
-    <div class="mb-3">
-      <label class="form-label fw-semibold">Email</label>
-      <input
-        type="email"
-        name="email"
-        class="form-control rounded-pill"
-        placeholder="Enter your email"
-        required
-      />
-      <div class="invalid-feedback">Please enter a valid email</div>
-    </div>
+  .auth-container {
+    width: 100%;
+    max-width: 480px;
+  }
 
-    <!-- Password -->
-    <div class="mb-4">
-      <label class="form-label fw-semibold">Password</label>
-      <input
-        type="password"
-        name="password"
-        class="form-control rounded-pill"
-        placeholder="Create a strong password"
-        required
-      />
-      <div class="invalid-feedback">Password is required</div>
-    </div>
+  .auth-box {
+    background: #162127;
+    border: 1px solid #3a3534;
+    padding: 60px 50px;
+  }
 
-    <!-- Submit -->
-    <div class="d-grid">
-      <button class="btn btn-success rounded-pill py-2">Sign Up</button>
-    </div>
-  </form>
+  .auth-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 
-  <!-- Login link -->
-  <p class="text-center text-muted mt-4">
-    Already have an account?
-    <a href="/login" class="text-success fw-semibold"> Log in </a>
-  </p>
-</div>
+  .auth-subtitle {
+    font-size: 0.95rem;
+    color: #b8bac0;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 0.05em;
+  }
 
-<!-- Bootstrap validation -->
-<script>
-  (() => {
-    "use strict";
-    const forms = document.querySelectorAll(".needs-validation");
+  .auth-form {
+    margin-bottom: 30px;
+  }
 
-    Array.from(forms).forEach((form) => {
-      form.addEventListener("submit", (event) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add("was-validated");
-      });
-    });
-  })();
-</script>
+  .form-group-luxury {
+    margin-bottom: 25px;
+  }
+
+  .form-label-luxury {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #cf9d7b;
+    margin-bottom: 10px;
+  }
+
+  .form-control-luxury {
+    width: 100%;
+    padding: 15px 20px;
+    background: #0c1519;
+    border: 1px solid #3a3534;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-control-luxury:focus {
+    outline: none;
+    border-color: #cf9d7b;
+    box-shadow: 0 0 0 3px rgba(207, 157, 123, 0.1);
+  }
+
+  .form-control-luxury::placeholder {
+    color: #6a6d75;
+  }
+
+  .auth-footer {
+    text-align: center;
+    color: #b8bac0;
+    font-size: 0.95rem;
+  }
+
+  .auth-link {
+    color: #cf9d7b;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+
+  .auth-link:hover {
+    color: #e0b08d;
+  }
+
+  @media (max-width: 576px) {
+    .auth-box {
+      padding: 40px 30px;
+    }
+
+    .auth-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>

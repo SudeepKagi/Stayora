@@ -1,55 +1,146 @@
-<% layout("layouts/boilerplate") %>
+<% layout('layouts/boilerplate') -%>
 
-<div class="container d-flex justify-content-center align-items-center py-5">
-  <div
-    class="card shadow-sm border-0 rounded-4 p-4"
-    style="max-width: 420px; width: 100%"
-  >
-    <!-- Header -->
-    <div class="text-center mb-4">
-      <h2 class="fw-bold">Welcome Back 🌿</h2>
-      <p class="text-muted small">Login to manage your eco-friendly stays</p>
-    </div>
+<section class="auth-section">
+  <div class="auth-container">
+    <div class="auth-box">
+      <h1 class="auth-title">WELCOME BACK</h1>
+      <p class="auth-subtitle">Sign in to your account</p>
 
-    <!-- Login Form -->
-    <form action="/login" method="POST" novalidate>
-      <!-- Username -->
-      <div class="mb-3">
-        <label class="form-label fw-semibold">Username</label>
-        <input
-          type="text"
-          name="username"
-          class="form-control rounded-pill"
-          placeholder="Enter your username"
-          required
-        />
-      </div>
+      <form action="/login" method="POST" class="auth-form">
+        <div class="form-group-luxury">
+          <label class="form-label-luxury">USERNAME</label>
+          <input
+            type="text"
+            name="username"
+            class="form-control-luxury"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
 
-      <!-- Password -->
-      <div class="mb-3">
-        <label class="form-label fw-semibold">Password</label>
-        <input
-          type="password"
-          name="password"
-          class="form-control rounded-pill"
-          placeholder="Enter your password"
-          required
-        />
-      </div>
+        <div class="form-group-luxury">
+          <label class="form-label-luxury">PASSWORD</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control-luxury"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
 
-      <!-- Submit -->
-      <button class="btn btn-success w-100 rounded-pill mt-3">Login</button>
-    </form>
+        <button type="submit" class="btn btn-success w-100">SIGN IN</button>
+      </form>
 
-    <!-- Divider -->
-    <hr class="my-4" />
-
-    <!-- Footer -->
-    <div class="text-center">
-      <p class="small text-muted mb-1">Don’t have an account?</p>
-      <a href="/signup" class="text-success fw-semibold text-decoration-none">
-        Create an account
-      </a>
+      <p class="auth-footer">
+        Don't have an account?
+        <a href="/signup" class="auth-link">Create one</a>
+      </p>
     </div>
   </div>
-</div>
+</section>
+
+<style>
+  .auth-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(12, 21, 25, 0.8), rgba(12, 21, 25, 0.9)),
+      url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2400&auto=format&fit=crop')
+        center/cover;
+    padding: 60px 20px;
+  }
+
+  .auth-container {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .auth-box {
+    background: #162127;
+    border: 1px solid #3a3534;
+    padding: 60px 50px;
+  }
+
+  .auth-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .auth-subtitle {
+    font-size: 0.95rem;
+    color: #b8bac0;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 0.05em;
+  }
+
+  .auth-form {
+    margin-bottom: 30px;
+  }
+
+  .form-group-luxury {
+    margin-bottom: 25px;
+  }
+
+  .form-label-luxury {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #cf9d7b;
+    margin-bottom: 10px;
+  }
+
+  .form-control-luxury {
+    width: 100%;
+    padding: 15px 20px;
+    background: #0c1519;
+    border: 1px solid #3a3534;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-control-luxury:focus {
+    outline: none;
+    border-color: #cf9d7b;
+    box-shadow: 0 0 0 3px rgba(207, 157, 123, 0.1);
+  }
+
+  .form-control-luxury::placeholder {
+    color: #6a6d75;
+  }
+
+  .auth-footer {
+    text-align: center;
+    color: #b8bac0;
+    font-size: 0.95rem;
+  }
+
+  .auth-link {
+    color: #cf9d7b;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+
+  .auth-link:hover {
+    color: #e0b08d;
+  }
+
+  @media (max-width: 576px) {
+    .auth-box {
+      padding: 40px 30px;
+    }
+
+    .auth-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>

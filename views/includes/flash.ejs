@@ -1,11 +1,13 @@
-<% if (success && success.length) { %>
+<% if (success && success.length > 0) { %>
 <div class="flash flash-success">
-  <span class="flash-text"><%= success[0] %></span>
+  <span class="flash-icon">✓</span>
+  <span class="flash-text"><%= success %></span>
   <span class="flash-close" onclick="this.parentElement.remove()">✕</span>
 </div>
-<% } %> <% if (error && error.length) { %>
+<% } %> <% if (error && error.length > 0) { %>
 <div class="flash flash-error">
-  <span class="flash-text"><%= error[0] %></span>
+  <span class="flash-icon">⚠</span>
+  <span class="flash-text"><%= error %></span>
   <span class="flash-close" onclick="this.parentElement.remove()">✕</span>
 </div>
 <% } %>

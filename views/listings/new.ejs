@@ -1,126 +1,252 @@
 <% layout('layouts/boilerplate') -%>
 
-<div class="container py-5" style="max-width: 900px">
-  <!-- Header -->
-  <div class="section-header mb-4">
-    <h2 class="section-title">Add New Stay</h2>
-    <p class="section-subtitle">Create a new eco-friendly stay listing</p>
-  </div>
+<section class="form-section">
+  <div class="form-container">
+    <div class="form-header">
+      <a href="/listings" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i> BACK
+      </a>
+      <h1 class="form-title">ADD NEW PROPERTY</h1>
+      <p class="form-subtitle">List your luxury accommodation</p>
+    </div>
 
-  <!-- Form -->
-  <form
-    action="/listings"
-    method="POST"
-    class="needs-validation"
-    novalidate
-    enctype="multipart/form-data"
-  >
-    <div class="row g-4">
+    <form
+      action="/listings"
+      method="POST"
+      enctype="multipart/form-data"
+      class="luxury-form needs-validation"
+      novalidate
+    >
       <!-- Title -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Title</label>
+      <div class="form-group-luxury">
+        <label class="form-label-luxury">PROPERTY TITLE *</label>
         <input
           type="text"
           name="listing[title]"
-          class="form-control rounded-pill"
-          placeholder="Enter stay title"
+          class="form-control-luxury"
+          placeholder="e.g., Mountain Villa with Panoramic Views"
           required
         />
-        <div class="invalid-feedback">Please enter a title.</div>
-      </div>
-
-      <!-- Price -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Price per night (₹)</label>
-        <input
-          type="number"
-          name="listing[price]"
-          class="form-control rounded-pill"
-          placeholder="Enter price"
-          min="1"
-          required
-        />
-        <div class="invalid-feedback">Please enter a valid price.</div>
-      </div>
-
-      <!-- ✅ CATEGORY (NEW) -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Category</label>
-        <select
-          name="listing[category]"
-          class="form-select rounded-pill"
-          required
-        >
-          <option value="" disabled selected>Select a category</option>
-          <option value="Forest">🌲 Forest</option>
-          <option value="Mountain">🏔 Mountain</option>
-          <option value="Beach">🏖 Beach</option>
-          <option value="Desert">🏜 Desert</option>
-          <option value="Farm">🌾 Farm</option>
-          <option value="Luxury">✨ Luxury</option>
-          <option value="Camping">🏕 Camping</option>
-        </select>
-        <div class="invalid-feedback">Please select a category.</div>
-      </div>
-
-      <!-- Image -->
-      <div class="col-12">
-        <label class="form-label fw-semibold">Upload Image</label>
-        <input
-          type="file"
-          name="listing[image]"
-          class="form-control rounded-pill"
-          required
-        />
+        <div class="invalid-feedback">Title is required</div>
       </div>
 
       <!-- Description -->
-      <div class="col-12">
-        <label class="form-label fw-semibold">Description</label>
+      <div class="form-group-luxury">
+        <label class="form-label-luxury">DESCRIPTION *</label>
         <textarea
           name="listing[description]"
-          rows="4"
-          class="form-control rounded-4"
-          placeholder="Describe the stay"
+          class="form-control-luxury"
+          rows="5"
+          placeholder="Describe your property in detail..."
           required
         ></textarea>
-        <div class="invalid-feedback">Please add a description.</div>
+        <div class="invalid-feedback">Description is required</div>
+      </div>
+
+      <!-- Image -->
+      <div class="form-group-luxury">
+        <label class="form-label-luxury">PROPERTY IMAGE *</label>
+        <input
+          type="file"
+          name="listing[image]"
+          class="form-control-luxury"
+          accept="image/*"
+          required
+        />
+        <div class="invalid-feedback">Please upload an image</div>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group-luxury">
+        <label class="form-label-luxury">PRICE PER NIGHT (₹) *</label>
+        <input
+          type="number"
+          name="listing[price]"
+          class="form-control-luxury"
+          placeholder="10000"
+          min="1"
+          required
+        />
+        <div class="invalid-feedback">Price must be greater than 0</div>
       </div>
 
       <!-- Location -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Location</label>
-        <input
-          type="text"
-          name="listing[location]"
-          class="form-control rounded-pill"
-          placeholder="Enter location"
-          required
-        />
-        <div class="invalid-feedback">Please enter a location.</div>
+      <div class="form-row">
+        <div class="form-group-luxury">
+          <label class="form-label-luxury">LOCATION *</label>
+          <input
+            type="text"
+            name="listing[location]"
+            class="form-control-luxury"
+            placeholder="e.g., Manali"
+            required
+          />
+          <div class="invalid-feedback">Location is required</div>
+        </div>
+
+        <div class="form-group-luxury">
+          <label class="form-label-luxury">COUNTRY *</label>
+          <input
+            type="text"
+            name="listing[country]"
+            class="form-control-luxury"
+            placeholder="e.g., India"
+            required
+          />
+          <div class="invalid-feedback">Country is required</div>
+        </div>
       </div>
 
-      <!-- Country -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Country</label>
-        <input
-          type="text"
-          name="listing[country]"
-          class="form-control rounded-pill"
-          placeholder="Enter country"
-          required
-        />
-        <div class="invalid-feedback">Please enter a country.</div>
+      <!-- Category -->
+      <div class="form-group-luxury">
+        <label class="form-label-luxury">CATEGORY *</label>
+        <select name="listing[category]" class="form-control-luxury" required>
+          <option value="">Select Category</option>
+          <option value="Mountain">Mountain</option>
+          <option value="Beach">Beach</option>
+          <option value="Forest">Forest</option>
+          <option value="Desert">Desert</option>
+          <option value="Farm">Farm</option>
+          <option value="Luxury">Luxury</option>
+          <option value="Camping">Camping</option>
+        </select>
+        <div class="invalid-feedback">Please select a category</div>
       </div>
-    </div>
 
-    <!-- Actions -->
-    <div class="d-flex justify-content-between align-items-center mt-5">
-      <a href="/listings" class="btn btn-outline-secondary rounded-pill px-4">
-        Cancel
-      </a>
+      <!-- Submit -->
+      <button type="submit" class="btn btn-success btn-large">
+        ADD PROPERTY
+      </button>
+    </form>
+  </div>
+</section>
 
-      <button class="btn btn-success rounded-pill px-5">Add Stay</button>
-    </div>
-  </form>
-</div>
+<style>
+  .form-section {
+    min-height: 100vh;
+    background: #0c1519;
+    padding: 80px 40px;
+  }
+
+  .form-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .form-header {
+    margin-bottom: 50px;
+  }
+
+  .back-link {
+    color: #cf9d7b;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .back-link:hover {
+    color: #e0b08d;
+  }
+
+  .form-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .form-subtitle {
+    font-size: 1rem;
+    color: #b8bac0;
+    letter-spacing: 0.05em;
+  }
+
+  .luxury-form {
+    background: #162127;
+    border: 1px solid #3a3534;
+    padding: 50px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .form-group-luxury {
+    margin-bottom: 30px;
+  }
+
+  .form-label-luxury {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #cf9d7b;
+    margin-bottom: 12px;
+  }
+
+  .form-control-luxury {
+    width: 100%;
+    padding: 15px 20px;
+    background: #0c1519;
+    border: 1px solid #3a3534;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-control-luxury:focus {
+    outline: none;
+    border-color: #cf9d7b;
+    box-shadow: 0 0 0 3px rgba(207, 157, 123, 0.1);
+  }
+
+  .form-control-luxury::placeholder {
+    color: #6a6d75;
+  }
+
+  select.form-control-luxury {
+    cursor: pointer;
+  }
+
+  .invalid-feedback {
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    display: none;
+  }
+
+  .was-validated .form-control-luxury:invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .btn-large {
+    width: 100%;
+    padding: 18px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .luxury-form {
+      padding: 30px 25px;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .form-title {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,77 +1,40 @@
 <nav class="navbar navbar-expand-lg eco-navbar sticky-top">
-  <div class="container">
+  <div class="container-fluid">
     <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-      <img src="/logo/icon.png" height="32" alt="Stayora" />
+      <img src="/logo/icon.png" alt="Stayora" style="height: 35px" />
       <span class="brand-text">STAYORA</span>
     </a>
 
-    <!-- Toggle -->
+    <!-- Mobile Toggle -->
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#ecoNavbar"
+      data-bs-target="#navbarNav"
+      style="border-color: #cf9d7b"
     >
-      <span class="navbar-toggler-icon"></span>
+      <span
+        class="navbar-toggler-icon"
+        style="filter: brightness(0) invert(1)"
+      ></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="ecoNavbar">
-      <!-- LEFT LINKS -->
-      <ul class="navbar-nav me-4">
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
         <li class="nav-item">
-          <a class="nav-link" href="/listings">Homes</a>
+          <a class="nav-link" href="/">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">PROPERTIES</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">ABOUT</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/listings/new">Add New</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-      </ul>
-
-      <!-- 🔍 SEARCH (CENTER) -->
-      <form
-        class="d-flex flex-grow-1 mx-lg-4 my-3 my-lg-0"
-        role="search"
-        action="/listings"
-        method="GET"
-      >
-        <div class="input-group">
-          <input
-            class="form-control rounded-pill-start"
-            type="search"
-            name="search"
-            placeholder="Search by stay, location or category..."
-            value="<%= typeof search !== 'undefined' ? search : '' %>"
-          />
-          <button class="btn btn-success rounded-pill-end px-4" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </form>
-
-      <!-- RIGHT AUTH -->
-      <ul class="navbar-nav ms-lg-4 align-items-lg-center">
-        <% if (!currUser) { %>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/signup">Signup</a>
-        </li>
-
-        <li class="nav-item">
-          <a
-            class="nav-link btn btn-outline-success rounded-pill px-3 ms-lg-2"
-            href="/login"
-          >
-            Login
-          </a>
-        </li>
-
-        <% } else { %>
-
+        <% if (currUser) { %>
+        <!-- Logged In User -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -79,18 +42,55 @@
             role="button"
             data-bs-toggle="dropdown"
           >
-            👋 <%= currUser.username %>
+            <%= currUser.username.toUpperCase() %>
           </a>
-
-          <ul class="dropdown-menu dropdown-menu-end">
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            style="background: #162127; border: 1px solid #3a3534"
+          >
             <li>
-              <a class="dropdown-item text-danger" href="/logout"> Logout </a>
+              <a
+                class="dropdown-item"
+                href="/listings/new"
+                style="color: #b8bac0"
+              >
+                + ADD PROPERTY
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" style="border-color: #3a3534" />
+            </li>
+            <li>
+              <form method="GET" action="/logout" style="margin: 0">
+                <button
+                  class="dropdown-item"
+                  type="submit"
+                  style="color: #b8bac0"
+                >
+                  LOGOUT
+                </button>
+              </form>
             </li>
           </ul>
         </li>
-
+        <% } else { %>
+        <!-- Guest User -->
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">SIGNUP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">LOGIN</a>
+        </li>
         <% } %>
       </ul>
     </div>
   </div>
 </nav>
+
+<style>
+  /* Dropdown hover effects */
+  .dropdown-item:hover {
+    background: #cf9d7b !important;
+    color: #0c1519 !important;
+  }
+</style>

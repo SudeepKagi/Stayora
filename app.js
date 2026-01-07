@@ -11,12 +11,14 @@ const listings = require('./routes/listing.js');
 const reviews = require('./routes/review.js');
 const users = require('./routes/user.js');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
+const dbUrl = process.env.ATLASDB_URL;
 
 // View engine
 app.engine('ejs', ejsMate);
@@ -34,7 +36,7 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/stayora');
+  await mongoose.connect(dbUrl);
 }
 
 // Middlewares
@@ -42,12 +44,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+const store = MongoStore.create({
+  mongoUrl: process.env.ATLASDB_URL,
+  touchAfter: 24 * 3600,
+});
+
+store.on('error', (err) => {
+  console.log('ERROR in MONGO SESSION STORE', err);
+});
+
 const sessionOptions = {
-  secret: 'eleven',
+  store,
+  secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
   },
@@ -91,7 +102,13 @@ app.use((req, res, next) => {
 });
 
 // Error Handler
+// Error Handler - at the very end of app.js
 app.use((err, req, res, next) => {
+  // Check if headers already sent
+  if (res.headersSent) {
+    return next(err);
+  }
+
   const { statusCode = 500, message = 'Something went wrong' } = err;
   res.status(statusCode).render('error', { statusCode, message });
 });
