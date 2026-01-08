@@ -1,82 +1,160 @@
 <% layout('layouts/boilerplate') -%>
 
-<section class="luxury-form-section">
-    <div class="container py-5">
-        <div class="form-header-minimal mb-5">
-            <a href="/listings/<%= list._id %>" class="back-text-link mb-3 d-inline-block">
-                <i class="fa-solid fa-arrow-left-long me-2"></i> BACK TO PROPERTY
-            </a>
-            <h1 class="serif-title">EDIT RESIDENCE</h1>
-            <p class="text-muted italic">Refine the details of your luxury listing</p>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <form action="/listings/<%= list._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                    
-                    <div class="row">
-                        <div class="col-md-7 pe-md-5">
-                            <div class="mb-4">
-                                <label class="luxury-label">PROPERTY TITLE</label>
-                                <input type="text" name="listing[title]" class="luxury-input" value="<%= list.title %>" required />
-                                <div class="invalid-feedback">A title is required for the residence.</div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="luxury-label">DESCRIPTION</label>
-                                <textarea name="listing[description]" class="luxury-input" rows="8" required><%= list.description %></textarea>
-                                <div class="invalid-feedback">Please provide a sophisticated description.</div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <label class="luxury-label">LOCATION</label>
-                                    <input type="text" name="listing[location]" class="luxury-input" value="<%= list.location %>" required />
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <label class="luxury-label">COUNTRY</label>
-                                    <input type="text" name="listing[country]" class="luxury-input" value="<%= list.country %>" required />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-5">
-                            <div class="mb-4">
-                                <label class="luxury-label">CURRENT VISUAL</label>
-                                <div class="edit-preview-box shadow-sm">
-                                    <img src="<%= list.image.url %>" alt="Preview" class="img-fluid" />
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="luxury-label">UPLOAD NEW IMAGE</label>
-                                <input type="file" name="listing[image]" class="luxury-input file-input-style" accept="image/*" />
-                                <small class="text-muted d-block mt-2">Optional: high-resolution images only</small>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="luxury-label">PRICE PER NIGHT (₹)</label>
-                                <input type="number" name="listing[price]" class="luxury-input" value="<%= list.price %>" min="1" required />
-                            </div>
-
-                            <div class="mb-5">
-                                <label class="luxury-label">COLLECTION / CATEGORY</label>
-                                <select name="listing[category]" class="luxury-input" required>
-                                    <option value="Mountain" <%= list.category === 'Mountain' ? 'selected' : '' %>>Mountain</option>
-                                    <option value="Beach" <%= list.category === 'Beach' ? 'selected' : '' %>>Beach</option>
-                                    <option value="Forest" <%= list.category === 'Forest' ? 'selected' : '' %>>Forest</option>
-                                    <option value="Desert" <%= list.category === 'Desert' ? 'selected' : '' %>>Desert</option>
-                                    <option value="Farm" <%= list.category === 'Farm' ? 'selected' : '' %>>Farm</option>
-                                    <option value="Luxury" <%= list.category === 'Luxury' ? 'selected' : '' %>>Luxury</option>
-                                    <option value="Camping" <%= list.category === 'Camping' ? 'selected' : '' %>>Camping</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="gold-button w-100 py-3">SAVE CHANGES</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<section class="form-section">
+  <div class="form-container">
+    
+    <!-- Header -->
+    <div style="margin-bottom: 40px;">
+      <a href="/listings/<%= list._id %>" style="color: var(--accent-orange); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.9rem; margin-bottom: 20px;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Property
+      </a>
+      <h1 style="font-size: 2.5rem; font-weight: 800; color: var(--text-white); margin-bottom: 10px;">
+        Edit Property
+      </h1>
+      <p style="color: var(--text-gray); font-size: 1.05rem;">
+        Update property details
+      </p>
     </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+      <form action="/listings/<%= list._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        
+        <div style="display: grid; gap: 25px;">
+          
+          <!-- Title -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">PROPERTY TITLE *</label>
+            <input
+              type="text"
+              name="listing[title]"
+              class="form-control-luxury"
+              value="<%= list.title %>"
+              required
+            />
+            <div class="invalid-feedback" style="color: #ef4444; font-size: 0.85rem; margin-top: 8px;">
+              Title is required
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">DESCRIPTION *</label>
+            <textarea
+              name="listing[description]"
+              class="form-control-luxury"
+              rows="5"
+              required
+              style="resize: vertical;"
+            ><%= list.description %></textarea>
+            <div class="invalid-feedback" style="color: #ef4444; font-size: 0.85rem; margin-top: 8px;">
+              Description is required
+            </div>
+          </div>
+
+          <!-- Current Image -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">CURRENT IMAGE</label>
+            <div style="width: 100%; max-width: 400px; height: 250px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
+              <img src="<%= list.image.url %>" alt="<%= list.title %>" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+          </div>
+
+          <!-- New Image -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">UPDATE IMAGE (OPTIONAL)</label>
+            <input
+              type="file"
+              name="listing[image]"
+              class="form-control-luxury"
+              accept="image/*"
+              style="padding: 12px;"
+            />
+            <small style="color: var(--text-gray); font-size: 0.85rem; display: block; margin-top: 8px;">
+              Leave empty to keep current image
+            </small>
+          </div>
+
+          <!-- Price -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">PRICE PER NIGHT (₹) *</label>
+            <input
+              type="number"
+              name="listing[price]"
+              class="form-control-luxury"
+              value="<%= list.price %>"
+              min="1"
+              required
+            />
+            <div class="invalid-feedback" style="color: #ef4444; font-size: 0.85rem; margin-top: 8px;">
+              Price must be greater than 0
+            </div>
+          </div>
+
+          <!-- Location & Country -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="form-group-luxury">
+              <label class="form-label-luxury">LOCATION *</label>
+              <input
+                type="text"
+                name="listing[location]"
+                class="form-control-luxury"
+                value="<%= list.location %>"
+                required
+              />
+              <div class="invalid-feedback" style="color: #ef4444; font-size: 0.85rem; margin-top: 8px;">
+                Location is required
+              </div>
+            </div>
+
+            <div class="form-group-luxury">
+              <label class="form-label-luxury">COUNTRY *</label>
+              <input
+                type="text"
+                name="listing[country]"
+                class="form-control-luxury"
+                value="<%= list.country %>"
+                required
+              />
+              <div class="invalid-feedback" style="color: #ef4444; font-size: 0.85rem; margin-top: 8px;">
+                Country is required
+              </div>
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">CATEGORY *</label>
+            <select name="listing[category]" class="form-control-luxury" required style="cursor: pointer;">
+              <option value="">Select Category</option>
+              <option value="Mountain" <%= list.category === 'Mountain' ? 'selected' : '' %>>Mountain</option>
+              <option value="Beach" <%= list.category === 'Beach' ? 'selected' : '' %>>Beach</option>
+              <option value="Forest" <%= list.category === 'Forest' ? 'selected' : '' %>>Forest</option>
+              <option value="Desert" <%= list.category === 'Desert' ? 'selected' : '' %>>Desert</option>
+              <option value="Farm" <%= list.category === 'Farm' ? 'selected' : '' %>>Farm</option>
+              <option value="Luxury" <%= list.category === 'Luxury' ? 'selected' : '' %>>Luxury</option>
+              <option value="Camping" <%= list.category === 'Camping' ? 'selected' : '' %>>Camping</option>
+            </select>
+            <div class="invalid-feedback" style="color: #ef4444; font-size: 0.85rem; margin-top: 8px;">
+              Please select a category
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-success btn-large" style="margin-top: 10px;">
+            <i class="fa-solid fa-save"></i> Update Property
+          </button>
+
+        </div>
+      </form>
+    </div>
+  </div>
 </section>
+
+<style>
+@media (max-width: 768px) {
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>

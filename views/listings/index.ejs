@@ -1,100 +1,189 @@
 <% layout('layouts/boilerplate') -%>
 
-<section class="page-header-luxury">
-  <div class="container text-center">
-    <span class="gold-label">EXPLORE OUR COLLECTION</span>
-    <h1 class="serif-title-large">PREMIUM PROPERTIES</h1>
-    <p class="section-subtitle">
-      Handpicked luxury residences across the most breathtaking locations.
+<!-- ================= PAGE HEADER ================= -->
+<section
+  style="
+    padding: 60px 40px 40px;
+    background: var(--secondary-dark);
+    border-bottom: 1px solid var(--border-color);
+  "
+>
+  <div style="max-width: 1400px; margin: 0 auto">
+    <h1
+      style="
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--text-white);
+        margin-bottom: 10px;
+      "
+    >
+      Explore Properties
+    </h1>
+    <p style="color: var(--text-gray); font-size: 1.05rem">
+      Discover luxury accommodations tailored to your preferences
     </p>
   </div>
 </section>
 
-<section class="filter-section-luxury">
-  <div class="container">
-    <div class="filter-wrapper">
-      <div class="filter-scroll-container">
-        <a href="/listings" class="filter-btn <%= !category ? 'active' : '' %>">
-          <i class="fa-solid fa-border-all"></i><span>ALL</span>
-        </a>
-        <a
-          href="/listings?category=Forest"
-          class="filter-btn <%= category === 'Forest' ? 'active' : '' %>"
-        >
-          <i class="fa-solid fa-tree"></i><span>FOREST</span>
-        </a>
-        <a
-          href="/listings?category=Mountain"
-          class="filter-btn <%= category === 'Mountain' ? 'active' : '' %>"
-        >
-          <i class="fa-solid fa-mountain"></i><span>MOUNTAIN</span>
-        </a>
-        <a
-          href="/listings?category=Beach"
-          class="filter-btn <%= category === 'Beach' ? 'active' : '' %>"
-        >
-          <i class="fa-solid fa-umbrella-beach"></i><span>BEACH</span>
-        </a>
-        <a
-          href="/listings?category=Luxury"
-          class="filter-btn <%= category === 'Luxury' ? 'active' : '' %>"
-        >
-          <i class="fa-solid fa-gem"></i><span>LUXURY</span>
-        </a>
-        <a
-          href="/listings?category=Farm"
-          class="filter-btn <%= category === 'Farm' ? 'active' : '' %>"
-        >
-          <i class="fa-solid fa-tractor"></i><span>FARM</span>
-        </a>
+<!-- ================= FILTER SECTION ================= -->
+<section class="filter-section">
+  <div class="filter-container">
+    <div class="filter-header">
+      <div>
+        <h2 class="filter-title">All Properties</h2>
+        <p class="filter-count">
+          <%= allListings.length %> properties available
+        </p>
       </div>
-      <a href="/listings/new" class="add-property-minimal"
-        >+ LIST YOUR PROPERTY</a
+      <% if (currUser) { %>
+      <a href="/listings/new" class="btn btn-success">
+        <i class="fa-solid fa-plus"></i> Add Property
+      </a>
+      <% } %>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <a href="/listings" class="filter-tab <%= !category ? 'active' : '' %>">
+        <i class="fa-solid fa-border-all"></i>
+        <span>All</span>
+      </a>
+
+      <a
+        href="/listings?category=Mountain"
+        class="filter-tab <%= category === 'Mountain' ? 'active' : '' %>"
       >
+        <i class="fa-solid fa-mountain"></i>
+        <span>Mountain</span>
+      </a>
+
+      <a
+        href="/listings?category=Beach"
+        class="filter-tab <%= category === 'Beach' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <span>Beach</span>
+      </a>
+
+      <a
+        href="/listings?category=Forest"
+        class="filter-tab <%= category === 'Forest' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-tree"></i>
+        <span>Forest</span>
+      </a>
+
+      <a
+        href="/listings?category=Desert"
+        class="filter-tab <%= category === 'Desert' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-sun"></i>
+        <span>Desert</span>
+      </a>
+
+      <a
+        href="/listings?category=Farm"
+        class="filter-tab <%= category === 'Farm' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-tractor"></i>
+        <span>Farm</span>
+      </a>
+
+      <a
+        href="/listings?category=Luxury"
+        class="filter-tab <%= category === 'Luxury' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-gem"></i>
+        <span>Luxury</span>
+      </a>
+
+      <a
+        href="/listings?category=Camping"
+        class="filter-tab <%= category === 'Camping' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-campground"></i>
+        <span>Camping</span>
+      </a>
     </div>
   </div>
 </section>
 
-<section class="listings-grid-section">
-  <div class="container">
-    <% if (allListings.length === 0) { %>
-    <div class="no-results-luxury">
-      <h3 class="serif-title">NO PROPERTIES FOUND</h3>
-      <p>Try adjusting your filters or explore our full collection.</p>
-      <a href="/listings" class="gold-button">RESET FILTERS</a>
-    </div>
-    <% } %>
+<!-- ================= PROPERTIES GRID ================= -->
+<section style="background: var(--primary-dark); padding-bottom: 80px">
+  <% if (allListings.length === 0) { %>
+  <div style="text-align: center; padding: 100px 40px">
+    <i
+      class="fa-solid fa-search"
+      style="font-size: 4rem; color: var(--text-gray); margin-bottom: 20px"
+    ></i>
+    <h3
+      style="font-size: 1.8rem; color: var(--text-white); margin-bottom: 10px"
+    >
+      No Properties Found
+    </h3>
+    <p style="color: var(--text-gray); font-size: 1.05rem">
+      Try adjusting your filters or search criteria
+    </p>
+  </div>
+  <% } else { %>
 
-    <div class="row g-5">
-      <% for (let list of allListings) { %>
-      <div class="col-lg-4 col-md-6">
-        <div class="property-card-luxury">
-          <a href="/listings/<%= list._id %>" class="card-image-link">
-            <div class="image-zoom-container">
-              <img
-                src="<%= list.image.url %>"
-                alt="<%= list.title %>"
-                class="img-fluid"
-              />
-              <div class="card-category-tag"><%= list.category %></div>
-            </div>
-          </a>
-          <div class="card-details-luxury">
-            <div class="location-tag">
-              <i class="fa-solid fa-location-dot"></i> <%= list.location %>, <%=
-              list.country %>
-            </div>
-            <h3 class="property-title-serif"><%= list.title %></h3>
-            <div class="price-box-luxury">
-              <span class="price-amount"
-                >₹ <%= list.price.toLocaleString("en-IN") %></span
-              >
-              <span class="price-night">/ NIGHT</span>
-            </div>
-          </div>
+  <div class="properties-grid">
+    <% for (let list of allListings) { %>
+    <div class="property-card">
+      <div class="property-image-wrapper">
+        <img
+          src="<%= list.image.url %>"
+          alt="<%= list.title %>"
+          class="property-image"
+        />
+        <span class="property-badge"><%= list.category %></span>
+        <div class="property-favorite">
+          <i class="fa-regular fa-heart"></i>
         </div>
       </div>
-      <% } %>
+
+      <div class="property-info">
+        <!-- Rating (you can add dynamic ratings later) -->
+        <div class="property-rating">
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-count">(4.8)</span>
+        </div>
+
+        <h3 class="property-title"><%= list.title %></h3>
+
+        <p class="property-location">
+          <i class="fa-solid fa-location-dot"></i>
+          <%= list.location %>, <%= list.country %>
+        </p>
+
+        <!-- Features (you can add these to your model later) -->
+        <div class="property-features">
+          <span class="feature-item">
+            <i class="fa-solid fa-bed"></i> 3 Beds
+          </span>
+          <span class="feature-item">
+            <i class="fa-solid fa-bath"></i> 2 Bath
+          </span>
+          <span class="feature-item">
+            <i class="fa-solid fa-ruler-combined"></i> 1800 Sqft
+          </span>
+        </div>
+
+        <div class="property-footer">
+          <div>
+            <div class="property-price">
+              ₹<%= list.price.toLocaleString("en-IN") %>
+              <span class="price-period">/night</span>
+            </div>
+          </div>
+          <a href="/listings/<%= list._id %>" class="btn btn-success btn-sm">
+            View Details
+          </a>
+        </div>
+      </div>
     </div>
+    <% } %>
   </div>
+
+  <% } %>
 </section>

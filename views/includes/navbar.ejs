@@ -1,30 +1,12 @@
-<div class="nav-top-bar d-none d-lg-block">
-  <div class="container d-flex justify-content-between align-items-center py-2">
-    <div class="d-flex gap-4">
-      <small
-        ><i class="fa-solid fa-location-dot me-2"></i> BANGLORE, INDIA</small
-      >
-      <small
-        ><i class="fa-solid fa-envelope me-2"></i>SUDEEPKAGI@GMAIL.COM</small
-      >
-    </div>
-    <div class="d-flex gap-4 align-items-center">
-      <small><i class="fa-solid fa-phone me-2"></i> +91 95350306xx</small>
-      <a href="/listings" class="book-now-btn">BOOK YOUR STAY</a>
-    </div>
-  </div>
-</div>
-
-<nav class="navbar navbar-expand-lg sticky-top luxury-nav">
-  <div class="container">
-    <a
-      class="navbar-brand d-flex flex-column align-items-center mx-auto"
-      href="/"
-    >
-      <img src="/logo/icon.png" alt="Stayora" class="nav-logo" />
+<nav class="navbar navbar-expand-lg eco-navbar">
+  <div class="container-fluid" style="max-width: 1400px; margin: 0 auto">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/">
+      <img src="/logo/icon.png" alt="Stayora" style="height: 35px" />
       <span class="brand-text">STAYORA</span>
     </a>
 
+    <!-- Mobile Toggle -->
     <button
       class="navbar-toggler"
       type="button"
@@ -34,39 +16,58 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Nav Links -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto align-items-center">
-        <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
+      <ul class="navbar-nav ms-auto align-items-lg-center">
         <li class="nav-item">
-          <a class="nav-link" href="/listings">PROPERTIES</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="/about">ABOUT</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">Properties</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
 
         <% if (currUser) { %>
+        <!-- Logged In User -->
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle user-name"
+            class="nav-link dropdown-toggle"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
+            style="display: flex; align-items: center; gap: 8px"
           >
-            <%= currUser.username.toUpperCase() %>
+            <i class="fa-solid fa-user-circle" style="font-size: 1.2rem"></i>
+            <%= currUser.username %>
           </a>
-          <ul class="dropdown-menu dropdown-menu-end luxury-dropdown">
+          <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <a class="dropdown-item" href="/listings/new">+ ADD PROPERTY</a>
+              <a class="dropdown-item" href="/listings/new">
+                <i class="fa-solid fa-plus"></i> Add Property
+              </a>
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
-              <form method="GET" action="/logout" class="m-0">
-                <button class="dropdown-item" type="submit">LOGOUT</button>
+              <form method="get" action="/logout" style="margin: 0">
+                <button class="dropdown-item" type="submit">
+                  <i class="fa-solid fa-sign-out-alt"></i> Logout
+                </button>
               </form>
             </li>
           </ul>
         </li>
         <% } else { %>
-        <li class="nav-item"><a class="nav-link" href="/signup">SIGNUP</a></li>
-        <li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
+        <!-- Guest User -->
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a href="/signup" class="btn btn-success" style="margin-left: 10px">
+            Sign Up
+          </a>
+        </li>
         <% } %>
       </ul>
     </div>

@@ -1,70 +1,87 @@
-<footer class="luxury-footer mt-5">
-  <div class="container py-5">
-    <div class="row g-5">
+<footer class="eco-footer">
+  <div class="container" style="max-width: 1400px">
+    <div class="row g-4">
+      <!-- Brand Column -->
       <div class="col-lg-4 col-md-6">
-        <div class="d-flex align-items-center gap-3 mb-4">
-          <img src="/logo/icon.png" alt="Stayora" class="footer-logo" />
-          <h5 class="footer-brand-name mb-0">STAYORA</h5>
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <img src="/logo/icon.png" alt="Stayora" style="height: 40px" />
+          <h5 class="footer-title mb-0">STAYORA</h5>
         </div>
-        <p class="footer-about-text">
-          Curating an exclusive collection of luxury homestays. We offer a new
-          standard of modern living amidst India's most breathtaking landscapes.
+        <p
+          style="color: var(--text-gray); line-height: 1.8; margin-bottom: 20px"
+        >
+          Discover luxury accommodations designed for exceptional experiences
+          across India's most stunning destinations.
         </p>
-        <div class="footer-social-icons d-flex gap-4 mt-4">
+        <div class="footer-social d-flex gap-3">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
           <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-3 col-6">
-        <h6 class="footer-heading">NAVIGATION</h6>
-        <ul class="footer-list">
-          <li><a href="/">Home</a></li>
-          <li><a href="/listings">Properties</a></li>
-          <li><a href="/about">Our Story</a></li>
-          <li><a href="/listings/new">Add Property</a></li>
-        </ul>
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h5 class="footer-title">Quick Links</h5>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/listings">Properties</a>
+          <a href="/about">About Us</a>
+          <a href="/listings/new">List Property</a>
+        </div>
       </div>
 
-      <div class="col-lg-2 col-md-3 col-6">
-        <h6 class="footer-heading">SUPPORT</h6>
-        <ul class="footer-list">
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms</a></li>
-        </ul>
+      <!-- Categories -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-title">Categories</h5>
+        <div class="footer-links">
+          <a href="/listings?category=Mountain">Mountain Properties</a>
+          <a href="/listings?category=Beach">Beach Villas</a>
+          <a href="/listings?category=Luxury">Luxury Stays</a>
+          <a href="/listings?category=Forest">Forest Retreats</a>
+        </div>
       </div>
 
-      <div class="col-lg-4 col-md-6">
-        <h6 class="footer-heading">NEWSLETTER</h6>
-        <p class="footer-about-text small mb-4">
-          Subscribe to receive updates on new exclusive properties.
-        </p>
-        <div class="footer-newsletter-form">
-          <form action="/subscribe" method="POST" class="d-flex w-100">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              class="newsletter-input"
-              required
-            />
-            <button type="submit" class="newsletter-btn">JOIN</button>
-          </form>
+      <!-- Contact -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-title">Get In Touch</h5>
+        <div class="footer-links">
+          <a href="#" style="pointer-events: none; cursor: default">
+            <i
+              class="fa-solid fa-envelope"
+              style="color: var(--accent-orange); margin-right: 8px"
+            ></i>
+            sudeepkagi@gmail.com
+          </a>
+          <a href="#" style="pointer-events: none; cursor: default">
+            <i
+              class="fa-solid fa-phone"
+              style="color: var(--accent-orange); margin-right: 8px"
+            ></i>
+            +91 95350 306xx
+          </a>
+          <a href="#" style="pointer-events: none; cursor: default">
+            <i
+              class="fa-solid fa-location-dot"
+              style="color: var(--accent-orange); margin-right: 8px"
+            ></i>
+            Banglore, India
+          </a>
         </div>
       </div>
     </div>
 
-    <div class="footer-bottom mt-5 pt-4">
-      <div class="row align-items-center">
-        <div class="col-md-6 text-center text-md-start">
-          <p class="copyright-text">© 2026 STAYORA. LUXURY HOMESTAYS INDIA.</p>
-        </div>
-        <div class="col-md-6 text-center text-md-end">
-          <p class="copyright-text">DESIGNED FOR REFINED LIVING</p>
-        </div>
+    <!-- Bottom Bar -->
+    <div
+      class="row mt-5 pt-4"
+      style="border-top: 1px solid var(--border-color)"
+    >
+      <div class="col-12 text-center">
+        <p style="color: var(--text-gray); margin: 0; font-size: 0.9rem">
+          © 2026 Stayora. All Rights Reserved. | Designed with
+          <span style="color: var(--accent-orange)">♥</span> for luxury living
+        </p>
       </div>
     </div>
   </div>

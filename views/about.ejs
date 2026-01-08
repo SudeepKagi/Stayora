@@ -1,95 +1,481 @@
 <% layout('layouts/boilerplate') -%>
 
-<section class="about-editorial-hero">
-  <div class="container text-center">
-    <span class="gold-label">OUR STORY</span>
-    <h1 class="serif-title-massive">REDEFINING THE<br />ART OF LIVING</h1>
-    <p class="editorial-subtitle">
-      A curated collection of India's most distinguished residences.
+<!-- ================= HERO ================= -->
+<section
+  style="
+    padding: 80px 40px;
+    background: linear-gradient(rgba(15, 27, 46, 0.8), rgba(15, 27, 46, 0.9)),
+      url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2400')
+        center/cover;
+    text-align: center;
+  "
+>
+  <div style="max-width: 800px; margin: 0 auto">
+    <div
+      style="
+        color: var(--accent-orange);
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 15px;
+      "
+    >
+      About Us
+    </div>
+    <h1
+      style="
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        color: var(--text-white);
+        margin-bottom: 20px;
+        line-height: 1.1;
+      "
+    >
+      Redefining Luxury Living
+    </h1>
+    <p style="font-size: 1.15rem; color: var(--text-gray); line-height: 1.7">
+      Excellence in every detail, comfort in every stay
     </p>
   </div>
 </section>
 
-<section class="narrative-section">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6">
-        <div class="narrative-image-frame">
-          <img
-            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1400"
-            alt="Luxury Interior"
-          />
-        </div>
+<!-- ================= STORY SECTION ================= -->
+<section style="padding: 100px 40px; background: var(--primary-dark)">
+  <div style="max-width: 1200px; margin: 0 auto">
+    <div
+      style="
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 60px;
+        align-items: center;
+      "
+    >
+      <div>
+        <img
+          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200"
+          alt="Our Story"
+          style="
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+          "
+        />
       </div>
-      <div class="col-lg-6 ps-lg-5">
-        <span class="gold-label-small">SINCE 2026</span>
-        <h2 class="serif-subtitle-large mb-4">
-          Crafting Unforgettable Journeys
+      <div>
+        <div
+          style="
+            color: var(--accent-orange);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+          "
+        >
+          Our Story
+        </div>
+        <h2
+          style="
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 25px;
+            line-height: 1.2;
+          "
+        >
+          Crafting Memorable Experiences
         </h2>
-        <p class="luxury-p">
+        <p
+          style="
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+          "
+        >
           Founded with a vision to redefine luxury accommodations, Stayora
           curates exceptional properties that blend breathtaking locations with
           uncompromising elegance and comfort.
         </p>
-        <p class="luxury-p">
+        <p
+          style="
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+          "
+        >
           Each residence in our portfolio has been meticulously selected to meet
           our exacting standards of excellence, ensuring every guest experiences
           the pinnacle of refined living.
         </p>
-        <p class="luxury-p mb-5">
+        <p
+          style="color: var(--text-gray); font-size: 1.05rem; line-height: 1.8"
+        >
           From mountain retreats to coastal havens, we offer discerning
           travelers access to India's most exclusive destinations.
         </p>
-        <a href="/listings" class="outline-gold-btn">EXPLORE THE COLLECTION</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="luxury-values-grid py-5">
-  <div class="container py-5">
-    <div class="text-center mb-5">
-      <span class="gold-label">DISTINCTION</span>
-      <h2 class="serif-subtitle-large">WHAT SETS US APART</h2>
+<!-- ================= VALUES SECTION ================= -->
+<section style="padding: 100px 40px; background: var(--secondary-dark)">
+  <div style="max-width: 1200px; margin: 0 auto">
+    <div style="text-align: center; margin-bottom: 60px">
+      <div
+        style="
+          color: var(--accent-orange);
+          font-weight: 600;
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-bottom: 15px;
+        "
+      >
+        What Sets Us Apart
+      </div>
+      <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--text-white)">
+        Our Core Values
+      </h2>
     </div>
 
-    <div class="row g-4">
-      <div class="col-md-3">
-        <div class="value-item-minimal">
-          <div class="value-count">01</div>
-          <h3 class="value-h">CURATED EXCELLENCE</h3>
-          <p class="value-p">
-            Rigorous selection for uncompromising standards of luxury.
-          </p>
+    <div
+      style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      "
+    >
+      <!-- Value 1 -->
+      <div
+        style="
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          padding: 35px 30px;
+          text-align: center;
+          transition: all 0.3s;
+        "
+      >
+        <div
+          style="
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 90, 60, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+          "
+        >
+          <i
+            class="fa-solid fa-gem"
+            style="font-size: 2rem; color: var(--accent-orange)"
+          ></i>
+        </div>
+        <h3
+          style="
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 15px;
+          "
+        >
+          Curated Excellence
+        </h3>
+        <p style="color: var(--text-gray); line-height: 1.7">
+          Every property undergoes rigorous selection to ensure it meets our
+          uncompromising standards of luxury and sophistication.
+        </p>
+      </div>
+
+      <!-- Value 2 -->
+      <div
+        style="
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          padding: 35px 30px;
+          text-align: center;
+          transition: all 0.3s;
+        "
+      >
+        <div
+          style="
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 90, 60, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+          "
+        >
+          <i
+            class="fa-solid fa-location-dot"
+            style="font-size: 2rem; color: var(--accent-orange)"
+          ></i>
+        </div>
+        <h3
+          style="
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 15px;
+          "
+        >
+          Prime Locations
+        </h3>
+        <p style="color: var(--text-gray); line-height: 1.7">
+          Strategically positioned in India's most coveted destinations,
+          offering breathtaking views and exclusive access.
+        </p>
+      </div>
+
+      <!-- Value 3 -->
+      <div
+        style="
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          padding: 35px 30px;
+          text-align: center;
+          transition: all 0.3s;
+        "
+      >
+        <div
+          style="
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 90, 60, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+          "
+        >
+          <i
+            class="fa-solid fa-crown"
+            style="font-size: 2rem; color: var(--accent-orange)"
+          ></i>
+        </div>
+        <h3
+          style="
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 15px;
+          "
+        >
+          Premium Service
+        </h3>
+        <p style="color: var(--text-gray); line-height: 1.7">
+          White-glove service and personalized attention ensure an unforgettable
+          experience from booking to checkout.
+        </p>
+      </div>
+
+      <!-- Value 4 -->
+      <div
+        style="
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          padding: 35px 30px;
+          text-align: center;
+          transition: all 0.3s;
+        "
+      >
+        <div
+          style="
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 90, 60, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+          "
+        >
+          <i
+            class="fa-solid fa-shield-halved"
+            style="font-size: 2rem; color: var(--accent-orange)"
+          ></i>
+        </div>
+        <h3
+          style="
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 15px;
+          "
+        >
+          Trusted Quality
+        </h3>
+        <p style="color: var(--text-gray); line-height: 1.7">
+          Verified hosts and properties you can trust, backed by our commitment
+          to excellence and guest satisfaction.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS SECTION ================= -->
+<section style="padding: 80px 40px; background: var(--primary-dark)">
+  <div style="max-width: 1200px; margin: 0 auto">
+    <div
+      style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        text-align: center;
+      "
+    >
+      <div>
+        <div
+          style="
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-orange);
+            margin-bottom: 10px;
+          "
+        >
+          500+
+        </div>
+        <div
+          style="
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          "
+        >
+          Properties
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="value-item-minimal">
-          <div class="value-count">02</div>
-          <h3 class="value-h">PRIME LOCATIONS</h3>
-          <p class="value-p">
-            Positioned in India's most coveted and breathtaking destinations.
-          </p>
+      <div>
+        <div
+          style="
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-orange);
+            margin-bottom: 10px;
+          "
+        >
+          120+
+        </div>
+        <div
+          style="
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          "
+        >
+          Locations
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="value-item-minimal">
-          <div class="value-count">03</div>
-          <h3 class="value-h">PREMIUM SERVICE</h3>
-          <p class="value-p">
-            Personalized attention from the first booking to checkout.
-          </p>
+      <div>
+        <div
+          style="
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-orange);
+            margin-bottom: 10px;
+          "
+        >
+          10K+
+        </div>
+        <div
+          style="
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          "
+        >
+          Happy Guests
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="value-item-minimal">
-          <div class="value-count">04</div>
-          <h3 class="value-h">TRUSTED QUALITY</h3>
-          <p class="value-p">
-            Verified properties and hosts you can rely on completely.
-          </p>
+      <div>
+        <div
+          style="
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-orange);
+            margin-bottom: 10px;
+          "
+        >
+          100%
+        </div>
+        <div
+          style="
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          "
+        >
+          Premium Quality
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ================= CTA ================= -->
+<section
+  style="
+    padding: 100px 40px;
+    background: linear-gradient(rgba(15, 27, 46, 0.9), rgba(15, 27, 46, 0.9)),
+      url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2400')
+        center/cover;
+    text-align: center;
+  "
+>
+  <div style="max-width: 700px; margin: 0 auto">
+    <h2
+      style="
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--text-white);
+        margin-bottom: 20px;
+      "
+    >
+      Experience Luxury Living
+    </h2>
+    <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 35px">
+      Discover your perfect escape
+    </p>
+    <a href="/listings" class="btn btn-success btn-large">
+      Explore Properties
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Value cards hover effect */
+  [style*='background: var(--card-bg)']:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-orange) !important;
+  }
+
+  @media (max-width: 992px) {
+    [style*='grid-template-columns: 1.2fr 1fr'] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

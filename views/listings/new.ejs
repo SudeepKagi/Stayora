@@ -1,137 +1,215 @@
 <% layout('layouts/boilerplate') -%>
 
-<section class="luxury-form-section">
-  <div class="container py-5">
-    <div class="form-header-minimal mb-5">
-      <a href="/listings" class="back-text-link mb-3 d-inline-block">
-        <i class="fa-solid fa-arrow-left-long me-2"></i> BACK TO COLLECTION
+<section class="form-section">
+  <div class="form-container">
+    <!-- Header -->
+    <div style="margin-bottom: 40px">
+      <a
+        href="/listings"
+        style="
+          color: var(--accent-orange);
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          margin-bottom: 20px;
+        "
+      >
+        <i class="fa-solid fa-arrow-left"></i> Back to Properties
       </a>
-      <h1 class="serif-title">LIST YOUR RESIDENCE</h1>
-      <p class="text-muted italic">
-        Share your unique property with our exclusive community
+      <h1
+        style="
+          font-size: 2.5rem;
+          font-weight: 800;
+          color: var(--text-white);
+          margin-bottom: 10px;
+        "
+      >
+        Add New Property
+      </h1>
+      <p style="color: var(--text-gray); font-size: 1.05rem">
+        List your luxury accommodation
       </p>
     </div>
 
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <form
-          action="/listings"
-          method="POST"
-          enctype="multipart/form-data"
-          class="needs-validation"
-          novalidate
-        >
-          <div class="row">
-            <div class="col-md-7 pe-md-5">
-              <div class="mb-4">
-                <label class="luxury-label">PROPERTY TITLE *</label>
-                <input
-                  type="text"
-                  name="listing[title]"
-                  class="luxury-input"
-                  placeholder="e.g., The Obsidian Villa"
-                  required
-                />
-                <div class="invalid-feedback">
-                  A distinguished title is required.
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <label class="luxury-label">DESCRIPTION *</label>
-                <textarea
-                  name="listing[description]"
-                  class="luxury-input"
-                  rows="8"
-                  placeholder="Describe the ambiance, heritage, and unique features..."
-                  required
-                ></textarea>
-                <div class="invalid-feedback">
-                  Please provide a detailed description.
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <label class="luxury-label">LOCATION *</label>
-                  <input
-                    type="text"
-                    name="listing[location]"
-                    class="luxury-input"
-                    placeholder="e.g., Udaipur"
-                    required
-                  />
-                </div>
-                <div class="col-md-6 mb-4">
-                  <label class="luxury-label">COUNTRY *</label>
-                  <input
-                    type="text"
-                    name="listing[country]"
-                    class="luxury-input"
-                    placeholder="e.g., India"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-5">
-              <div class="mb-4">
-                <label class="luxury-label">PROPERTY IMAGE *</label>
-                <div class="upload-placeholder-box">
-                  <i class="fa-solid fa-camera mb-2"></i>
-                  <input
-                    type="file"
-                    name="listing[image]"
-                    class="luxury-input file-input-style"
-                    accept="image/*"
-                    required
-                  />
-                </div>
-                <small class="text-muted d-block mt-2"
-                  >Use high-resolution horizontal photos for best
-                  results.</small
-                >
-                <div class="invalid-feedback">
-                  A property visual is required.
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <label class="luxury-label">PRICE PER NIGHT (₹) *</label>
-                <input
-                  type="number"
-                  name="listing[price]"
-                  class="luxury-input"
-                  placeholder="15000"
-                  min="1"
-                  required
-                />
-                <div class="invalid-feedback">Please enter a valid price.</div>
-              </div>
-
-              <div class="mb-5">
-                <label class="luxury-label">COLLECTION / CATEGORY *</label>
-                <select name="listing[category]" class="luxury-input" required>
-                  <option value="" disabled selected>Select Category</option>
-                  <option value="Mountain">Mountain</option>
-                  <option value="Beach">Beach</option>
-                  <option value="Forest">Forest</option>
-                  <option value="Desert">Desert</option>
-                  <option value="Farm">Farm</option>
-                  <option value="Luxury">Luxury</option>
-                  <option value="Camping">Camping</option>
-                </select>
-                <div class="invalid-feedback">Please select a category.</div>
-              </div>
-
-              <button type="submit" class="gold-button w-100 py-3">
-                PUBLISH LISTING
-              </button>
+    <!-- Form Card -->
+    <div class="form-card">
+      <form
+        action="/listings"
+        method="POST"
+        enctype="multipart/form-data"
+        class="needs-validation"
+        novalidate
+      >
+        <div style="display: grid; gap: 25px">
+          <!-- Title -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">PROPERTY TITLE *</label>
+            <input
+              type="text"
+              name="listing[title]"
+              class="form-control-luxury"
+              placeholder="e.g., Mountain Villa with Panoramic Views"
+              required
+            />
+            <div
+              class="invalid-feedback"
+              style="color: #ef4444; font-size: 0.85rem; margin-top: 8px"
+            >
+              Title is required
             </div>
           </div>
-        </form>
-      </div>
+
+          <!-- Description -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">DESCRIPTION *</label>
+            <textarea
+              name="listing[description]"
+              class="form-control-luxury"
+              rows="5"
+              placeholder="Describe your property in detail..."
+              required
+              style="resize: vertical"
+            ></textarea>
+            <div
+              class="invalid-feedback"
+              style="color: #ef4444; font-size: 0.85rem; margin-top: 8px"
+            >
+              Description is required
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">PROPERTY IMAGE *</label>
+            <input
+              type="file"
+              name="listing[image]"
+              class="form-control-luxury"
+              accept="image/*"
+              required
+              style="padding: 12px"
+            />
+            <small
+              style="
+                color: var(--text-gray);
+                font-size: 0.85rem;
+                display: block;
+                margin-top: 8px;
+              "
+            >
+              Upload high-quality images (JPG, PNG)
+            </small>
+            <div
+              class="invalid-feedback"
+              style="color: #ef4444; font-size: 0.85rem; margin-top: 8px"
+            >
+              Please upload an image
+            </div>
+          </div>
+
+          <!-- Price -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">PRICE PER NIGHT (₹) *</label>
+            <input
+              type="number"
+              name="listing[price]"
+              class="form-control-luxury"
+              placeholder="10000"
+              min="1"
+              required
+            />
+            <div
+              class="invalid-feedback"
+              style="color: #ef4444; font-size: 0.85rem; margin-top: 8px"
+            >
+              Price must be greater than 0
+            </div>
+          </div>
+
+          <!-- Location & Country -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+            <div class="form-group-luxury">
+              <label class="form-label-luxury">LOCATION *</label>
+              <input
+                type="text"
+                name="listing[location]"
+                class="form-control-luxury"
+                placeholder="e.g., Manali"
+                required
+              />
+              <div
+                class="invalid-feedback"
+                style="color: #ef4444; font-size: 0.85rem; margin-top: 8px"
+              >
+                Location is required
+              </div>
+            </div>
+
+            <div class="form-group-luxury">
+              <label class="form-label-luxury">COUNTRY *</label>
+              <input
+                type="text"
+                name="listing[country]"
+                class="form-control-luxury"
+                placeholder="e.g., India"
+                required
+              />
+              <div
+                class="invalid-feedback"
+                style="color: #ef4444; font-size: 0.85rem; margin-top: 8px"
+              >
+                Country is required
+              </div>
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="form-group-luxury">
+            <label class="form-label-luxury">CATEGORY *</label>
+            <select
+              name="listing[category]"
+              class="form-control-luxury"
+              required
+              style="cursor: pointer"
+            >
+              <option value="">Select Category</option>
+              <option value="Mountain">Mountain</option>
+              <option value="Beach">Beach</option>
+              <option value="Forest">Forest</option>
+              <option value="Desert">Desert</option>
+              <option value="Farm">Farm</option>
+              <option value="Luxury">Luxury</option>
+              <option value="Camping">Camping</option>
+            </select>
+            <div
+              class="invalid-feedback"
+              style="color: #ef4444; font-size: 0.85rem; margin-top: 8px"
+            >
+              Please select a category
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="btn btn-success btn-large"
+            style="margin-top: 10px"
+          >
+            <i class="fa-solid fa-plus"></i> Add Property
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
+
+<style>
+  @media (max-width: 768px) {
+    [style*='grid-template-columns: 1fr 1fr'] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

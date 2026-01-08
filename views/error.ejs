@@ -1,26 +1,104 @@
 <% layout('layouts/boilerplate') -%>
 
-<section class="luxury-error-wrapper">
-  <div class="container text-center">
-    <div class="error-visual-meta">
-      <span class="error-status-code"><%= statusCode %></span>
+<section
+  style="
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-dark);
+    padding: 60px 40px;
+  "
+>
+  <div style="max-width: 700px; text-align: center">
+    <!-- Error Icon -->
+    <div
+      style="
+        width: 120px;
+        height: 120px;
+        background: rgba(255, 90, 60, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 30px;
+      "
+    >
+      <i
+        class="fa-solid fa-exclamation-triangle"
+        style="font-size: 3.5rem; color: var(--accent-orange)"
+      ></i>
     </div>
 
-    <div class="error-content-box">
-      <h1 class="serif-title mb-3">UNEXPECTED DEPARTURE</h1>
-      <p class="text-muted italic mb-5">
-        The destination you are seeking is currently unavailable or has been
-        moved.
+    <!-- Error Code -->
+    <div
+      style="
+        font-size: clamp(4rem, 10vw, 8rem);
+        font-weight: 900;
+        color: var(--accent-orange);
+        line-height: 1;
+        margin-bottom: 20px;
+      "
+    >
+      <%= statusCode %>
+    </div>
+
+    <!-- Error Title -->
+    <h1
+      style="
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 800;
+        color: var(--text-white);
+        margin-bottom: 20px;
+      "
+    >
+      Oops! Something Went Wrong
+    </h1>
+
+    <!-- Error Message -->
+    <p
+      style="
+        font-size: 1.1rem;
+        color: var(--text-gray);
+        line-height: 1.7;
+        margin-bottom: 40px;
+      "
+    >
+      <%= message %>
+    </p>
+
+    <!-- Action Buttons -->
+    <div
+      style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap"
+    >
+      <a href="/" class="btn btn-success btn-large">
+        <i class="fa-solid fa-home"></i> Back to Home
+      </a>
+      <a href="/listings" class="btn btn-outline-success btn-large">
+        <i class="fa-solid fa-search"></i> Browse Properties
+      </a>
+    </div>
+
+    <!-- Help Text -->
+    <div
+      style="
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 1px solid var(--border-color);
+      "
+    >
+      <p style="color: var(--text-gray); font-size: 0.95rem">
+        Need help?
+        <a
+          href="/about"
+          style="
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 600;
+          "
+          >Contact our support team</a
+        >
       </p>
-
-      <div class="error-details-box mb-5">
-        <code class="error-technical-msg"><%= message %></code>
-      </div>
-
-      <div class="d-flex justify-content-center gap-4">
-        <a href="/" class="gold-button px-5">RETURN HOME</a>
-        <a href="/listings" class="outline-dark-btn">BROWSE PROPERTIES</a>
-      </div>
     </div>
   </div>
 </section>

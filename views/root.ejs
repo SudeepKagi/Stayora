@@ -1,80 +1,325 @@
 <% layout('layouts/boilerplate') -%>
 
-<section class="luxury-hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="hero-label">WELCOME TO STAYORA</span>
-    <h1 class="hero-title">COME AS A GUEST,<br />LEAVE AS A FRIEND</h1>
-    <p class="hero-subtitle">
-      Handpicked luxury homestays across the most breathtaking locations in
-      India.
+<!-- ================= HERO WITH SEARCH ================= -->
+<section class="hero-home">
+  <div class="hero-content-home">
+    <h1 class="hero-title-home">Let's Find Your<br />Dream Property.</h1>
+    <p class="hero-subtitle-home">
+      Discover luxury accommodations across India's most stunning destinations
     </p>
-    <a href="/listings" class="gold-button mt-4">EXPLORE THE COLLECTION</a>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <div class="search-tabs">
+        <button class="search-tab active">All</button>
+        <button class="search-tab">Villa</button>
+        <button class="search-tab">Apartment</button>
+        <button class="search-tab">Homestay</button>
+      </div>
+
+      <form action="/listings" method="GET" class="search-form">
+        <input
+          type="text"
+          name="search"
+          class="search-input"
+          placeholder="Keyword..."
+          value="<%= typeof search !== 'undefined' ? search : '' %>"
+        />
+        <select name="category" class="search-input">
+          <option value="">Select Category</option>
+          <option value="Mountain">Mountain</option>
+          <option value="Beach">Beach</option>
+          <option value="Forest">Forest</option>
+          <option value="Desert">Desert</option>
+          <option value="Farm">Farm</option>
+          <option value="Luxury">Luxury</option>
+        </select>
+        <input
+          type="text"
+          name="location"
+          class="search-input"
+          placeholder="Location..."
+        />
+        <button type="submit" class="btn btn-success">
+          <i class="fa-solid fa-search"></i> Search
+        </button>
+      </form>
+    </div>
+
+    <!-- Property Type Cards -->
+    <div class="property-types">
+      <a href="/listings?category=Mountain" class="property-type-card">
+        <div class="property-type-icon">
+          <i class="fa-solid fa-mountain"></i>
+        </div>
+        <div class="property-type-name">Mountain</div>
+        <div class="property-type-count">120+ Properties</div>
+      </a>
+
+      <a href="/listings?category=Beach" class="property-type-card">
+        <div class="property-type-icon">
+          <i class="fa-solid fa-umbrella-beach"></i>
+        </div>
+        <div class="property-type-name">Beach</div>
+        <div class="property-type-count">85+ Properties</div>
+      </a>
+
+      <a href="/listings?category=Forest" class="property-type-card">
+        <div class="property-type-icon">
+          <i class="fa-solid fa-tree"></i>
+        </div>
+        <div class="property-type-name">Forest</div>
+        <div class="property-type-count">95+ Properties</div>
+      </a>
+
+      <a href="/listings?category=Luxury" class="property-type-card">
+        <div class="property-type-icon">
+          <i class="fa-solid fa-gem"></i>
+        </div>
+        <div class="property-type-name">Luxury</div>
+        <div class="property-type-count">150+ Properties</div>
+      </a>
+
+      <a href="/listings?category=Farm" class="property-type-card">
+        <div class="property-type-icon">
+          <i class="fa-solid fa-tractor"></i>
+        </div>
+        <div class="property-type-name">Farmhouse</div>
+        <div class="property-type-count">50+ Properties</div>
+      </a>
+    </div>
   </div>
 </section>
 
-<section class="amenities-grid">
-  <div class="container">
-    <div class="row text-center g-5">
-      <div class="col-md-4">
-        <div class="amenity-item">
-          <i class="fa-light fa-leaf-heart"></i>
-          <h3>LIVE AMIDST NATURE</h3>
-          <p>
-            Feel and experience nature in its fullest glory to refresh yourself.
-          </p>
+<!-- ================= FEATURED PROPERTIES ================= -->
+<section style="padding: 80px 0; background: var(--primary-dark)">
+  <div class="section-header">
+    <div class="section-label">Property By Requirement</div>
+    <h2 class="section-title">Find Home Listing in Your Area</h2>
+  </div>
+
+  <div class="properties-grid">
+    <!-- Sample Property Cards - You can loop through your listings here -->
+    <div class="property-card">
+      <div class="property-image-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+          alt="Property"
+          class="property-image"
+        />
+        <span class="property-badge">Featured</span>
+        <div class="property-favorite">
+          <i class="fa-regular fa-heart"></i>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="amenity-item">
-          <i class="fa-light fa-house-chimney-window"></i>
-          <h3>HERITAGE HOMESTAY</h3>
-          <p>
-            Experience the charm of local heritage that has been preserved for
-            ages.
-          </p>
+      <div class="property-info">
+        <div class="property-rating">
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-count">(4.8)</span>
+        </div>
+        <h3 class="property-title">Elevation Small Apartments</h3>
+        <p class="property-location">
+          <i class="fa-solid fa-location-dot"></i>
+          Belmont Gardens, Mumbai
+        </p>
+        <div class="property-features">
+          <span class="feature-item">
+            <i class="fa-solid fa-bed"></i> 4 Beds
+          </span>
+          <span class="feature-item">
+            <i class="fa-solid fa-bath"></i> 2 Bath
+          </span>
+          <span class="feature-item">
+            <i class="fa-solid fa-ruler-combined"></i> 1800 Sqft
+          </span>
+        </div>
+        <div class="property-footer">
+          <div>
+            <div class="property-price">
+              ₹12,500 <span class="price-period">/night</span>
+            </div>
+          </div>
+          <a href="/listings" class="btn btn-success btn-sm">Details</a>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="amenity-item">
-          <i class="fa-light fa-hands-clapping"></i>
-          <h3>FAMILY FRIENDLY</h3>
-          <p>
-            The calm and comfortable environment will make your family feel at
-            home.
-          </p>
+    </div>
+
+    <!-- Add 2 more sample cards -->
+    <div class="property-card">
+      <div class="property-image-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800"
+          alt="Property"
+          class="property-image"
+        />
+        <div class="property-favorite">
+          <i class="fa-regular fa-heart"></i>
         </div>
+      </div>
+      <div class="property-info">
+        <div class="property-rating">
+          <span class="rating-stars">★★★★☆</span>
+          <span class="rating-count">(4.6)</span>
+        </div>
+        <h3 class="property-title">West Square Apartments</h3>
+        <p class="property-location">
+          <i class="fa-solid fa-location-dot"></i>
+          Palm Valley, Goa
+        </p>
+        <div class="property-features">
+          <span class="feature-item">
+            <i class="fa-solid fa-bed"></i> 3 Beds
+          </span>
+          <span class="feature-item">
+            <i class="fa-solid fa-bath"></i> 2 Bath
+          </span>
+          <span class="feature-item">
+            <i class="fa-solid fa-ruler-combined"></i> 1500 Sqft
+          </span>
+        </div>
+        <div class="property-footer">
+          <div>
+            <div class="property-price">
+              ₹9,800 <span class="price-period">/night</span>
+            </div>
+          </div>
+          <a href="/listings" class="btn btn-success btn-sm">Details</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-image-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800"
+          alt="Property"
+          class="property-image"
+        />
+        <span class="property-badge">Hot</span>
+        <div class="property-favorite">
+          <i class="fa-regular fa-heart"></i>
+        </div>
+      </div>
+      <div class="property-info">
+        <div class="property-rating">
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-count">(4.9)</span>
+        </div>
+        <h3 class="property-title">Peninsula Apartments</h3>
+        <p class="property-location">
+          <i class="fa-solid fa-location-dot"></i>
+          Hill View, Manali
+        </p>
+        <div class="property-features">
+          <span class="feature-item">
+            <i class="fa-solid fa-bed"></i> 5 Beds
+          </span>
+          <span class="feature-item">
+            <i class="fa-solid fa-bath"></i> 3 Bath
+          </span>
+          <span class="feature-item">
+            <i class="fa-solid fa-ruler-combined"></i> 2200 Sqft
+          </span>
+        </div>
+        <div class="property-footer">
+          <div>
+            <div class="property-price">
+              ₹18,900 <span class="price-period">/night</span>
+            </div>
+          </div>
+          <a href="/listings" class="btn btn-success btn-sm">Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px">
+    <a href="/listings" class="btn btn-success btn-large"
+      >View All Properties</a
+    >
+  </div>
+</section>
+
+<!-- ================= TOP LOCATIONS ================= -->
+<section class="locations-section">
+  <div class="section-header">
+    <div class="section-label">Best Property List</div>
+    <h2 class="section-title">Our Top Location For You Property</h2>
+  </div>
+
+  <div class="locations-grid">
+    <div class="location-card">
+      <img
+        src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=800"
+        alt="Manali"
+        class="location-image"
+      />
+      <div class="location-overlay">
+        <div class="location-label">Mountain</div>
+        <h3 class="location-name">Manali</h3>
+        <p class="location-count">Luxury Properties with Premium amenities</p>
+      </div>
+    </div>
+
+    <div class="location-card">
+      <img
+        src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=800"
+        alt="Goa"
+        class="location-image"
+      />
+      <div class="location-overlay">
+        <div class="location-label">Beach</div>
+        <h3 class="location-name">Goa</h3>
+        <p class="location-count">Coastal villas and beachfront properties</p>
+      </div>
+    </div>
+
+    <div class="location-card">
+      <img
+        src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=800"
+        alt="Udaipur"
+        class="location-image"
+      />
+      <div class="location-overlay">
+        <div class="location-label">Heritage</div>
+        <h3 class="location-name">Udaipur</h3>
+        <p class="location-count">Palace hotels and luxury resorts</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="split-feature">
-  <div class="container-fluid p-0">
-    <div class="row g-0">
-      <div class="col-lg-6">
-        <div class="split-image-box">
-          <img
-            src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200"
-            alt="Luxury Interior"
-          />
-        </div>
-      </div>
-      <div class="col-lg-6 d-flex align-items-center bg-charcoal">
-        <div class="split-text-content">
-          <span class="gold-text-label">WHY CHOOSE US</span>
-          <h2 class="serif-title text-white">
-            REDEFINING THE STANDARD OF MODERN LIVING
-          </h2>
-          <ul class="luxury-list">
-            <li><i class="fa-solid fa-wifi"></i> FREE HIGH SPEED WIFI</li>
-            <li><i class="fa-solid fa-bed"></i> WELL FURNISHED ROOMS</li>
-            <li><i class="fa-solid fa-p"></i> PRIVATE PARKING</li>
-            <li><i class="fa-solid fa-swimming-pool"></i> SWIMMING POOL</li>
-          </ul>
-          <a href="/about" class="outline-gold-btn">OUR STORY</a>
-        </div>
-      </div>
+<!-- ================= CTA SECTION ================= -->
+<section
+  style="
+    padding: 100px 40px;
+    background: linear-gradient(rgba(15, 27, 46, 0.9), rgba(15, 27, 46, 0.9)),
+      url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2400')
+        center/cover;
+    text-align: center;
+  "
+>
+  <div style="max-width: 800px; margin: 0 auto">
+    <h2
+      style="
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--text-white);
+        margin-bottom: 20px;
+      "
+    >
+      Ready To Find Your Dream Property?
+    </h2>
+    <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 40px">
+      Explore our curated collection of luxury accommodations
+    </p>
+    <div
+      style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap"
+    >
+      <a href="/listings" class="btn btn-success btn-large"
+        >Browse Properties</a
+      >
+      <a href="/about" class="btn btn-outline-light btn-large">Learn More</a>
     </div>
   </div>
 </section>
