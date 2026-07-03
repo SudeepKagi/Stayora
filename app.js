@@ -117,13 +117,10 @@ app.post('/subscribe', async (req, res) => {
   }
 });
 
-// 404 Handler
 app.use((req, res, next) => {
   next(new ExpressError(404, 'Page Not Found'));
 });
 
-// Error Handler
-// Error Handler - at the very end of app.js
 app.use((err, req, res, next) => {
   // Check if headers already sent
   if (res.headersSent) {
