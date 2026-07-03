@@ -35,8 +35,8 @@ Stayora is a full-stack web application that lets hosts list eco-friendly stays 
 
 To install the project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/SudeepKagi/Stayora.git`
-2. Install dependencies: `npm install`
+1. Clone the repository using `git clone https://github.com/SudeepKagi/Stayora.git`
+2. Install the dependencies using `npm install`
 3. Create a `.env` file and add the following environment variables:
    - `ATLASDB_URL`: MongoDB connection string
    - `MAP_TOKEN`: Mapbox access token
@@ -46,14 +46,15 @@ To install the project, follow these steps:
    - `SECRET`: Express session secret
 4. Run the application: `node app.js`
 
-## Usage Guide
+## Usage
 
-1. Register as a user: Visit `http://localhost:8080/signup` and fill out the registration form.
-2. Login: Visit `http://localhost:8080/login` and enter your credentials.
-3. Create a new listing: Visit `http://localhost:8080/listings/new` and fill out the listing form.
-4. View listings: Visit `http://localhost:8080/listings` to view all listings.
-5. Search and filter listings: Use the search bar and category filter to find specific listings.
-6. Leave a review: Visit a listing page and click the "Leave a Review" button.
+To use the application, follow these steps:
+
+1. Open a web browser and navigate to `http://localhost:8080`
+2. Create an account or log in to an existing account
+3. Browse through the listings and filter by category or location
+4. View the details of a listing and leave a review
+5. Create a new listing and upload images and videos
 
 ## API Documentation
 
@@ -78,4 +79,4 @@ To contribute to the project, please follow these steps:
 5. Commit the changes: Commit the changes with a descriptive commit message.
 6. Create a pull request: Create a new pull request to merge the changes into the main branch.
 
-Please ensure that your code is formatted according to the project's coding standards and that you have included any necessary tests or documentation...
+Please ensure that your code is formatted according to the project's coding standards and that you have included any necessary tests or documentation.
