@@ -1,158 +1,140 @@
-# stayora
+# Stayora
 
-![stayora banner image - placeholder for a nature-inspired eco-tourism graphic if available](https://img.shields.io/badge/Version-1.0.0-blue.svg)
-![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+## Description
 
-## Short Description
-
-`stayora` is a sophisticated web platform designed to power Stayora, an eco-tourism service dedicated to offering sustainable, nature-inspired accommodations. It connects travelers with unique, environmentally conscious stays, facilitating discovery, booking, and an immersive eco-friendly experience through a robust, feature-rich application.
-
-## Technology Stack
-
-The `stayora` platform is built upon a modern and efficient JavaScript ecosystem, leveraging the following core technologies:
-
-- **Framework**: Express.js
-- **Language**: JavaScript (ES6+)
-- **Package Manager**: npm
-- **Database**: MongoDB (with Mongoose ODM for schema definition and interaction)
-- **Cloud Storage**: Cloudinary (for efficient and scalable image hosting)
-- **Authentication**: Passport.js (utilizing the Local Strategy for secure username/password authentication)
-- **Session Management**: Express-session
-- **Templating Engine**: EJS (Embedded JavaScript templates for server-side rendering)
+Stayora is a web application designed for managing property listings. It allows users to create, view, update, and delete listings, each with details such as title, description, image, price, location, country, and category. The application also includes user authentication, a review system for listings, and integrates mapping functionalities to display listing locations.
 
 ## Features
 
-`stayora` offers a comprehensive set of functionalities designed to provide a seamless experience for both administrators and end-users:
+*   **User Authentication:** Signup, login, and logout functionalities with local strategy.
+*   **Listing Management:**
+    *   Create new listings with detailed information.
+    *   View all available listings with filtering options by category and search terms.
+    *   View individual listing details, including location on a map.
+    *   Update existing listing information.
+    *   Delete listings.
+*   **Image Uploads:** Support for uploading images for listings (handled via Cloudinary).
+*   **Geocoding:** Automatic geocoding of listing locations using Mapbox to store geographical coordinates.
+*   **Review System:**
+    *   Add reviews to listings with comments and ratings.
+    *   Delete reviews (only by the review author).
+*   **Search and Filter:** Filter listings by predefined categories and search across title, location, country, and category.
 
-- **Comprehensive Accommodation Listings**: Users can browse and view detailed listings of eco-friendly accommodations, complete with descriptions, images, and locations.
-- **Robust User Authentication**: Secure user registration, login, and session management using a local authentication strategy (username/password) powered by Passport.js.
-- **User Profile Management**: Authenticated users can manage their personal profiles and account settings.
-- **Review and Rating System**: Guests can post reviews and ratings for accommodations, providing valuable feedback to other users and hosts.
-- **Subscription Management**: Allows interested users to subscribe for updates, newsletters, and promotional content.
-- **Image Upload & Hosting**: Seamlessly upload and manage accommodation images, leveraging Cloudinary for optimized storage and delivery.
-- **Secure File Uploads**: Generic file upload capabilities for various platform needs, ensuring data integrity.
-- **Session-Based User Experience**: Maintains user state across requests, offering a personalized and continuous user journey.
-- **MVC Architectural Pattern**: A clean separation of concerns into Models, Views, and Controllers ensures maintainability, scalability, and code organization.
-- **Server-Side Rendering (SSR)**: Delivers fully rendered HTML pages from the server, improving initial load times, enhancing SEO, and providing a better user experience on slower connections.
+## Tech Stack
 
-## Project Structure
+*   **Backend:** Node.js, Express.js
+*   **Database:** MongoDB (via Mongoose ODM)
+*   **Authentication:** Passport.js (Local Strategy, `passport-local-mongoose`)
+*   **Image Storage:** Cloudinary (inferred from `cloudConfig.js` and Multer setup)
+*   **Mapping & Geocoding:** Mapbox GL JS, Mapbox Geocoding API
+*   **Form Handling:** Multer (for `multipart/form-data`)
+*   **Validation:** Joi (for schema validation of listings and reviews)
 
-The `stayora` project adheres to a clear MVC (Model-View-Controller) architecture, making it easy to navigate, understand, and extend:
+## Folder Structure
 
 ```
-stayora/
-├── controllers/            # Handles business logic and orchestrates model-view interactions
-│   ├── listing.js          # Logic for accommodation listings
-│   ├── reviews.js          # Logic for user reviews
-│   └── users.js            # Logic for user authentication and management
-├── models/                 # Defines Mongoose schemas and models for database interaction
-│   ├── listing.js          # Schema for accommodation listings
-│   ├── review.js           # Schema for user reviews
-│   ├── subscriber.js       # Schema for newsletter subscribers
-│   └── user.js             # Schema for user accounts
-├── public/                 # Static assets (CSS, client-side JS, images)
+.
+├── controllers/
+│   ├── listing.js
+│   ├── reviews.js
+│   └── users.js
+├── models/
+│   ├── listing.js
+│   ├── review.js
+│   ├── subscriber.js
+│   └── user.js
+├── public/
 │   ├── css/
-│   ├── js/
-│   └── images/
-├── routes/                 # Defines API endpoints and maps them to controller functions
-│   ├── listing.js          # Routes related to accommodation listings
-│   ├── review.js           # Routes related to reviews
-│   └── user.js             # Routes related to user authentication and profiles
-├── views/                  # EJS templates for server-side rendering
-│   ├── layouts/            # Base layout templates
-│   ├── partials/           # Reusable partial templates
-│   ├── listings/           # Specific views for listings
-│   ├── users/              # Specific views for user profiles/auth
-│   └── ...                 # Other specific view directories
-├── .env.example            # Template for environment variables
-├── app.js                  # Main application entry point (Express setup, middleware, routes)
-├── package.json            # Project metadata and dependencies
-├── package-lock.json       # Exact dependency tree
-└── README.md               # This README file
+│   │   └── style.css
+│   └── js/
+│       └── map.js
+├── routes/
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+├── utils/
+│   ├── ExpressError.js
+│   └── wrapAsync.js
+├── cloudConfig.js
+└── middleware.js
 ```
 
-## Installation Steps
+## Environment Variables
 
-To get `stayora` up and running on your local machine, follow these steps:
+*   `MAP_TOKEN`: Required for Mapbox Geocoding and Mapbox GL JS functionalities.
 
-### Prerequisites
+## API Overview
 
-Before you begin, ensure you have the following installed:
+### User Routes (`/signup`, `/login`, `/logout`)
 
-- **Node.js**: [Download & Install Node.js](https://nodejs.org/en/download/) (which includes npm)
-- **MongoDB**: [Install MongoDB Community Edition](https://docs.mongodb.com/manual/installation/)
-- **npm**: Comes bundled with Node.js.
+| Method | Path        | Description                | Middleware                      |
+| :----- | :---------- | :------------------------- | :------------------------------ |
+| `GET`  | `/signup`   | Renders the signup form.   |                                 |
+| `POST` | `/signup`   | Registers a new user.      | `wrapAsync`                     |
+| `GET`  | `/login`    | Renders the login form.    |                                 |
+| `POST` | `/login`    | Authenticates a user.      | `saveRedirectUrl`, `passport.authenticate`, `userController.login` |
+| `GET`  | `/logout`   | Logs out the current user. |                                 |
 
-### 1. Clone the Repository
+### Listing Routes (`/listings`)
 
-First, clone the `stayora` repository to your local machine:
+| Method   | Path             | Description                        | Middleware                                                    |
+| :------- | :--------------- | :--------------------------------- | :------------------------------------------------------------ |
+| `GET`    | `/`              | Displays all listings.             | `wrapAsync`                                                   |
+| `POST`   | `/`              | Creates a new listing.             | `isLoggedIn`, `upload.single`, `validateListing`, `wrapAsync` |
+| `GET`    | `/new`           | Renders the new listing form.      | `isLoggedIn`                                                  |
+| `GET`    | `/:id`           | Displays a specific listing.       | `wrapAsync`                                                   |
+| `PUT`    | `/:id`           | Updates a specific listing.        | `isLoggedIn`, `isOwner`, `upload.single`, `validateListing`, `wrapAsync` |
+| `DELETE` | `/:id`           | Deletes a specific listing.        | `isLoggedIn`, `isOwner`, `wrapAsync`                          |
+| `GET`    | `/:id/edit`      | Renders the edit listing form.     | `isLoggedIn`, `isOwner`, `wrapAsync`                          |
 
-```bash
-git clone https://github.com/your-username/stayora.git
-cd stayora
-```
+### Review Routes (`/listings/:id/reviews`)
 
-_(Replace `your-username` with the actual GitHub username or organization name if this project is hosted publicly.)_
+| Method   | Path             | Description                        | Middleware                                              |
+| :------- | :--------------- | :--------------------------------- | :------------------------------------------------------ |
+| `POST`   | `/`              | Creates a new review for a listing.| `isLoggedIn`, `validateReview`, `wrapAsync`             |
+| `DELETE` | `/:reviewId`     | Deletes a specific review.         | `isLoggedIn`, `isReviewAuthor`, `wrapAsync`             |
 
-### 2. Install Dependencies
+## Database Models
 
-Navigate into the project directory and install all required Node.js packages:
+### User
 
-```bash
-npm install
-```
+Represents a user of the application.
 
-### 3. Environment Variables
+*   `email`: String, required, unique.
+*   `username`: String (managed by `passport-local-mongoose`).
+*   `password`: Hashed string (managed by `passport-local-mongoose`).
 
-Create a `.env` file in the root directory of the project. This file will store your sensitive configurations and API keys. Use the `.env.example` file as a template:
+### Listing
 
-```env
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/stayoraDB
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-SESSION_SECRET=a_very_secret_string_for_sessions
-```
+Represents a property listing.
 
-- **`PORT`**: The port number on which the Express application will listen.
-- **`MONGODB_URI`**: Your MongoDB connection string. For local development, `mongodb://localhost:27017/stayoraDB` is typical.
-- **`CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`**: Your credentials for Cloudinary image hosting. You can obtain these from your Cloudinary dashboard.
-- **`SESSION_SECRET`**: A strong, random string used to sign the session ID cookie. **Ensure this is kept private and secure.**
+*   `title`: String, required.
+*   `description`: String, required.
+*   `image`: Object
+    *   `url`: String
+    *   `filename`: String
+*   `price`: Number, required.
+*   `location`: String, required.
+*   `country`: String, required.
+*   `reviews`: Array of `ObjectId` references to `Review` documents.
+*   `owner`: `ObjectId` reference to a `User` document.
+*   `geometry`: GeoJSON Point object.
+    *   `type`: String ('Point'), default 'Point'.
+    *   `coordinates`: Array of Numbers `[longitude, latitude]`.
+*   `category`: String, required, enum `['Forest', 'Mountain', 'Beach', 'Desert', 'Farm', 'Luxury', 'Camping']`.
 
-### 4. Run the Application
+### Review
 
-Once all dependencies are installed and environment variables are set, you can start the application:
+Represents a review for a listing.
 
-```bash
-npm start
-```
+*   `comment`: String.
+*   `rating`: Number (1 to 5).
+*   `createdAt`: Date, default to current timestamp.
+*   `author`: `ObjectId` reference to a `User` document.
 
-The application should now be running locally. You can access it by navigating to `http://localhost:3000` (or the port you specified in your `.env` file) in your web browser.
+### Subscriber
 
-## Usage
+Represents an email subscriber.
 
-After successfully installing and running `stayora`, you can begin interacting with the platform:
-
-1.  **Access the Home Page**: Open your web browser and navigate to `http://localhost:3000` to see the landing page.
-2.  **Register a New User**: Use the registration link/page to create a new user account with a unique username and password.
-3.  **Log In**: Authenticate using your registered credentials to access personalized features.
-4.  **Browse Listings**: Explore various eco-friendly accommodations available on the platform. Click on individual listings for detailed information.
-5.  **Create/Manage Listings (if authorized)**: If your user role permits (e.g., as a host or administrator), you can add new accommodations, update existing ones, and manage associated images.
-6.  **Post Reviews**: Authenticated users can leave reviews and ratings on accommodation pages to share their experiences.
-7.  **Subscribe**: Sign up for the newsletter to receive updates and news from Stayora.
-
-## Future Improvements
-
-We have several ideas for enhancing `stayora` to provide an even richer user experience and expand its capabilities:
-
-- **Advanced Search & Filtering**: Implement more sophisticated search options, including location-based search, price ranges, accommodation types, and sustainability certifications.
-- **Booking System**: Integrate a direct booking functionality or a connection to external booking platforms.
-- **Payment Gateway Integration**: Securely handle payments for bookings directly through the platform.
-- **User Dashboards**: Develop comprehensive user dashboards for managing bookings, favorite listings, reviews, and profile settings.
-- **Admin Panel**: Create an administrative interface for content moderation, user management, and platform analytics.
-- **Real-time Notifications**: Implement real-time notifications for booking requests, review updates, or new messages.
-- **Geolocation Features**: Integrate maps and location services for better listing discovery and navigation.
-- **Containerization**: Implement Docker for easier deployment and environment consistency.
-- **Progressive Web App (PWA) Features**: Enhance the web application with PWA capabilities for offline access and improved performance.
-  a
+*   `email`: String, required, unique, trimmed, lowercase.
+*   `subscribedAt`: Date, default to current timestamp.
