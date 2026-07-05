@@ -129,4 +129,4 @@ We have several ideas for enhancing `stayora` to provide an even richer user exp
 - **Real-time Notifications**: Implement real-time notifications for booking requests, review updates, or new messages.
 - **Geolocation Features**: Integrate maps and location services for better listing discovery and navigation.
 - **Containerization**: Implement Docker for easier deployment and environment consistency.
-- **Progressive Web App (PWA) Features**: Enhance the web application with PWA capabilities for offline access and improved performance. ok
+- **Progressive Web App (PWA) Features**: Enhance the web application with PWA capabilities for offline access and improved performance.
