@@ -12,27 +12,27 @@
 
 The `stayora` platform is built on a robust and modern technology stack, leveraging JavaScript for full-stack development.
 
-*   **Framework**: [Express.js](https://expressjs.com/)
-*   **Language**: JavaScript
-*   **Package Manager**: [npm](https://www.npmjs.com/)
-*   **Database**: [MongoDB](https://www.mongodb.com/)
-*   **Cloud Image Hosting**: [Cloudinary](https://cloudinary.com/)
-*   **Rendering**: Server-Side Rendering (SSR)
-*   **Authentication**: Local Strategy (e.g., using [Passport.js](http://www.passportjs.org/))
-*   **Session Management**: Express Sessions
+- **Framework**: [Express.js](https://expressjs.com/)
+- **Language**: JavaScript
+- **Package Manager**: [npm](https://www.npmjs.com/)
+- **Database**: [MongoDB](https://www.mongodb.com/)
+- **Cloud Image Hosting**: [Cloudinary](https://cloudinary.com/)
+- **Rendering**: Server-Side Rendering (SSR)
+- **Authentication**: Local Strategy (e.g., using [Passport.js](http://www.passportjs.org/))
+- **Session Management**: Express Sessions
 
 ## Features
 
 `stayora` offers a comprehensive set of features to facilitate a smooth eco-tourism experience:
 
-*   **User Authentication**: Secure user registration, login, and session management using a local authentication strategy.
-*   **Listing Management**: Users can browse, view, and potentially create/manage unique eco-friendly accommodation listings.
-*   **Review System**: Guests can post, view, and manage reviews for various listings, contributing to community feedback.
-*   **Image Hosting**: Seamless and efficient uploading and hosting of listing images directly to Cloudinary.
-*   **File Uploads**: General file upload capabilities for various platform needs.
-*   **Session Handling**: Robust session management to maintain user state across interactions.
-*   **Database Integration**: Persistent data storage and retrieval powered by MongoDB.
-*   **Newsletter Subscription**: Allows visitors to subscribe for updates and news from Stayora.
+- **User Authentication**: Secure user registration, login, and session management using a local authentication strategy.
+- **Listing Management**: Users can browse, view, and potentially create/manage unique eco-friendly accommodation listings.
+- **Review System**: Guests can post, view, and manage reviews for various listings, contributing to community feedback.
+- **Image Hosting**: Seamless and efficient uploading and hosting of listing images directly to Cloudinary.
+- **File Uploads**: General file upload capabilities for various platform needs.
+- **Session Handling**: Robust session management to maintain user state across interactions.
+- **Database Integration**: Persistent data storage and retrieval powered by MongoDB.
+- **Newsletter Subscription**: Allows visitors to subscribe for updates and news from Stayora.
 
 ## Project Structure
 
@@ -69,6 +69,7 @@ stayora/
 To get `stayora` up and running on your local machine, follow these steps:
 
 1.  **Clone the Repository**:
+
     ```bash
     git clone https://github.com/your-username/stayora.git
     cd stayora
@@ -76,6 +77,7 @@ To get `stayora` up and running on your local machine, follow these steps:
 
 2.  **Install Dependencies**:
     Install all required Node.js packages using npm:
+
     ```bash
     npm install
     ```
@@ -83,14 +85,15 @@ To get `stayora` up and running on your local machine, follow these steps:
 3.  **Configure Environment Variables**:
     Create a `.env` file in the root directory of the project based on `.env.example`.
     You will need to set the following variables:
-    *   `PORT`: The port on which the server will run (e.g., `3000`).
-    *   `MONGODB_URI`: Your MongoDB connection string (e.g., `mongodb://localhost:27017/stayora`).
-    *   `CLOUDINARY_CLOUD_NAME`: Your Cloudinary cloud name.
-    *   `CLOUDINARY_API_KEY`: Your Cloudinary API key.
-    *   `CLOUDINARY_API_SECRET`: Your Cloudinary API secret.
-    *   `SESSION_SECRET`: A long, random string for express-session secret.
+    - `PORT`: The port on which the server will run (e.g., `3000`).
+    - `MONGODB_URI`: Your MongoDB connection string (e.g., `mongodb://localhost:27017/stayora`).
+    - `CLOUDINARY_CLOUD_NAME`: Your Cloudinary cloud name.
+    - `CLOUDINARY_API_KEY`: Your Cloudinary API key.
+    - `CLOUDINARY_API_SECRET`: Your Cloudinary API secret.
+    - `SESSION_SECRET`: A long, random string for express-session secret.
 
     Example `.env` file:
+
     ```env
     PORT=3000
     MONGODB_URI=mongodb://localhost:27017/stayoraDB
@@ -119,11 +122,11 @@ After successfully installing and starting the application:
 
 The `stayora` platform is continuously evolving. Here are some potential future enhancements:
 
-*   **Payment Gateway Integration**: Implement secure payment processing for booking accommodations.
-*   **Advanced Search & Filtering**: Enhance search capabilities with more robust filters (e.g., location, price range, amenities, sustainability ratings).
-*   **Admin Dashboard**: Develop an administrative interface for managing users, listings, reviews, and subscribers.
-*   **User Profiles & Booking History**: Allow users to view their past bookings, favorite listings, and manage their personal profiles.
-*   **Real-time Notifications**: Implement real-time updates for booking confirmations, new messages, or review notifications.
-*   **Geospatial Features**: Integrate mapping services (e.g., Mapbox, Google Maps) for location-based listing discovery and search.
-*   **Messaging System**: Enable direct communication between guests and hosts.
-*   **Internationalization (i18n)**: Support multiple languages to cater to a global audience.
+- **Payment Gateway Integration**: Implement secure payment processing for booking accommodations.
+- **Advanced Search & Filtering**: Enhance search capabilities with more robust filters (e.g., location, price range, amenities, sustainability ratings).
+- **Admin Dashboard**: Develop an administrative interface for managing users, listings, reviews, and subscribers.
+- **User Profiles & Booking History**: Allow users to view their past bookings, favorite listings, and manage their personal profiles.
+- **Real-time Notifications**: Implement real-time updates for booking confirmations, new messages, or review notifications.
+- **Geospatial Features**: Integrate mapping services (e.g., Mapbox, Google Maps) for location-based listing discovery and search.
+- **Messaging System**: Enable direct communication between guests and hosts.
+- **Internationalization (i18n)**: Support multiple languages to cater to a global audience. aaa
