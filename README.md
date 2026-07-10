@@ -1,56 +1,49 @@
-# stayora
+# Stayora
 
-![stayora banner image - placeholder for a nature-inspired eco-tourism graphic if available](https://img.shields.io/badge/Version-1.0.0-blue.svg)
-![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+## Description
 
-## Short Description
-
-`stayora` is a sophisticated web platform designed to power Stayora, an eco-tourism service dedicated to offering sustainable, nature-inspired accommodations. It connects travelers with unique, environmentally conscious stays, facilitating discovery, booking, and an immersive eco-friendly experience through a robust, feature-rich application.
-
-## Technology Stack
-
-The `stayora` platform is built upon a modern and efficient JavaScript ecosystem, leveraging the following core technologies:
-
-- **Framework**: Express.js
-- **Language**: JavaScript (ES6+)
-- **Package Manager**: npm
-- **Database**: MongoDB (with Mongoose ODM for schema definition and interaction)
-- **Cloud Storage**: Cloudinary (for efficient and scalable image hosting)
-- **Authentication**: Passport.js (utilizing the Local Strategy for secure username/password authentication)
-- **Session Management**: Express-session
-- **Templating Engine**: EJS (Embedded JavaScript templates for server-side rendering)
+Stayora is a web application designed for managing property listings. It allows users to create, view, update, and delete listings, each with details such as title, description, image, price, location, country, and category. The application also includes user authentication, a review system for listings, and integrates mapping functionalities to display listing locations.
 
 ## Features
 
-`stayora` offers a comprehensive set of functionalities designed to provide a seamless experience for both administrators and end-users:
+- **User Authentication:** Signup, login, and logout functionalities with local strategy.
+- **Listing Management:**
+  - Create new listings with detailed information.
+  - View all available listings with filtering options by category and search terms.
+  - View individual listing details, including location on a map.
+  - Update existing listing information.
+  - Delete listings.
+- **Image Uploads:** Support for uploading images for listings (handled via Cloudinary).
+- **Geocoding:** Automatic geocoding of listing locations using Mapbox to store geographical coordinates.
+- **Review System:**
+  - Add reviews to listings with comments and ratings.
+  - Delete reviews (only by the review author).
+- **Search and Filter:** Filter listings by predefined categories and search across title, location, country, and category.
 
-- **Comprehensive Accommodation Listings**: Users can browse and view detailed listings of eco-friendly accommodations, complete with descriptions, images, and locations.
-- **Robust User Authentication**: Secure user registration, login, and session management using a local authentication strategy (username/password) powered by Passport.js.
-- **User Profile Management**: Authenticated users can manage their personal profiles and account settings.
-- **Review and Rating System**: Guests can post reviews and ratings for accommodations, providing valuable feedback to other users and hosts.
-- **Subscription Management**: Allows interested users to subscribe for updates, newsletters, and promotional content.
-- **Image Upload & Hosting**: Seamlessly upload and manage accommodation images, leveraging Cloudinary for optimized storage and delivery.
-- **Secure File Uploads**: Generic file upload capabilities for various platform needs, ensuring data integrity.
-- **Session-Based User Experience**: Maintains user state across requests, offering a personalized and continuous user journey.
-- **MVC Architectural Pattern**: A clean separation of concerns into Models, Views, and Controllers ensures maintainability, scalability, and code organization.
-- **Server-Side Rendering (SSR)**: Delivers fully rendered HTML pages from the server, improving initial load times, enhancing SEO, and providing a better user experience on slower connections.
+## Tech Stack
 
-## Project Structure
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (via Mongoose ODM)
+- **Authentication:** Passport.js (Local Strategy, `passport-local-mongoose`)
+- **Image Storage:** Cloudinary (inferred from `cloudConfig.js` and Multer setup)
+- **Mapping & Geocoding:** Mapbox GL JS, Mapbox Geocoding API
+- **Form Handling:** Multer (for `multipart/form-data`)
+- **Validation:** Joi (for schema validation of listings and reviews)
 
-The `stayora` project adheres to a clear MVC (Model-View-Controller) architecture, making it easy to navigate, understand, and extend:
+## Folder Structure
 
 ```
-stayora/
-├── controllers/            # Handles business logic and orchestrates model-view interactions
-│   ├── listing.js          # Logic for accommodation listings
-│   ├── reviews.js          # Logic for user reviews
-│   └── users.js            # Logic for user authentication and management
-├── models/                 # Defines Mongoose schemas and models for database interaction
-│   ├── listing.js          # Schema for accommodation listings
-│   ├── review.js           # Schema for user reviews
-│   ├── subscriber.js       # Schema for newsletter subscribers
-│   └── user.js             # Schema for user accounts
-├── public/                 # Static assets (CSS, client-side JS, images)
+.
+├── controllers/
+│   ├── listing.js
+│   ├── reviews.js
+│   └── users.js
+├── models/
+│   ├── listing.js
+│   ├── review.js
+│   ├── subscriber.js
+│   └── user.js
+├── public/
 │   ├── css/
 │   ├── js/
 │   └── images/
