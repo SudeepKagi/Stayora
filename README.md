@@ -16,6 +16,4 @@
 ## Scripts
 
 ## Environment Variables
-
-## Future Improvements
 ```
