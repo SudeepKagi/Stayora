@@ -1,5 +1,5 @@
 ```markdown
-# 
+#
 
 ## Description
 
@@ -16,8 +16,6 @@
 ## Scripts
 
 ## Environment Variables
-
-## API Overview
 
 ## Database Models
 
