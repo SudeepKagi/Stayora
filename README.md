@@ -8,8 +8,4 @@
 ## Tech Stack
 
 ## Folder Structure
-
-## Installation
-
-## Usage
 ```
