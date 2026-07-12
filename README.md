@@ -2,48 +2,46 @@
 
 ## Description
 
-Stayora is a web application designed for managing property listings. It allows users to create, view, update, and delete listings, each with details such as title, description, image, price, location, country, and category. The application also includes user authentication, a review system for listings, and integrates mapping functionalities to display listing locations.
+Stayora is an Express.js application for managing property listings. It provides features for user authentication, creating and managing listings, adding reviews, searching, and filtering listings. The platform integrates with Mapbox for geographical data and Cloudinary for image storage.
 
 ## Features
 
-- **User Authentication:** Signup, login, and logout functionalities with local strategy.
-- **Listing Management:**
-  - Create new listings with detailed information.
-  - View all available listings with filtering options by category and search terms.
-  - View individual listing details, including location on a map.
-  - Update existing listing information.
-  - Delete listings.
-- **Image Uploads:** Support for uploading images for listings (handled via Cloudinary).
-- **Geocoding:** Automatic geocoding of listing locations using Mapbox to store geographical coordinates.
-- **Review System:**
-  - Add reviews to listings with comments and ratings.
-  - Delete reviews (only by the review author).
-- **Search and Filter:** Filter listings by predefined categories and search across title, location, country, and category.
+- **User Management**: User registration, login, and logout functionalities.
+- **Listing Management**:
+  - Create, view, update, and delete property listings.
+  - Image upload for listings.
+  - Geocoding of listing locations and display on an interactive map.
+  - Categorization of listings (e.g., Forest, Mountain, Beach, Luxury).
+- **Search & Filtering**: Search listings by title, location, country, or category.
+- **Review System**: Users can add and delete reviews for listings.
+- **Authorization**: Role-based access control for listing owners and review authors.
+- **Error Handling**: Centralized error handling for API routes.
+- **Flash Messages**: Provides user feedback for various operations.
 
 ## Tech Stack
 
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB (via Mongoose ODM)
-- **Authentication:** Passport.js (Local Strategy, `passport-local-mongoose`)
-- **Image Storage:** Cloudinary (inferred from `cloudConfig.js` and Multer setup)
-- **Mapping & Geocoding:** Mapbox GL JS, Mapbox Geocoding API
-- **Form Handling:** Multer (for `multipart/form-data`)
-- **Validation:** Joi (for schema validation of listings and reviews)
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (via Mongoose ODM)
+- **Authentication**: Passport.js (with `passport-local-mongoose`)
+- **Mapping & Geocoding**: Mapbox SDK
+- **Image Storage**: Cloudinary (integrated with Multer for uploads)
+- **Templating Engine**: EJS
+- **Frontend Styling**: Bootstrap (inferred from CSS classes)
 
 ## Folder Structure
 
 ```
 .
-├── controllers/
-│   ├── listing.js
-│   ├── reviews.js
-│   └── users.js
-├── models/
-│   ├── listing.js
-│   ├── review.js
-│   ├── subscriber.js
-│   └── user.js
-├── public/
+├── controllers/            # Handles application logic for routes
+│   ├── listing.js          # Logic for listing operations
+│   ├── reviews.js          # Logic for review operations
+│   └── users.js            # Logic for user authentication
+├── models/                 # Defines database schemas
+│   ├── listing.js          # Mongoose model for listings
+│   ├── review.js           # Mongoose model for reviews
+│   ├── subscriber.js       # Mongoose model for subscribers
+│   └── user.js             # Mongoose model for users
+├── public/                 # Static assets (CSS, JavaScript)
 │   ├── css/
 │   ├── js/
 │   └── images/
@@ -148,4 +146,3 @@ We have several ideas for enhancing `stayora` to provide an even richer user exp
 - **Geolocation Features**: Integrate maps and location services for better listing discovery and navigation.
 - **Containerization**: Implement Docker for easier deployment and environment consistency.
 - **Progressive Web App (PWA) Features**: Enhance the web application with PWA capabilities for offline access and improved performance.
-  abcd
