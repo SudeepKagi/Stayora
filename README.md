@@ -17,7 +17,5 @@
 
 ## Environment Variables
 
-## Database Models
-
 ## Future Improvements
 ```
