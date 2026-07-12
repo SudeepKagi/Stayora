@@ -12,6 +12,4 @@
 ## Installation
 
 ## Usage
-
-## Scripts
 ```
