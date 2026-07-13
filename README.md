@@ -6,24 +6,28 @@ A web platform for Stayora, an eco-tourism service focused on sustainable, natur
 
 ## Features
 
-- **Listing Management**: Create, read, update, and delete (CRUD) accommodation listings.
-- **Listing Search & Filtering**: Filter listings by category and search by title, location, country, or category.
-- **User Authentication**: User registration, login, and logout functionalities using Passport.js.
-- **Review System**: Users can add and delete reviews for listings.
-- **Image Upload**: Integrate Cloudinary for storing listing images.
-- **Geolocation**: Utilize Mapbox for geocoding listing locations and displaying them on a map.
-- **Authorization**: Implement middleware for user authentication (`isLoggedIn`), listing ownership (`isOwner`), and review authorship (`isReviewAuthor`).
-- **Error Handling**: Custom error handling with `ExpressError` and `wrapAsync` utility.
+*   **Listing Management**: Users can create, read, update, and delete (CRUD) accommodation listings. Listings can be filtered by category and searched by title, location, country, or category.
+*   **User Authentication**: Provides user registration, login, and logout functionalities using Passport.js.
+*   **Review System**: Users can add, view, and remove reviews for listings.
+*   **Image Upload**: Integrates Cloudinary for storing listing images.
+*   **Geolocation Services**: Utilizes Mapbox for geocoding listing locations and displaying them on a map.
+*   **Email Notifications**: Sends transactional emails and alerts, e.g., on user signup.
+*   **Subscriber Management**: Manages email subscriptions with database storage.
+*   **Authorization**: Implements middleware for authenticating users (`isLoggedIn`), verifying listing ownership (`isOwner`), and validating review authorship (`isReviewAuthor`).
+*   **Error Handling**: Custom error handling for Express applications.
 
 ## Tech Stack
 
-- **Language**: JavaScript
-- **Runtime**: Node.js
-- **Framework**: Express
-- **Database**: MongoDB
-- **Authentication**: Passport.js, Express Session
-- **Storage**: Cloudinary
-- **Package Manager**: npm
+*   **Language**: JavaScript
+*   **Runtime**: Node.js
+*   **Web Framework**: Express.js
+*   **Database**: MongoDB (Mongoose ODM)
+*   **Authentication**: Passport.js, Express Session
+*   **Image Storage**: Cloudinary, Multer
+*   **Geolocation**: Mapbox SDK
+*   **Templating**: EJS, EJS Mate
+*   **Package Manager**: npm
+*   **Utilities**: `connect-flash`, `connect-mongo`, `dotenv`, `joi`, `method-override`
 
 ## Folder Structure
 
@@ -54,46 +58,50 @@ A web platform for Stayora, an eco-tourism service focused on sustainable, natur
 
 ## Scripts
 
-- `test`: `echo "Error: no test specified" && exit 1`
+*   `test`: `echo "Error: no test specified" && exit 1`
 
 ## Environment Variables
 
-- `MAP_TOKEN`: Mapbox access token for geolocation services.
+The application requires the following environment variables to be set:
+
+*   `ATLASDB_URL`: MongoDB connection string.
+*   `SECRET`: Secret key for Express session.
+*   `MAP_TOKEN`: Mapbox access token for geolocation services.
 
 ## API Overview
 
-### Listings
+### Router: `routes\listing.js`
 
-| Method   | Path                 | Description                        | Controller Function                | Middleware                                                                    |
-| :------- | :------------------- | :--------------------------------- | :--------------------------------- | :---------------------------------------------------------------------------- |
-| `GET`    | `/listings`          | Get all listings.                  | `listingController.index`          |                                                                               |
-| `POST`   | `/listings`          | Create a new listing.              | `listingController.createListing`  | `isLoggedIn`, `upload.single('listing[image]')`, `validateListing`            |
-| `GET`    | `/listings/new`      | Render form to create new listing. | `listingController.renderNewForm`  | `isLoggedIn`                                                                  |
-| `GET`    | `/listings/:id`      | Get a specific listing.            | `listingController.showListing`    |                                                                               |
-| `PUT`    | `/listings/:id`      | Update a specific listing.         | `listingController.updateListing`  | `isLoggedIn`, `isOwner`, `upload.single('listing[image]')`, `validateListing` |
-| `DELETE` | `/listings/:id`      | Delete a specific listing.         | `listingController.deleteListing`  | `isLoggedIn`, `isOwner`                                                       |
-| `GET`    | `/listings/:id/edit` | Render form to edit a listing.     | `listingController.renderEditForm` | `isLoggedIn`, `isOwner`                                                       |
+| Method | Path         | Description                       | Controller                   | Middlewares                                                       |
+| :----- | :----------- | :-------------------------------- | :--------------------------- | :---------------------------------------------------------------- |
+| `GET`  | `/`          | Get all listings.                 | `listingController.index`    |                                                                   |
+| `POST` | `/`          | Create a new listing.             | `listingController.createListing` | `isLoggedIn`, `upload.single('listing[image]')`, `validateListing` |
+| `GET`  | `/:id`       | Get a specific listing.           | `listingController.showListing` |                                                                   |
+| `PUT`  | `/:id`       | Update a specific listing.        | `listingController.updateListing` | `isLoggedIn`, `isOwner`, `upload.single('listing[image]')`, `validateListing` |
+| `DELETE` | `/:id`     | Delete a specific listing.        | `listingController.deleteListing` | `isLoggedIn`, `isOwner`                                           |
+| `GET`  | `/new`       | Render form to create new listing. | `listingController.renderNewForm` | `isLoggedIn`                                                      |
+| `GET`  | `/:id/edit`  | Render form to edit a listing.    | `listingController.renderEditForm` | `isLoggedIn`, `isOwner`                                           |
 
-### Reviews
+### Router: `routes\review.js`
 
-| Method   | Path                              | Description                              | Controller Function             | Middleware                     |
-| :------- | :-------------------------------- | :--------------------------------------- | :------------------------------ | :----------------------------- |
-| `POST`   | `/listings/:id/reviews`           | Create a new review for a listing.       | `reviewController.createReview` | `isLoggedIn`, `validateReview` |
-| `DELETE` | `/listings/:id/reviews/:reviewId` | Delete a specific review from a listing. | `reviewController.deleteReview` | `isLoggedIn`, `isReviewAuthor` |
+| Method | Path        | Description                       | Controller                  | Middlewares                      |
+| :----- | :---------- | :-------------------------------- | :-------------------------- | :------------------------------- |
+| `POST` | `/`         | Create a new review.              | `reviewController.createReview` | `isLoggedIn`, `validateReview`   |
+| `DELETE` | `/:reviewId` | Delete a specific review.         | `reviewController.deleteReview` | `isLoggedIn`, `isReviewAuthor`   |
 
-### Users
+### Router: `routes\user.js`
 
-| Method | Path      | Description                    | Controller Function           | Middleware                                               |
-| :----- | :-------- | :----------------------------- | :---------------------------- | :------------------------------------------------------- |
-| `GET`  | `/signup` | Render user registration form. | `userController.renderSignup` |                                                          |
-| `POST` | `/signup` | Register a new user.           | `userController.signup`       |                                                          |
-| `GET`  | `/login`  | Render user login form.        | `userController.renderLogin`  |                                                          |
-| `POST` | `/login`  | Authenticate user and log in.  | `userController.login`        | `saveRedirectUrl`, `passport.authenticate('local', ...)` |
-| `GET`  | `/logout` | Log out the current user.      | `userController.logout`       |                                                          |
+| Method | Path      | Description                     | Controller               | Middlewares                                                                |
+| :----- | :-------- | :------------------------------ | :----------------------- | :------------------------------------------------------------------------- |
+| `GET`  | `/signup` | Render user registration form.  | `userController.renderSignup` |                                                                            |
+| `POST` | `/signup` | Register a new user.            | `userController.signup`  |                                                                            |
+| `GET`  | `/login`  | Render user login form.         | `userController.renderLogin` |                                                                            |
+| `POST` | `/login`  | Authenticate user and log in.   | `userController.login`   | `saveRedirectUrl`, `passport.authenticate('local', { failureRedirect: '/login', failureFlash: true, })` |
+| `GET`  | `/logout` | Log out the current user.       | `userController.logout`  |                                                                            |
 
 ## Database Models
 
-### Listing
+### Model: `Listing` (Collection: `listings`)
 
 Represents an accommodation listing.
 
@@ -114,10 +122,10 @@ Represents an accommodation listing.
 | `geometry.coordinates` | `Array<Number>`   | Longitude and latitude coordinates.           |                                                                                            |
 | `category`             | `String`          | Category of the listing.                      | `enum: ['Forest', 'Mountain', 'Beach', 'Desert', 'Farm', 'Luxury', 'Camping']`, `required` |
 
-- `post('findOneAndDelete')` hook: Deletes associated reviews when a listing is deleted.
-- `geometry` field has a `2dsphere` index.
+*   **Indexes**: `geometry` field has a `2dsphere` index.
+*   **Hooks**: `post('findOneAndDelete')` hook is implemented to delete all associated reviews when a listing is deleted.
 
-### Review
+### Model: `Review` (Collection: `reviews`)
 
 Represents a review for a listing.
 
@@ -128,15 +136,16 @@ Represents a review for a listing.
 | `createdAt` | `Date`     | Timestamp when the review was created.        | `default: Date.now()` |
 | `author`    | `ObjectId` | Reference to the `User` who wrote the review. | `ref: 'User'`         |
 
-### Subscriber
+### Model: `Subscriber` (Collection: `subscribers`)
 
 Represents an email subscriber.
 
-| Field   | Type     | Description                 | Constraints                               |
-| :------ | :------- | :-------------------------- | :---------------------------------------- |
-| `email` | `String` | Subscriber's email address. | `required`, `unique`, `trim`, `lowercase` |
+| Field        | Type     | Description                 | Constraints                               |
+| :----------- | :------- | :-------------------------- | :---------------------------------------- |
+| `email`      | `String` | Subscriber's email address. | `required`, `unique`, `trim`, `lowercase` |
+| `subscribedAt` | `Date`   | Timestamp of subscription.  | `default: Date.now`                       |
 
-### User
+### Model: `User` (Collection: `users`)
 
 Represents a user of the platform.
 
@@ -144,4 +153,4 @@ Represents a user of the platform.
 | :------ | :------- | :-------------------- | :---------- |
 | `email` | `String` | User's email address. | `required`  |
 
-- Uses `passport-local-mongoose` plugin to add `username`, `hash`, and `salt` fields for authentication.
+*   **Plugins**: Uses `passport-local-mongoose` plugin, which automatically adds `username`, `hash` (password), and `salt` fields for authentication.
