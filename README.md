@@ -32,3 +32,4 @@ Stayora is a web platform designed for an eco-tourism service, offering sustaina
 - **Mapping & Geocoding**: Mapbox SDK, Mapbox GL JS
 - **File Uploads**: Multer
 - **Package Manager**: n
+  git pull
