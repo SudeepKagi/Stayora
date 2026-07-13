@@ -1,5 +1,4 @@
-```markdown
-#
+# Project Name
 
 ## Description
 
@@ -14,4 +13,11 @@
 ## Usage
 
 ## Scripts
-```
+
+## Environment Variables
+
+## API Overview
+
+## Database Models
+
+## Future Improvements
