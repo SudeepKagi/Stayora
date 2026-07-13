@@ -14,12 +14,4 @@
 
 ## Scripts
 
-## Environment Variables
-
-## API Overview
-
-## Database Models
-
-## Future Improvements
-
-## Future Improvements
+## En
