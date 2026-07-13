@@ -14,6 +14,4 @@
 ## Usage
 
 ## Scripts
-
-## Environment Variables
 ```
