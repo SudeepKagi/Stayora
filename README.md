@@ -7,12 +7,12 @@ A web platform for Stayora, an eco-tourism service focused on sustainable, natur
 ## Features
 
 *   **Listing Management**: Users can create, read, update, and delete (CRUD) accommodation listings. Listings can be filtered by category and searched by title, location, country, or category.
-*   **User Authentication**: Provides user registration, login, and logout functionalities using Passport.js.
+*   **User Authentication**: Provides user registration, login, and logout functionalities using Passport.js and Express Session.
 *   **Review System**: Users can add, view, and remove reviews for listings.
-*   **Image Upload**: Integrates Cloudinary for storing listing images.
+*   **Image Upload**: Integrates Cloudinary with Multer for storing listing images.
 *   **Geolocation Services**: Utilizes Mapbox for geocoding listing locations and displaying them on a map.
-*   **Email Notifications**: Sends transactional emails and alerts, e.g., on user signup.
-*   **Subscriber Management**: Manages email subscriptions with database storage.
+*   **Email Notifications**: Sends transactional emails and alerts using Nodemailer, e.g., on user signup.
+*   **Subscriber Management**: Provides database storage and operations for managing email subscribers.
 *   **Authorization**: Implements middleware for authenticating users (`isLoggedIn`), verifying listing ownership (`isOwner`), and validating review authorship (`isReviewAuthor`).
 *   **Error Handling**: Custom error handling for Express applications.
 
@@ -22,8 +22,8 @@ A web platform for Stayora, an eco-tourism service focused on sustainable, natur
 *   **Runtime**: Node.js
 *   **Web Framework**: Express.js
 *   **Database**: MongoDB (Mongoose ODM)
-*   **Authentication**: Passport.js, Express Session
-*   **Image Storage**: Cloudinary, Multer
+*   **Authentication**: Passport.js, Express Session, passport-local-mongoose
+*   **Image Storage**: Cloudinary, Multer, multer-storage-cloudinary
 *   **Geolocation**: Mapbox SDK
 *   **Templating**: EJS, EJS Mate
 *   **Package Manager**: npm
@@ -72,21 +72,21 @@ The application requires the following environment variables to be set:
 
 ### Router: `routes\listing.js`
 
-| Method | Path         | Description                       | Controller                   | Middlewares                                                       |
-| :----- | :----------- | :-------------------------------- | :--------------------------- | :---------------------------------------------------------------- |
-| `GET`  | `/`          | Get all listings.                 | `listingController.index`    |                                                                   |
-| `POST` | `/`          | Create a new listing.             | `listingController.createListing` | `isLoggedIn`, `upload.single('listing[image]')`, `validateListing` |
-| `GET`  | `/:id`       | Get a specific listing.           | `listingController.showListing` |                                                                   |
-| `PUT`  | `/:id`       | Update a specific listing.        | `listingController.updateListing` | `isLoggedIn`, `isOwner`, `upload.single('listing[image]')`, `validateListing` |
-| `DELETE` | `/:id`     | Delete a specific listing.        | `listingController.deleteListing` | `isLoggedIn`, `isOwner`                                           |
-| `GET`  | `/new`       | Render form to create new listing. | `listingController.renderNewForm` | `isLoggedIn`                                                      |
-| `GET`  | `/:id/edit`  | Render form to edit a listing.    | `listingController.renderEditForm` | `isLoggedIn`, `isOwner`                                           |
+| Method | Path        | Description                       | Controller                   | Middlewares                                                       |
+| :----- | :---------- | :-------------------------------- | :--------------------------- | :---------------------------------------------------------------- |
+| `GET`  | `/`         | Get all listings.                 | `listingController.index`    |                                                                   |
+| `POST` | `/`         | Create a new listing.             | `listingController.createListing` | `isLoggedIn`, `upload.single('listing[image]')`, `validateListing` |
+| `GET`  | `/:id`      | Get a specific listing.           | `listingController.showListing` |                                                                   |
+| `PUT`  | `/:id`      | Update a specific listing.        | `listingController.updateListing` | `isLoggedIn`, `isOwner`, `upload.single('listing[image]')`, `validateListing` |
+| `DELETE` | `/:id`    | Delete a specific listing.        | `listingController.deleteListing` | `isLoggedIn`, `isOwner`                                           |
+| `GET`  | `/new`      | Render form to create new listing. | `listingController.renderNewForm` | `isLoggedIn`                                                      |
+| `GET`  | `/:id/edit` | Render form to edit a listing.    | `listingController.renderEditForm` | `isLoggedIn`, `isOwner`                                           |
 
 ### Router: `routes\review.js`
 
-| Method | Path        | Description                       | Controller                  | Middlewares                      |
-| :----- | :---------- | :-------------------------------- | :-------------------------- | :------------------------------- |
-| `POST` | `/`         | Create a new review.              | `reviewController.createReview` | `isLoggedIn`, `validateReview`   |
+| Method | Path         | Description                       | Controller                  | Middlewares                      |
+| :----- | :----------- | :-------------------------------- | :-------------------------- | :------------------------------- |
+| `POST` | `/`          | Create a new review.              | `reviewController.createReview` | `isLoggedIn`, `validateReview`   |
 | `DELETE` | `/:reviewId` | Delete a specific review.         | `reviewController.deleteReview` | `isLoggedIn`, `isReviewAuthor`   |
 
 ### Router: `routes\user.js`
@@ -104,6 +104,7 @@ The application requires the following environment variables to be set:
 ### Model: `Listing` (Collection: `listings`)
 
 Represents an accommodation listing.
+Source File: `models\listing.js`
 
 | Field                  | Type              | Description                                   | Constraints                                                                                |
 | :--------------------- | :---------------- | :-------------------------------------------- | :----------------------------------------------------------------------------------------- |
@@ -128,6 +129,7 @@ Represents an accommodation listing.
 ### Model: `Review` (Collection: `reviews`)
 
 Represents a review for a listing.
+Source File: `models\review.js`
 
 | Field       | Type       | Description                                   | Constraints           |
 | :---------- | :--------- | :-------------------------------------------- | :-------------------- |
@@ -139,6 +141,7 @@ Represents a review for a listing.
 ### Model: `Subscriber` (Collection: `subscribers`)
 
 Represents an email subscriber.
+Source File: `models\subscriber.js`
 
 | Field        | Type     | Description                 | Constraints                               |
 | :----------- | :------- | :-------------------------- | :---------------------------------------- |
@@ -148,6 +151,7 @@ Represents an email subscriber.
 ### Model: `User` (Collection: `users`)
 
 Represents a user of the platform.
+Source File: `models\user.js`
 
 | Field   | Type     | Description           | Constraints |
 | :------ | :------- | :-------------------- | :---------- |
