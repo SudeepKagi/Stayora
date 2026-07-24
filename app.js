@@ -16,8 +16,6 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 const dbUrl = process.env.ATLASDB_URL;
 const Subscriber = require('./models/subscriber.js');
 
@@ -26,10 +24,13 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Server
-app.listen(8080, () => {
-  console.log('Listening on port 8080');
-});
+// Server (Local execution)
+if (require.main === module) {
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+  });
+}
 
 // Database
 main()
@@ -130,3 +131,5 @@ app.use((err, req, res, next) => {
   const { statusCode = 500, message = 'Something went wrong' } = err;
   res.status(statusCode).render('error', { statusCode, message });
 });
+
+module.exports = app;
