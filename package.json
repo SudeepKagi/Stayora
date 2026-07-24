@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": ">=20"
+    "node": "24.x"
   },
   "name": "stayora",
   "version": "1.0.0",
