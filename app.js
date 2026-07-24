@@ -128,6 +128,11 @@ app.use((err, req, res, next) => {
     return next(err);
   }
 
+  res.locals.success = res.locals.success || [];
+  res.locals.error = res.locals.error || [];
+  res.locals.currUser = res.locals.currUser || null;
+  res.locals.mapToken = res.locals.mapToken || process.env.MAP_TOKEN || '';
+
   const { statusCode = 500, message = 'Something went wrong' } = err;
   res.status(statusCode).render('error', { statusCode, message });
 });

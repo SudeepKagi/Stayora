@@ -1,4 +1,4 @@
-<% if (success && success.length > 0) { %>
+<% if (typeof success !== 'undefined' && success && success.length > 0) { %>
 <div class="flash flash-success">
   <div class="flash-icon">
     <i class="fa-solid fa-circle-check"></i>
@@ -8,7 +8,7 @@
     <i class="fa-solid fa-xmark"></i>
   </span>
 </div>
-<% } %> <% if (error && error.length > 0) { %>
+<% } %> <% if (typeof error !== 'undefined' && error && error.length > 0) { %>
 <div class="flash flash-error">
   <div class="flash-icon">
     <i class="fa-solid fa-circle-exclamation"></i>
